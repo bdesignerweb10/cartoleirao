@@ -1,0 +1,102 @@
+@import "../components/bootstrap/scss/bootstrap";
+
+
+/* RESET */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+img {
+	max-width: 100%;
+}
+
+body{
+	font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #efefef;
+}
+
+/* HEADER */
+
+.header{
+	background-color: #fff;
+	height: 50px;
+	justify-content: space-between;	
+	align-items: center;
+}
+
+.header-marketplace,
+.header-account{
+	padding: 13px 40px;
+}
+
+.header-marketplace{
+	color: #eb8300;
+}
+
+.header-marketplace:hover{
+	color: #eb8300 !important;
+	text-decoration: none !important;
+}
+
+.header-marketplace i{
+	padding: 0 10px;
+}
+
+.header-account{	
+	background-color: #eb8300;
+	color: #fff;
+}
+
+.header .nav-link:hover{
+	text-decoration: underline;
+	color: #fff;
+}
+
+.header-logo{
+	width: 300px;
+
+}
+
+/* Menu Principal */
+
+.header-menu{
+	display: flex;
+	justify-content: space-around;
+	background-color: #00165b;
+	.dropdown-menu{
+		background-color: #00165b;
+	}
+}
+
+.header-menu .nav-item{
+	padding: 0 10px;
+}
+
+.dropdown-menu .dropdown-item:hover{
+	background-color: #00165b;
+	color: #fff;
+	text-decoration: underline;
+}
+
+.header-menu .nav-link, 
+.header-menu .dropdown-item{
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff !important;
+}
+
+.header-menu .nav-subscription{
+	color: #eb8300 !important;
+}

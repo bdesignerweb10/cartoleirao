@@ -1,0 +1,32 @@
+{
+  "name": "cartoleirao",
+  "description": "Website da liga Cartoleirão",
+  "main": "index.js",
+  "authors": [
+    "Bruno Gomes",
+    "Pedro Pilz"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Cartola",
+    "FC",
+    "Cartoleirão",
+    "Fantasy",
+    "Game",
+    "Liga",
+    "Amigos"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1"
+  }
+}
