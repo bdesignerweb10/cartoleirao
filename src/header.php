@@ -34,7 +34,7 @@
 </head>
 <body>
 
-	<header class="header">		
+	<nav class="nav-header">		
 		<ul class="nav justify-content-end">		  
 		  <li class="nav-item">
 		    <a class="nav-link header-marketplace" href="#"><i class="fas fa-lock"></i> Mercado Fechado</a>
@@ -44,7 +44,8 @@
 		    <a class="nav-link header-account" href="#">Hasdrubal FC</a>
 		  </li>		  
 		</ul>
-		
+	</nav>
+	<header class="header">	
 		<div class="row">
 			<div class="header-logo">
 				<img class="img-fluid" src="img/Logo-Cartoleirao.png">
