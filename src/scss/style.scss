@@ -29,11 +29,11 @@ body{
 
 /* HEADER */
 
-.header{
+.header{	
 	background-color: #fff;
 	height: 50px;
-	justify-content: space-between;	
-	align-items: center;
+	//justify-content: space-between;	
+	//align-items: center;
 }
 
 .header-marketplace,
@@ -64,9 +64,14 @@ body{
 	color: #fff;
 }
 
-.header-logo{
-	width: 300px;
+.header .row{
+	margin-right: 0 !important;
+	justify-content: center;
+}
 
+.header-logo{
+	width: 230px;
+	margin: 20px;
 }
 
 /* Menu Principal */

@@ -7044,9 +7044,7 @@ body {
 /* HEADER */
 .header {
   background-color: #fff;
-  height: 50px;
-  justify-content: space-between;
-  align-items: center; }
+  height: 50px; }
 
 .header-marketplace,
 .header-account {
@@ -7070,8 +7068,13 @@ body {
   text-decoration: underline;
   color: #fff; }
 
+.header .row {
+  margin-right: 0 !important;
+  justify-content: center; }
+
 .header-logo {
-  width: 300px; }
+  width: 230px;
+  margin: 20px; }
 
 /* Menu Principal */
 .header-menu {
