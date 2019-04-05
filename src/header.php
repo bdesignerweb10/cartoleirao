@@ -33,18 +33,26 @@
 	
 </head>
 <body>
-
-	<nav class="nav-header">		
-		<ul class="nav justify-content-end">		  
-		  <li class="nav-item">
-		    <a class="nav-link header-marketplace" href="#"><i class="fas fa-lock"></i> Mercado Fechado</a>
-		    <!--<i class="fas fa-lock-open"></i> -->
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link header-account" href="#">Hasdrubal FC</a>
-		  </li>		  
-		</ul>
-	</nav>
+	<div class="nav-header">
+		<nav class="navbar">
+			<ul class="nav justify-content-end">
+		      <li class="nav-item">
+		        <a class="nav-link header-marketplace" href="#"><i class="fas fa-lock"></i> <!-- <i class="fas fa-lock-open"></i> -->Mercado Fechado <span class="sr-only">(current)</span></a>
+		      </li>      
+		      <li class="nav-item dropdown">
+		        <a class="nav-link header-account dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Hasdrubal FC
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Meus Dados</a>
+		          <a class="dropdown-item" href="#">Informações do Clube</a>
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="#">Sair</a>
+		        </div>
+		      </li>      
+		    </ul>
+		</nav>
+	</div><!-- nav-header-->	
 	<header class="header">	
 		<div class="row">
 			<div class="header-logo">
@@ -61,13 +69,13 @@
 			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			    <ul class="navbar-nav">
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+			        <a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Tabela Liga CTS</a>
+			        <a class="nav-link" href="tabela-cts.php">Tabela Liga CTS</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Tabela Brasileirão</a>
+			        <a class="nav-link" href="brasileirao.php">Tabela Brasileirão</a>
 			      </li>			      
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">Clubes da liga</a>
@@ -86,13 +94,28 @@
 			        <a class="nav-link nav-subscription" href="#">Inscrição</a>
 			      </li>-->		      
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Regulamentos</a>
+			        <a class="nav-link" href="regulamentos.php">Regulamentos</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Patrocinadores</a>
+			        <a class="nav-link" href="patrocinadores.php">Patrocinadores</a>
 			      </li>
 			    </ul>
 			  </div>
 			</nav>
 		</div><!-- header-menu -->
+		<div class="row">
+			<div class="col-sm-6">
+				<nav aria-label="breadcrumb">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+				    <li class="breadcrumb-item"><a href="#">Desempenho de Clubes</a></li>
+				    <li class="breadcrumb-item active" aria-current="page">Pontuação Mensal</li>
+				  </ol>
+				</nav>
+			</div>			
+			<div class="col-sm-4 current-round">
+				<h6>Rodada Atual: <strong>1º Rodada<strong></h6>
+			</div>		
+		</div>		
 	</header>
+

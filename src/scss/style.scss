@@ -32,8 +32,14 @@ body{
 .nav-header{	
 	background-color: #fff;
 	height: 50px;
-	//justify-content: space-between;	
-	//align-items: center;
+}
+
+.nav-header .navbar{
+	display: block !important;
+	flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 !important;
 }
 
 .header-marketplace,
@@ -105,4 +111,194 @@ body{
 
 .header-menu .nav-subscription{
 	color: #eb8300 !important;
+}
+
+.breadcrumb{
+	font-size: 12px;
+	background: none;
+	padding: 0.75rem 2.2rem;
+}
+
+.breadcrumb .breadcrumb-item a {
+	color: #eb8300;
+}
+
+.breadcrumb-item.active {
+	color: #00165b;
+}
+
+.current-round{
+	padding: 0.75rem;
+	text-align: end;
+}
+
+.current-round h6{
+	font-weight: bold;
+	>strong{
+		color: #eb8300;
+	}
+}
+
+
+/* DEFAULT */
+
+.headline{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.btn-default{
+	background-color: #00165b;
+	border-color: #00165b;
+	color: #fff;
+	width: 100%;
+}
+
+.btn-default:hover{
+	background-color: #00165b;
+	border-color: #00165b;
+	opacity: 0.9;
+	color: #fff;
+
+}
+
+/* DASHBOARD */
+
+.dashboard .row,
+.regulation .col-sm-4{
+	margin-bottom: 20px;
+}
+
+/* Card Tabela Cartoleirão - Index */
+
+.table-cts{
+	font-size: 12px;
+}
+
+/* Comparar times */
+
+.to-compare .btn{
+	margin-top: 8px;
+}
+
+
+/* TABELA DA LIGA */
+
+.table-cartoleira{
+	text-align: center;
+}
+
+.table-cartoleira thead{
+	background-color: #eb8300;
+	color: #fff;
+}
+
+.legend{
+	flex-direction: column;
+}
+
+.card-table-cts{
+	margin-bottom: 30px;
+}
+
+/* REGULAMENTO */
+
+.regulation-cst .modal-body p{
+	text-align: justify;
+}
+
+
+/* FOOTER */
+
+.footer{
+	background-color: #00165b;
+	padding: 100px 0;
+}
+
+.footer .container,
+.footer-end .container{
+	height: auto;	
+	align-items: flex-start;
+}
+
+.footer-menu{	
+	list-style: none;
+}
+
+.footer-title{
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #eb8300;
+	margin-bottom: 20px;
+}
+
+.footer-link{
+	display: block;
+	color: #fff;
+	margin-top: 10px;
+}
+
+.footer-menu .footer-link:hover{
+	text-decoration: none;
+	color: #eb8300;
+}
+
+.footer-end{
+	padding: 15px 0;	
+	background-color: #eb8300
+}
+
+.footer-end .container{
+	justify-content: space-between;
+}
+
+.footer-end p{
+	margin-top: 20px;
+}
+
+.btn-footer{
+	background-color: #eb8300;
+	border-color: #eb8300;
+	color: #fff;
+	width: 50%;
+}
+
+.btn-footer:hover{	
+	color: #fff !important;
+	opacity: 0.8;
+}
+
+/* Tabela Brasileirão */
+
+.table-br .headline{
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.table-br .legend{
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 70px;
+}
+
+.table-jogos{
+	text-align: center;
+}
+
+.game{
+	display: flex;
+    justify-content: space-around;
+}
+
+.game-info{
+	color: #555;
+	font-size: 0.6875em;
+	text-align: center;
+}
+
+.vs{
+	color: #555;
 }
