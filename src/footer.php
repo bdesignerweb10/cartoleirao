@@ -44,7 +44,25 @@
 		<script src="js/textext.plugin.autocomplete.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/textext.plugin.ajax.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
-		<script src="js/jquery.mask.js"></script>
-		<script src="js/lightbox-plus-jquery.min.js"></script>
+		<script src="js/jquery.mask.js"></script>		
+
+		<!-- Modal Resumo da Rodada  -->
+		<script>
+			$(document).ready(function() {
+		    	$('#modal-info').modal('show');
+			})
+		</script>
+		<script>
+		$(document).on("scroll",function(){
+		    if($(document).scrollTop()>200){ 		        	
+		        $("#nav-header").removeClass("nav-header").addClass("nav-header-2");
+		        $("#header").removeClass("header-menu").addClass("header-menu-2");		        
+		    } else{
+		    	$("#nav-header").removeClass("nav-header-2").addClass("nav-header");
+		        $("#header").removeClass("header-menu-2").addClass("header-menu"); 	        
+		        		        
+		    }
+		});
+		</script>
 	</body>
 </html>

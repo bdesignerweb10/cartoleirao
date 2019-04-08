@@ -7047,6 +7047,22 @@ body {
   background-color: #fff;
   height: 50px; }
 
+.nav-header-2 {
+  background-color: #fff;
+  height: 50px; }
+
+.nav-header-2 .navbar {
+  background-color: #fff;
+  display: block !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 !important;
+  position: fixed;
+  top: 0px;
+  z-index: 99;
+  width: 100%; }
+
 .nav-header .navbar {
   display: block !important;
   flex-wrap: wrap !important;
@@ -7092,6 +7108,23 @@ body {
   background-color: #00165b; }
   .header-menu .dropdown-menu {
     background-color: #00165b; }
+
+.header-menu-2 {
+  display: flex;
+  justify-content: space-around;
+  background-color: #00165b;
+  position: fixed;
+  top: 50px;
+  z-index: 99;
+  width: 100%; }
+  .header-menu-2 .dropdown-menu {
+    background-color: #00165b; }
+
+.header-menu-2 .nav-link,
+.header-menu-2 .dropdown-item {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff !important; }
 
 .header-menu .nav-item {
   padding: 0 10px; }
@@ -7145,6 +7178,60 @@ body {
   background-color: #00165b;
   border-color: #00165b;
   opacity: 0.9;
+  color: #fff; }
+
+/* Modal */
+.modal-overview {
+  background-color: #eb8300;
+  color: #fff; }
+
+.modal-best .best {
+  display: flex;
+  justify-content: space-between; }
+
+.modal-best .headline {
+  text-align: center;
+  font-size: 23px; }
+
+.modal-best img {
+  width: 45px;
+  height: 50px; }
+
+.modal-best p {
+  font-weight: bold;
+  padding: 13px; }
+
+.modal-pts {
+  color: #00165b; }
+
+.pts {
+  color: #000;
+  font-size: 14px;
+  font-style: italic; }
+
+.sponsorship img {
+  width: 800px; }
+
+.sponsorship .headline {
+  font-size: 15px; }
+
+.sponsorship p {
+  font-size: 13px; }
+
+.sponsorship a {
+  font-size: 14px;
+  font-weight: bold; }
+
+.sponsorship .btn {
+  justify-content: end; }
+
+.modal-btn {
+  display: flex;
+  justify-content: flex-end; }
+
+.modal-btn .btn-exit {
+  background-color: #00165b;
+  border-color: #00165b;
   color: #fff; }
 
 /* DASHBOARD */
@@ -7253,3 +7340,96 @@ body {
 
 .vs {
   color: #555; }
+
+/* Destaques */
+.highlights {
+  margin-bottom: 20px; }
+
+.highlights .card {
+  margin-bottom: 20px; }
+
+/* História Clubes */
+.select-club {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; }
+
+.select-club p {
+  text-align: end;
+  padding: 5px; }
+
+.club .headline {
+  color: #eb8300; }
+
+.club {
+  margin-bottom: 20px; }
+
+.club p {
+  font-size: 14px;
+  font-weight: bold; }
+  .club p > span {
+    color: #00165b; }
+
+.club .card {
+  align-items: center;
+  background-color: #fff; }
+
+.club img {
+  width: 180px; }
+
+.club-info {
+  margin-bottom: 20px; }
+
+.club-info p {
+  text-align: justify; }
+
+.trophy-gallery .fas {
+  color: #eb8300; }
+
+.trophy-gallery p {
+  color: #00165b; }
+
+.btn-performance {
+  background-color: #00165b;
+  border-color: #00165b;
+  color: #fff; }
+
+.btn-performance:hover {
+  color: #fff; }
+
+.card-seasons {
+  align-items: flex-start !important;
+  width: 100%;
+  padding: 15px 35px; }
+
+.disqualified {
+  color: red; }
+
+.champion {
+  color: #eb8300; }
+
+/* Mata Mata */
+.copas a {
+  color: #fff; }
+
+.confrontations .card-header {
+  font-size: 11px;
+  text-align: center;
+  color: #ccc; }
+
+.confrontations .card-body {
+  display: flex;
+  justify-content: space-between; }
+
+.vs {
+  padding-top: 8px;
+  text-align: center;
+  font-size: 30px;
+  color: #ccc; }
+
+.confrontations span {
+  font-size: 13px; }
+
+.confrontations p {
+  font-size: 12px;
+  padding: 10px; }

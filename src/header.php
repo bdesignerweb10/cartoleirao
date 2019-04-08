@@ -33,7 +33,7 @@
 	
 </head>
 <body>
-	<div class="nav-header">
+	<div class="nav-header" id="nav-header">
 		<nav class="navbar">
 			<ul class="nav justify-content-end">
 		      <li class="nav-item">
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 
-		<div class="header-menu">
+		<div class="header-menu" id="header">
 			<nav class="navbar navbar-expand-lg navbar-light ">
 			<a class="navbar-brand" href="#"></a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,15 +78,15 @@
 			        <a class="nav-link" href="brasileirao.php">Tabela Brasileirão</a>
 			      </li>			      
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Clubes da liga</a>
+			        <a class="nav-link" href="clubes-liga.php">Clubes da liga</a>
 			      </li>
 			      <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Desempenho de clubes
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">Destaques da rodada</a>
-			          <a class="dropdown-item" href="#">Pontuação mensal</a>
+			          <a class="dropdown-item" href="destaques-rodada.php">Destaques da rodada</a>
+			          <a class="dropdown-item" href="mensal.php">Pontuação mensal</a>
 			          <a class="dropdown-item" href="#">Gráfico de desempenho</a>
 			        </div>
 			      </li>	
@@ -116,6 +116,16 @@
 			<div class="col-sm-4 current-round">
 				<h6>Rodada Atual: <strong>1º Rodada<strong></h6>
 			</div>		
+		</div>
+
+		<!-- Exibir somente quando algum jogo não for valer para o Cartola FC -->	
+		<div class="row">
+			<div class="col-sm-10">
+				<div class="alert alert-danger" role="alert">
+				  <h4 class="alert-heading">Atenção</h4>
+				  <p>O Jogo Corinthians x Santos não será válido para o Cartola FC</p>
+				</div>
+			</div>
 		</div>		
 	</header>
 

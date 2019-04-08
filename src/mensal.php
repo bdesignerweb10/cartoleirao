@@ -5,6 +5,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
+				<form>
+			  <div class="form-row">		    
+			    <div class="form-group col-md-12">
+			      <label for="inputState">Selecione o mês desejado</label>
+			      <select id="inputState" class="form-control">
+			        <option selected>Abril - Mês Atual</option>
+			        <option>Maio</option>
+			        <option>Junho</option>
+			        <option>Julho</option>
+			        <option>Agosto</option>
+			      </select>
+			    </div>
+			  </div>
+			</form>
+			</div><!-- col-sm-12 -->
+			<div class="col-sm-12">
 				<div class="card card-table-cts">
 				  <div class="card-header headline">
 				    Tabela Liga Cartoleirão Trabalho Seguro - TS
@@ -64,29 +80,14 @@
 					      <td>-5</td>
 					    </tr>
 					    <tr>
-					      <th scope="row" class="text-secondary">7</th>
+					      <th scope="row" class="text-danger">7</th>
 					      <td>Hasdrubal FC</td>
 					      <td>86.93</td>
 					      <td>1569.63</td>
 					      <td>-5</td>
 					    </tr>
 					    <tr>
-					    	<tr>
-					      <th scope="row" class="text-secondary">8</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-danger">9</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-danger">10</th>
+					      <th scope="row" class="text-danger">8</th>
 					      <td>Hasdrubal FC</td>
 					      <td>86.93</td>
 					      <td>1569.63</td>

@@ -24,7 +24,7 @@
 				  </thead>
 				  <tbody>
 				    <tr>
-				      <th scope="row">1</th>
+				      <th scope="row" class="text-primary">1</th>
 				      <td>Corinthians</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -37,7 +37,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">2</th>
+				      <th scope="row" class="text-primary">2</th>
 				      <td>Palmeiras</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -50,7 +50,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">3</th>
+				      <th scope="row" class="text-primary">3</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -63,7 +63,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">4</th>
+				      <th scope="row" class="text-primary">4</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -76,7 +76,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">5</th>
+				      <th scope="row" class="text-info">5</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -89,7 +89,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">6</th>
+				      <th scope="row" class="text-info">6</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -102,7 +102,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">7</th>
+				      <th scope="row" class="text-success">7</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -115,7 +115,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">8</th>
+				      <th scope="row" class="text-success">8</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -128,7 +128,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">9</th>
+				      <th scope="row" class="text-success">9</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -141,7 +141,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">10</th>
+				      <th scope="row" class="text-success">10</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -154,7 +154,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">11</th>
+				      <th scope="row" class="text-success">11</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -167,7 +167,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">12</th>
+				      <th scope="row" class="text-success">12</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -232,7 +232,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">17</th>
+				      <th scope="row" class="text-danger">17</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -245,7 +245,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">18</th>
+				      <th scope="row" class="text-danger">18</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -258,7 +258,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">19</th>
+				      <th scope="row" class="text-danger">19</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
@@ -271,7 +271,7 @@
 				      <td>3</td>
 				    </tr>
 				    <tr>
-				      <th scope="row">20</th>
+				      <th scope="row" class="text-danger">20</th>
 				      <td>São Paulo</td>
 				      <td>3</td>
 				      <td>3</td>
