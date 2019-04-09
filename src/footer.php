@@ -4,11 +4,11 @@
 					<div class="col-sm-4">
 						<ul class="footer-menu">
 							<li class="footer-title">Acesso Rápido</li>					
-							<li><a href="" class="footer-link">Tabela Cartoleirão - TS</a></li>
-							<li><a href="" class="footer-link">Tabela Brasileirão</a></li>
-							<li><a href="" class="footer-link">Clubes da liga</a></li>
-							<li><a href="" class="footer-link">Destaques da rodada</a></li>
-							<li><a href="" class="footer-link">Pontuação Mensal</a></li>
+							<li><a href="tabela-cts.php" class="footer-link">Tabela Cartoleirão - TS</a></li>
+							<li><a href="brasileirao.php" class="footer-link">Tabela Brasileirão</a></li>
+							<li><a href="clubes-liga.php" class="footer-link">Clubes da liga</a></li>
+							<li><a href="destaques-rodada.php" class="footer-link">Destaques da rodada</a></li>
+							<li><a href="mensal.php" class="footer-link">Pontuação Mensal</a></li>
 							<li><a href="" class="footer-link">Gráfico de desempenho</a></li>
 						</ul>
 					</div>
@@ -26,7 +26,7 @@
 							<li class="footer-title">Patrocinadores</li>
 							<li><a href="https://www.trabalhosegurots.com.br/" class="footer-link" target="_blank">Trabalho Seguro Treinamentos e Serviços</a></li>	
 							<li><a href="" target="_blank"  class="footer-link">RT Corretora de Seguros</a></li>						
-							<li><a href="" class="footer-link btn btn-footer btn-sm">Seja Um Patrocinador</a></li>							
+							<li><a href="" class="footer-link btn btn-footer btn-sm" data-toggle="modal" data-target="#modalpatrocionador">Seja Um Patrocinador</a></li>
 						</ul>
 					</div>
 				</div>				
@@ -39,14 +39,51 @@
     </div><!-- footer end -->
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>		
-		<script src='js/moment.min.js' type="text/javascript" charset="utf-8"></script>	
+		<script src='js/moment.min.js' type="text/javascript" charset="utf-8"></script>
+		<script src='js/fullcalendar.min.js' type="text/javascript" charset="utf-8"></script>	
 		<script src="js/textext.core.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/textext.plugin.autocomplete.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/textext.plugin.ajax.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 		<script src="js/jquery.mask.js"></script>		
 
-		<!-- Modal Resumo da Rodada  -->
+		<!-- Modal patrocinador -->
+		<div class="modal fade" id="modalpatrocionador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header modal-overview">
+		        <h5 class="modal-title" id="exampleModalLabel">Deseja ser um de nossos patrocinadores?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Informe os seus dados abaixo que entraremos em contato, para encontrar a melhor solução para sua empresa.</p>
+		        <form>
+				  <div class="form-row modal-sponsor">
+				    <div class="col-6">
+				      <input type="text" class="form-control" placeholder="Informe seu nome">
+				    </div>				    
+				    <div class="col-6">
+				      <input type="number" class="form-control" placeholder="Informe seu telefone">
+				    </div>
+				    <div class="col-12">
+				      <input type="email" class="form-control" placeholder="Informe seu e-mail">
+				    </div>
+				    <div class="col-12">
+				      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+				    </div>
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+		        <button type="button" class="btn btn-primary">Enviar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 		<script>
 			$(document).ready(function() {
 		    	$('#modal-info').modal('show');

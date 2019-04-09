@@ -46,7 +46,7 @@
 				    <h6>Copa Beer II <span class="badge badge-warning">Aguardando Inicio</span></h6>
 				    <h6>Copa Kempes Vii <span class="badge badge-warning">Aguardando Inicio</span></h6>
 				    <h6>Copa Segunda Pele IV <span class="badge badge-danger">Encerrado</span></h6>		   
-				    <a href="copas.php" class="btn btn-default btn-sm">Acompanhar tods as copas</a>
+				    <a href="list-copas.php" class="btn btn-default btn-sm">Acompanhar tods as copas</a>
 				  </div>
 				</div>
 			</div>

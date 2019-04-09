@@ -24,7 +24,9 @@
 	<meta name="theme-color" content="#ffffff">
 	
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/style.css">	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel='stylesheet' type="text/css" href='css/fullcalendar.min.css' />
+	<link rel='stylesheet' type="text/css" href='css/fullcalendar.print.min.css' media='print' />	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-toggle.min.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/textext.plugin.autocomplete.css">
@@ -99,6 +101,19 @@
 			      <li class="nav-item">
 			        <a class="nav-link" href="patrocinadores.php">Patrocinadores</a>
 			      </li>
+
+			      <!-- as opções abaixo, só deverá aparecer no menu, quando o mercado estiver FECHADO -->
+			      <!--<li class="nav-item">
+			        <a class="nav-link" href="tempo-real.php">Tempo Real</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="scouts.php">Scouts</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Copa em Tempo Real</a>
+			      </li>-->
+
+			      <!-- Aqui deve exibir também a tabela do BR + o Regulamento -->
 			    </ul>
 			  </div>
 			</nav>

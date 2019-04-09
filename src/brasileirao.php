@@ -305,9 +305,9 @@
 				<table class="table table-hover table-jogos">
 				  <thead>
 				    <tr>
-				      <th><i class="fas fa-chevron-left"></i></th>
+				      <th><a href="#"><i class="fas fa-chevron-left"></i></a></th>
 				      <th>1º Rodada</th>
-				      <th><i class="fas fa-chevron-right"></i></th>
+				      <th><a href="#"><i class="fas fa-chevron-right"></i></a></th>
 				    </tr>
 				  </thead>
 				</table>

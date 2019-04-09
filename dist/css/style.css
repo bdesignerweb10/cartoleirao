@@ -7234,6 +7234,13 @@ body {
   border-color: #00165b;
   color: #fff; }
 
+/* Modal Patrocinador */
+.modal-sponsor .col-6 {
+  margin-bottom: 15px !important; }
+
+.modal-sponsor .col-12 {
+  margin-bottom: 15px !important; }
+
 /* DASHBOARD */
 .dashboard .row,
 .regulation .col-sm-4 {
@@ -7329,6 +7336,9 @@ body {
 .table-jogos {
   text-align: center; }
 
+.table-jogos a {
+  color: #000; }
+
 .game {
   display: flex;
   justify-content: space-around; }
@@ -7339,7 +7349,9 @@ body {
   text-align: center; }
 
 .vs {
-  color: #555; }
+  color: #555;
+  padding-top: 1px;
+  text-align: center; }
 
 /* Destaques */
 .highlights {
@@ -7412,6 +7424,9 @@ body {
 .copas a {
   color: #fff; }
 
+.confrontations {
+  margin-bottom: 20px; }
+
 .confrontations .card-header {
   font-size: 11px;
   text-align: center;
@@ -7421,7 +7436,7 @@ body {
   display: flex;
   justify-content: space-between; }
 
-.vs {
+.confrontations .vs {
   padding-top: 8px;
   text-align: center;
   font-size: 30px;
@@ -7433,3 +7448,52 @@ body {
 .confrontations p {
   font-size: 12px;
   padding: 10px; }
+
+.copas {
+  margin-bottom: 20px; }
+
+.copas .card-body .btn {
+  width: 100%; }
+
+/* Scouts */
+.scouts .col-sm-4 {
+  margin-bottom: 20px; }
+
+.btn-scouts {
+  padding: 5px 0; }
+
+.btn-scouts .active {
+  background-color: #00165b;
+  border-color: #00165b;
+  color: #fff; }
+
+.scout-club {
+  margin-top: 10px; }
+
+.scout-club img {
+  width: 180px; }
+
+.scout-club .table img {
+  width: 45px; }
+
+.scout-club .card {
+  display: flex;
+  align-items: center;
+  padding: 20px 0; }
+
+.scout-club .card-body {
+  display: flex;
+  text-align: center; }
+
+.scout-club .headline {
+  padding: 0 20px; }
+
+.scout-club .headline span {
+  color: #eb8300;
+  padding: 10px 0; }
+
+.divider {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 90%; }
