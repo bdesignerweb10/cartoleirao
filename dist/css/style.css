@@ -7268,6 +7268,14 @@ body {
 .card-table-cts {
   margin-bottom: 30px; }
 
+.btn-cartola {
+  background-color: #00165b;
+  border-color: #00165b;
+  color: #fff;
+  margin: 15px 0; }
+  .btn-cartola:hover {
+    color: #fff; }
+
 /* REGULAMENTO */
 .regulation-cst .modal-body p {
   text-align: justify; }
@@ -7497,3 +7505,37 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 90%; }
+
+/* Comparação */
+.to-compare {
+  text-align: center;
+  margin-top: 20px; }
+
+.table-cartoleira .table-sub {
+  background-color: #eb8300;
+  color: #fff; }
+
+.to-compare span {
+  padding: 0 80px; }
+
+/* Inscrição */
+.subscription .card {
+  margin-bottom: 20px; }
+
+.subscription .form-check-label {
+  font-size: 14px; }
+
+.btn-subscription {
+  display: flex;
+  justify-content: flex-end; }
+
+.bg-subscription {
+  background-color: #eb8300;
+  color: #fff; }
+
+.bg-subscription p {
+  font-size: 14px;
+  text-align: justify; }
+
+.bg-subscription a {
+  color: #fff; }

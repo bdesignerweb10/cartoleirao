@@ -93,11 +93,10 @@
 		$(document).on("scroll",function(){
 		    if($(document).scrollTop()>200){ 		        	
 		        $("#nav-header").removeClass("nav-header").addClass("nav-header-2");
-		        $("#header").removeClass("header-menu").addClass("header-menu-2");		        
+		        $("#header").removeClass("header-menu").addClass("header-menu-2");		        	        
 		    } else{
 		    	$("#nav-header").removeClass("nav-header-2").addClass("nav-header");
-		        $("#header").removeClass("header-menu-2").addClass("header-menu"); 	        
-		        		        
+		        $("#header").removeClass("header-menu-2").addClass("header-menu");
 		    }
 		});
 		</script>

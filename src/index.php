@@ -86,7 +86,7 @@
 				  </div>
 				  <div class="card-body">
 				    <img src="img/comparartimes.png">
-				    <a href="#" class="btn btn-default btn-sm">Comparar Times</a>
+				    <a href="comparar.php" class="btn btn-default btn-sm">Comparar Times</a>
 				  </div>
 				</div>
 			</div>

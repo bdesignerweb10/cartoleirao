@@ -1,3 +1,13 @@
 RewriteEngine On
 
 RewriteRule ^/?$ index.php
+RewriteRule ^cartoleirao/?$ tabela-cts.php
+RewriteRule ^brasileirao/?$ brasileirao.php
+RewriteRule ^clubes/?$ clubes-liga.php
+RewriteRule ^destaques-rodada/?$ destaques-rodada.php
+RewriteRule ^mensal/?$ mensal.php
+RewriteRule ^desempenho-grafico/?$ desempenho-grafico.php
+RewriteRule ^regulamentos/?$ regulamentos.php
+RewriteRule ^patrocinadores/?$ patrocinadores.php
+RewriteRule ^copas/?$ list-copas.php
+RewriteRule ^comparar-clubes/?$ comparar.php

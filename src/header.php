@@ -47,9 +47,9 @@
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <a class="dropdown-item" href="#">Meus Dados</a>
-		          <a class="dropdown-item" href="#">Informações do Clube</a>
+		          <a class="dropdown-item" href="#"><i class="fas fa-info"></i>Informações do Clube</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#">Sair</a>
+		          <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
 		        </div>
 		      </li>      
 		    </ul>
@@ -89,7 +89,7 @@
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 			          <a class="dropdown-item" href="destaques-rodada.php">Destaques da rodada</a>
 			          <a class="dropdown-item" href="mensal.php">Pontuação mensal</a>
-			          <a class="dropdown-item" href="#">Gráfico de desempenho</a>
+			          <a class="dropdown-item" href="desempenho-grafico.php">Gráfico de desempenho</a>
 			        </div>
 			      </li>	
 			      <!--<li class="nav-item">
@@ -132,7 +132,7 @@
 				<h6>Rodada Atual: <strong>1º Rodada<strong></h6>
 			</div>		
 		</div>
-
+		
 		<!-- Exibir somente quando algum jogo não for valer para o Cartola FC -->	
 		<div class="row">
 			<div class="col-sm-10">

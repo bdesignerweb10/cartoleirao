@@ -30,10 +30,10 @@
 					  <thead>
 					    <tr>
 					      <th scope="col">#</th>
-					      <th scope="col">Clube</th>
-					      <th scope="col">Pontos na última rodada</th>
-					      <th scope="col">Pontos no Campeonato</th>
-					      <th scope="col">Variação</th>
+					      <th scope="col">Clube <i class="fas fa-sort"></i></th>
+					      <th scope="col">Pontos na última rodada <i class="fas fa-sort"></i></th>
+					      <th scope="col">Pontos no Campeonato <i class="fas fa-sort"></i></th>
+					      <th scope="col">Variação <i class="fas fa-sort"></i></th>
 					    </tr>
 					  </thead>
 					  <tbody>
