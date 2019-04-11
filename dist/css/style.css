@@ -7163,6 +7163,44 @@ body {
   .current-round h6 > strong {
     color: #eb8300; }
 
+/* MOBILE */
+.navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0.25rem; }
+
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
+  .header {
+    margin-top: 40px; } }
+
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
+  .nav-header .nav {
+    display: block;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    text-align: center; } }
+
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
+  .header-menu {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #00165b; } }
+
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
+  .header-menu-2 {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #00165b;
+    position: fixed;
+    top: 50px;
+    z-index: 99;
+    width: 100%; } }
+
 /* DEFAULT */
 .headline {
   font-size: 18px;
