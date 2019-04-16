@@ -39,6 +39,10 @@ body{
 	height: 50px;		
 }
 
+.nav-header-2 .dropdown-menu{
+	position: initial;
+}
+
 .nav-header-2 .navbar{
 	background-color: #fff;
 	display: block !important;
@@ -53,12 +57,22 @@ body{
 }
 
 
+.nav-header-2 .nav-link:hover,
+.header .nav-link:hover{
+	text-decoration: underline;
+	color: #fff;
+}
+
 .nav-header .navbar{
 	display: block !important;
 	flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: space-between !important;
     padding: 0 !important;
+}
+
+.nav-header .dropdown-menu{
+	position: initial;
 }
 
 .header-marketplace,

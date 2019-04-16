@@ -1,0 +1,104 @@
+@import "../../components/bootstrap/scss/bootstrap";
+
+
+/* RESET */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+img {
+	max-width: 100%;
+}
+
+body{
+	font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #efefef;
+}
+
+/* DEFAULT */
+
+.spacing{
+	margin:20px 0;
+}
+
+/* MENU */
+
+.header .navbar{
+	padding-left: 80px;
+}
+
+/* USUÁRIOS */
+
+.tbl-users{
+	text-align: center;
+}
+
+/* icons */
+.icon-ok{
+	color: green;
+}
+.icon-disabled{
+	color: #d9534f;
+}
+.icon-edit {
+	color: #5bc0de;
+}
+.icon-reset{
+	color: #d7dd35;
+}
+.icon-delete {
+	color: red;
+}
+
+/* CAMPEONATOS */
+
+.legend{
+	display: flex;
+	justify-content: flex-end;
+} 
+
+.legend p{
+	padding-left: 20px;
+}
+
+.fa-trophy{
+	color: #f1e027;
+}
+
+ /* btn */
+
+ .btn-action .btn{
+ 	width: 95%
+ }
+/* CONFIGURAÇÕES */
+
+.btns{
+	margin-top: 20px;
+}
+
+.btns .btn{
+	width: 100%;
+}
+
+/* Footer */
+
+.footer{
+	padding: 15px 0;
+    background-color: #eb8300;
+}
+
+.footer p{
+	padding-top: 20px;
+}

@@ -122,6 +122,15 @@ gulp.task("minify-html-adm", function() {
 				.pipe(browserSync.stream());
 });
 
+ /* Move a pasta admin/css para pasta dist/admin/css */
+ gulp.task("admin-css", function() { 
+	return gulp.src("./src/admin/css/*.css")
+				.pipe(htmlmin({collapseWhitespace: true}))
+				.on('error', notify.onError({title: "erro js", message: "<%= error.message %>"}))
+				.pipe(gulp.dest("./dist/admin/css/"))
+				.pipe(browserSync.stream());
+ });
+
 /* Minifica o PHP e envia para dist/admin/acts*/
 gulp.task("minify-php-adm", () => gulp.src('src/admin/acts/*.php', {read: false})
   .pipe(phpMinify())
@@ -177,9 +186,10 @@ gulp.task("server", function() {
 	gulp.watch("./src/css/*.css", ['css']);
 	gulp.watch("./src/admin/*.php", ['minify-html-adm']);
 	gulp.watch("./src/admin/acts/*.php", ['minify-php-adm']);
-	gulp.watch("./src/admin/scss/*.scss", ['sass-adm']);		
+	gulp.watch("./src/admin/scss/*.scss", ['sass-adm']);	
+	gulp.watch("./src/admin/css/*.css", ['admin-css']);	
 	gulp.watch("./src/js/**/*.js", ['move-js']);
 });
 
 /* Inicia todas as tasks do gulp */
-gulp.task("default", ["move-htaccess", "sass", "css", "js", "minify-html" ,"minify-php", "move-js", "move-fonts", "move-libs", "acts", "move-img", "concat-js", "move-fonts-adm" ,"minify-html-adm", "sass-adm" ,"minify-php-adm" ,"admin-js" ,"server"]);
+gulp.task("default", ["move-htaccess", "sass", "css", "js", "minify-html" ,"minify-php", "move-js", "move-fonts", "move-libs", "acts", "move-img", "concat-js", "admin-css" ,"move-fonts-adm" ,"minify-html-adm", "sass-adm" ,"minify-php-adm" ,"admin-js" ,"server"]);

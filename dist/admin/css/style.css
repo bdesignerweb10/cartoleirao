@@ -7042,549 +7042,60 @@ body {
   font-family: 'Open Sans', sans-serif;
   background-color: #efefef; }
 
-/* HEADER */
-.nav-header {
-  background-color: #fff;
-  height: 50px; }
-
-.nav-header-2 {
-  background-color: #fff;
-  height: 50px; }
-
-.nav-header-2 .dropdown-menu {
-  position: initial; }
-
-.nav-header-2 .navbar {
-  background-color: #fff;
-  display: block !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0 !important;
-  position: fixed;
-  top: 0px;
-  z-index: 99;
-  width: 100%; }
-
-.nav-header-2 .nav-link:hover,
-.header .nav-link:hover {
-  text-decoration: underline;
-  color: #fff; }
-
-.nav-header .navbar {
-  display: block !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0 !important; }
-
-.nav-header .dropdown-menu {
-  position: initial; }
-
-.header-marketplace,
-.header-account {
-  padding: 13px 40px; }
-
-.header-marketplace {
-  color: #eb8300; }
-
-.header-marketplace:hover {
-  color: #eb8300 !important;
-  text-decoration: none !important; }
-
-.header-marketplace i {
-  padding: 0 10px; }
-
-.header-account {
-  background-color: #eb8300;
-  color: #fff; }
-
-.nav-header .nav-link:hover,
-.header .nav-link:hover {
-  text-decoration: underline;
-  color: #fff; }
-
-.header .row {
-  margin-right: 0 !important;
-  justify-content: center; }
-
-.header-logo {
-  width: 230px;
-  margin: 20px; }
-
-/* Menu Principal */
-.header-menu {
-  display: flex;
-  justify-content: space-around;
-  background-color: #00165b; }
-  .header-menu .dropdown-menu {
-    background-color: #00165b; }
-
-.header-menu-2 {
-  display: flex;
-  justify-content: space-around;
-  background-color: #00165b;
-  position: fixed;
-  top: 50px;
-  z-index: 99;
-  width: 100%; }
-  .header-menu-2 .dropdown-menu {
-    background-color: #00165b; }
-
-.header-menu-2 .nav-link,
-.header-menu-2 .dropdown-item {
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff !important; }
-
-.header-menu .nav-item {
-  padding: 0 10px; }
-
-.dropdown-menu .dropdown-item:hover {
-  background-color: #00165b;
-  color: #fff;
-  text-decoration: underline; }
-
-.header-menu .nav-link,
-.header-menu .dropdown-item {
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff !important; }
-
-.header-menu .nav-subscription {
-  color: #eb8300 !important; }
-
-.breadcrumb {
-  font-size: 12px;
-  background: none;
-  padding: 0.75rem 2.2rem; }
-
-.breadcrumb .breadcrumb-item a {
-  color: #eb8300; }
-
-.breadcrumb-item.active {
-  color: #00165b; }
-
-.current-round {
-  padding: 0.75rem;
-  text-align: end; }
-
-.current-round h6 {
-  font-weight: bold; }
-  .current-round h6 > strong {
-    color: #eb8300; }
-
-/* MOBILE */
-.navbar-toggler {
-  padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
-  line-height: 1;
-  background-color: #fff;
-  border: 1px solid transparent;
-  border-radius: 0.25rem; }
-
-@media screen and (min-width: 320px) and (max-device-width: 480px) {
-  .header {
-    margin-top: 40px; } }
-
-@media screen and (min-width: 320px) and (max-device-width: 480px) {
-  .nav-header .nav {
-    display: block;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-    text-align: center; } }
-
-@media screen and (min-width: 320px) and (max-device-width: 480px) {
-  .header-menu {
-    display: flex;
-    justify-content: flex-end;
-    background-color: #00165b; } }
-
-@media screen and (min-width: 320px) and (max-device-width: 480px) {
-  .header-menu-2 {
-    display: flex;
-    justify-content: flex-end;
-    background-color: #00165b;
-    position: fixed;
-    top: 50px;
-    z-index: 99;
-    width: 100%; } }
-
 /* DEFAULT */
-.headline {
-  font-size: 18px;
-  font-weight: bold; }
+.spacing {
+  margin: 20px 0; }
 
-.btn-default {
-  background-color: #00165b;
-  border-color: #00165b;
-  color: #fff;
-  width: 100%; }
+/* MENU */
+.header .navbar {
+  padding-left: 80px; }
 
-.btn-default:hover {
-  background-color: #00165b;
-  border-color: #00165b;
-  opacity: 0.9;
-  color: #fff; }
+/* USUÁRIOS */
+.tbl-users {
+  text-align: center; }
 
-/* Modal */
-.modal-overview {
-  background-color: #eb8300;
-  color: #fff; }
+/* icons */
+.icon-ok {
+  color: green; }
 
-.modal-best .best {
-  display: flex;
-  justify-content: space-between; }
+.icon-disabled {
+  color: #d9534f; }
 
-.modal-best .headline {
-  text-align: center;
-  font-size: 23px; }
+.icon-edit {
+  color: #5bc0de; }
 
-.modal-best img {
-  width: 45px;
-  height: 50px; }
+.icon-reset {
+  color: #d7dd35; }
 
-.modal-best p {
-  font-weight: bold;
-  padding: 13px; }
+.icon-delete {
+  color: red; }
 
-.modal-pts {
-  color: #00165b; }
-
-.pts {
-  color: #000;
-  font-size: 14px;
-  font-style: italic; }
-
-.sponsorship img {
-  width: 800px; }
-
-.sponsorship .headline {
-  font-size: 15px; }
-
-.sponsorship p {
-  font-size: 13px; }
-
-.sponsorship a {
-  font-size: 14px;
-  font-weight: bold; }
-
-.sponsorship .btn {
-  justify-content: end; }
-
-.modal-btn {
+/* CAMPEONATOS */
+.legend {
   display: flex;
   justify-content: flex-end; }
 
-.modal-btn .btn-exit {
-  background-color: #00165b;
-  border-color: #00165b;
-  color: #fff; }
+.legend p {
+  padding-left: 20px; }
 
-/* Modal Patrocinador */
-.modal-sponsor .col-6 {
-  margin-bottom: 15px !important; }
+.fa-trophy {
+  color: #f1e027; }
 
-.modal-sponsor .col-12 {
-  margin-bottom: 15px !important; }
+/* btn */
+.btn-action .btn {
+  width: 95%; }
 
-/* DASHBOARD */
-.dashboard .row,
-.regulation .col-sm-4 {
-  margin-bottom: 20px; }
+/* CONFIGURAÇÕES */
+.btns {
+  margin-top: 20px; }
 
-/* Card Tabela Cartoleirão - Index */
-.table-cts {
-  font-size: 12px; }
+.btns .btn {
+  width: 100%; }
 
-/* Comparar times */
-.to-compare .btn {
-  margin-top: 8px; }
-
-/* TABELA DA LIGA */
-.table-cartoleira {
-  text-align: center; }
-
-.table-cartoleira thead {
-  background-color: #eb8300;
-  color: #fff; }
-
-.legend {
-  flex-direction: column; }
-
-.card-table-cts {
-  margin-bottom: 30px; }
-
-.btn-cartola {
-  background-color: #00165b;
-  border-color: #00165b;
-  color: #fff;
-  margin: 15px 0; }
-  .btn-cartola:hover {
-    color: #fff; }
-
-/* REGULAMENTO */
-.regulation-cst .modal-body p {
-  text-align: justify; }
-
-/* FOOTER */
+/* Footer */
 .footer {
-  background-color: #00165b;
-  padding: 100px 0; }
-
-.footer .container,
-.footer-end .container {
-  height: auto;
-  align-items: flex-start; }
-
-.footer-menu {
-  list-style: none; }
-
-.footer-title {
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #eb8300;
-  margin-bottom: 20px; }
-
-.footer-link {
-  display: block;
-  color: #fff;
-  margin-top: 10px; }
-
-.footer-menu .footer-link:hover {
-  text-decoration: none;
-  color: #eb8300; }
-
-.footer-end {
   padding: 15px 0;
   background-color: #eb8300; }
 
-.footer-end .container {
-  justify-content: space-between; }
-
-.footer-end p {
-  margin-top: 20px; }
-
-.btn-footer {
-  background-color: #eb8300;
-  border-color: #eb8300;
-  color: #fff;
-  width: 50%; }
-
-.btn-footer:hover {
-  color: #fff !important;
-  opacity: 0.8; }
-
-/* Tabela Brasileirão */
-.table-br .headline {
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase; }
-
-.table-br .legend {
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 70px; }
-
-.table-jogos {
-  text-align: center; }
-
-.table-jogos a {
-  color: #000; }
-
-.game {
-  display: flex;
-  justify-content: space-around; }
-
-.game-info {
-  color: #555;
-  font-size: 0.6875em;
-  text-align: center; }
-
-.vs {
-  color: #555;
-  padding-top: 1px;
-  text-align: center; }
-
-/* Destaques */
-.highlights {
-  margin-bottom: 20px; }
-
-.highlights .card {
-  margin-bottom: 20px; }
-
-/* História Clubes */
-.select-club {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px; }
-
-.select-club p {
-  text-align: end;
-  padding: 5px; }
-
-.club .headline {
-  color: #eb8300; }
-
-.club {
-  margin-bottom: 20px; }
-
-.club p {
-  font-size: 14px;
-  font-weight: bold; }
-  .club p > span {
-    color: #00165b; }
-
-.club .card {
-  align-items: center;
-  background-color: #fff; }
-
-.club img {
-  width: 180px; }
-
-.club-info {
-  margin-bottom: 20px; }
-
-.club-info p {
-  text-align: justify; }
-
-.trophy-gallery .fas {
-  color: #eb8300; }
-
-.trophy-gallery p {
-  color: #00165b; }
-
-.btn-performance {
-  background-color: #00165b;
-  border-color: #00165b;
-  color: #fff; }
-
-.btn-performance:hover {
-  color: #fff; }
-
-.card-seasons {
-  align-items: flex-start !important;
-  width: 100%;
-  padding: 15px 35px; }
-
-.disqualified {
-  color: red; }
-
-.champion {
-  color: #eb8300; }
-
-/* Mata Mata */
-.copas a {
-  color: #fff; }
-
-.confrontations {
-  margin-bottom: 20px; }
-
-.confrontations .card-header {
-  font-size: 11px;
-  text-align: center;
-  color: #ccc; }
-
-.confrontations .card-body {
-  display: flex;
-  justify-content: space-between; }
-
-.confrontations .vs {
-  padding-top: 8px;
-  text-align: center;
-  font-size: 30px;
-  color: #ccc; }
-
-.confrontations span {
-  font-size: 13px; }
-
-.confrontations p {
-  font-size: 12px;
-  padding: 10px; }
-
-.copas {
-  margin-bottom: 20px; }
-
-.copas .card-body .btn {
-  width: 100%; }
-
-/* Scouts */
-.scouts .col-sm-4 {
-  margin-bottom: 20px; }
-
-.btn-scouts {
-  padding: 5px 0; }
-
-.btn-scouts .active {
-  background-color: #00165b;
-  border-color: #00165b;
-  color: #fff; }
-
-.scout-club {
-  margin-top: 10px; }
-
-.scout-club img {
-  width: 180px; }
-
-.scout-club .table img {
-  width: 45px; }
-
-.scout-club .card {
-  display: flex;
-  align-items: center;
-  padding: 20px 0; }
-
-.scout-club .card-body {
-  display: flex;
-  text-align: center; }
-
-.scout-club .headline {
-  padding: 0 20px; }
-
-.scout-club .headline span {
-  color: #eb8300;
-  padding: 10px 0; }
-
-.divider {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 90%; }
-
-/* Comparação */
-.to-compare {
-  text-align: center;
-  margin-top: 20px; }
-
-.table-cartoleira .table-sub {
-  background-color: #eb8300;
-  color: #fff; }
-
-.to-compare span {
-  padding: 0 80px; }
-
-/* Inscrição */
-.subscription .card {
-  margin-bottom: 20px; }
-
-.subscription .form-check-label {
-  font-size: 14px; }
-
-.btn-subscription {
-  display: flex;
-  justify-content: flex-end; }
-
-.bg-subscription {
-  background-color: #eb8300;
-  color: #fff; }
-
-.bg-subscription p {
-  font-size: 14px;
-  text-align: justify; }
-
-.bg-subscription a {
-  color: #fff; }
+.footer p {
+  padding-top: 20px; }

@@ -1,7 +1,7 @@
 <?php
 	require_once('header.php');
 ?>
-<main id="main-clube">
+<main>
 	<div class="container dashboard">
 		<div class="row">
 			<div class="col-sm-4">

@@ -1,3 +1,19 @@
+<?php 
+/*require_once("acts/connect.php");
+
+if($_SESSION["temporada"] == 2 && (basename($_SERVER['PHP_SELF']) != "inscricao.php" && basename($_SERVER['PHP_SELF']) != "regulamento.php"))
+	header('Location: inscricao');
+else {
+	if ($_SESSION["user_ativado"] &&
+		basename($_SERVER['PHP_SELF']) == "meus_dados.php" && 
+		basename($_SERVER['PHP_SELF']) == "dados_clube.php" &&
+		basename($_SERVER['PHP_SELF']) == "eventos.php" &&
+		(!isset($_SESSION["usu_id"]) || empty($_SESSION["usu_id"]) || 
+		!isset($_SESSION['usu_nivel']) || empty($_SESSION["usu_nivel"]) || 
+		$_SESSION["usu_id"] == "0")) 
+		header('Location: login?href=' . str_replace("_", "", str_replace(".php", "", basename($_SERVER['PHP_SELF']))));
+}*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,8 +62,8 @@
 		          Hasdrubal FC
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Meus Dados</a>
-		          <a class="dropdown-item" href="#"><i class="fas fa-info"></i>Informações do Clube</a>
+		          <a class="dropdown-item" href="meus-dados.php">Meus Dados</a>
+		          <a class="dropdown-item" href="#"><i class="fas fa-info"></i> Informações do Clube</a>
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
 		        </div>
