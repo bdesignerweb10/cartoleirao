@@ -50,73 +50,73 @@ else {
 <body>
 	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="../img/Logo-Cartoleirao.png" width="40"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+		  <a class="navbar-brand" href="#"><img src="../img/Logo-Cartoleirao.png" width="40"></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="home.php">Inicio <span class="sr-only">(current)</span></a>
-      </li>      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Competições
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ger-temporadas.php">Gerenciar Temporadas</a>
-          <a class="dropdown-item" href="ger-campeonatos.php">Gerenciar Campeonatos</a>          
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Usuários / Clubes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ger-usuarios.php">Gerenciar Usuários</a>
-          <a class="dropdown-item" href="ger-clubes.php">Gerenciar Clubes</a>          
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="recados.php">Recados</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Inscrições
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Gerenciar Inscrições do Cartoleirão</a>
-          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Kempes VI</a> 
-          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Kempes VII</a> 
-          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Segunda Pele II</a> 
-          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Segunda Pele II</a>          
-        </div>
-      </li>      
-      <li class="nav-item">
-        <a class="nav-link" href="#">Patrocinador</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Pontuação</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="configuracoes.php">Configurações</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-auto">
-    	<li class="nav-item">
-        	<a class="nav-link" href="#"><i class="far fa-bell"></i></a>
-      	</li>
-    	<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Administrador
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Meus dados</a>
-          <a class="dropdown-item" href="#">Sair</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="home.php">Inicio <span class="sr-only">(current)</span></a>
+		      </li>      
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Competições
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="ger-temporadas.php">Gerenciar Temporadas</a>
+		          <a class="dropdown-item" href="ger-campeonatos.php">Gerenciar Campeonatos</a>          
+		        </div>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Usuários / Clubes
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="ger-usuarios.php">Gerenciar Usuários</a>
+		          <a class="dropdown-item" href="ger-clubes.php">Gerenciar Clubes</a>          
+		        </div>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="recados.php">Recados</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Inscrições
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Gerenciar Inscrições do Cartoleirão</a>
+		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Kempes VI</a> 
+		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Kempes VII</a> 
+		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Segunda Pele II</a> 
+		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Segunda Pele II</a>          
+		        </div>
+		      </li>      
+		      <li class="nav-item">
+		        <a class="nav-link" href="patrocinadores.php">Patrocinador</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Pontuação</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="configuracoes.php">Configurações</a>
+		      </li>
+		    </ul>
+		    <ul class="navbar-nav mr-auto">
+		    	<li class="nav-item">
+		        	<a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+		      	</li>
+		    	<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Administrador
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Meus dados</a>
+		          <a class="dropdown-item" href="#">Sair</a>
+		        </div>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
 	</header>

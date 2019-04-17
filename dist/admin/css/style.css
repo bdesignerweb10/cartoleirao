@@ -7046,6 +7046,22 @@ body {
 .spacing {
   margin: 20px 0; }
 
+.modal-header {
+  background-color: #eb8300;
+  color: #fff; }
+
+.modal-danger {
+  background-color: red;
+  color: #fff; }
+
+.modal-info {
+  background-color: #17a2b8;
+  color: #fff; }
+
+.modal-disabled {
+  background-color: #c82333;
+  color: #fff; }
+
 /* MENU */
 .header .navbar {
   padding-left: 80px; }
@@ -7081,9 +7097,28 @@ body {
 .fa-trophy {
   color: #f1e027; }
 
+.value-insc {
+  padding: 0 27px;
+  font-size: 13px; }
+
+/*Mata mata Confrontos*/
+.cup-vs {
+  margin-bottom: 20px; }
+
+.cup-vs .form-row {
+  display: flex;
+  justify-content: space-between; }
+
+.cup-vs .form-row span {
+  font-size: 23px;
+  color: #555; }
+
 /* btn */
 .btn-action .btn {
   width: 95%; }
+
+.btn-action-2 .btn {
+  width: 100%; }
 
 /* CONFIGURAÇÕES */
 .btns {
