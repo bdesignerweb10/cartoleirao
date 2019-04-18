@@ -199,6 +199,10 @@
 					      <label for="camp-nome">Rodada Inicio</label>
 					      <input type="number" class="form-control" value="1" disabled>
 					    </div>-->
+					    <div class="form-group col-md-4">
+					      <label for="slug">Slug da Liga</label>
+					      <input type="text" class="form-control" name="slug" id="slug" placeholder="Informe o slug da liga">
+					    </div>
 					    <div class="form-group col-md-2">
 					      <label for="inputState">Inscrições abertas?</label>
 					      <select id="inputState" class="form-control">					        

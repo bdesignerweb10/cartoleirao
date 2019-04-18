@@ -7,8 +7,12 @@
 			<div class="card-header">
 				Gerenciamento de temporadas			    
 			</div>
-			<div class="row btn-action">		
-				<div class="col-sm-8"></div>
+			<div class="row btn-action">
+				<div class="col-sm-4">
+				</div><!-- col-sm-4 -->						
+				<div class="col-sm-4">
+					<button type="button" class="btn btns btn-lg btn-danger"><i class="far fa-calendar-times"></i> Encerrar Temporada</button>
+				</div><!-- col-sm-4 -->				
 				<div class="col-sm-4">
 					<button type="button" class="btn btns btn-lg btn-success"><i class="fas fa-plus"></i> Nova Temporada</button>
 				</div><!-- col-sm-4 -->	
@@ -106,7 +110,7 @@
 				    <label for="temp-ano">Ano da temporada</label>
 				    <input type="number" class="form-control" name="temp-ano" id="temp-ano" placeholder="Ano da temporada">
 				  </div>
-				  <button type="submit" class="btn btns btn-primary" style="width: 100%;" >Continuar</button>
+				  <button type="submit" class="btn btn-lg btns btn-primary" style="width: 100%;" >Continuar <i class="fas fa-arrow-right"></i></button>
 				</form>
 			  </div>
 			</div>
@@ -356,9 +360,9 @@
 					</div><!-- col-sm-3-->					
 				</div><!-- row -->
 				<div class="row btns">
-					<div class="col-sm-9"></div>
-					<div class="col-sm-3">	
-						<button type="submit" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#cria-temp">Finalizar</button>
+					<div class="col-sm-7"></div>
+					<div class="col-sm-5">	
+						<button type="submit" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#cria-temp"><i class="far fa-save"></i> Finalizar</button>
 					</div>		
 				</div>				
 			  </div>

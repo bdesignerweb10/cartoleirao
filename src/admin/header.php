@@ -86,7 +86,7 @@ else {
 		          Inscrições
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Gerenciar Inscrições do Cartoleirão</a>
+		          <a class="dropdown-item" href="ger-inscricao.php">Gerenciar Inscrições do Cartoleirão</a>
 		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Kempes VI</a> 
 		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Kempes VII</a> 
 		          <a class="dropdown-item" href="#">Gerenciar Inscrições da Copa Segunda Pele II</a> 
@@ -105,7 +105,7 @@ else {
 		    </ul>
 		    <ul class="navbar-nav mr-auto">
 		    	<li class="nav-item">
-		        	<a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+		        	<a class="nav-link" href="#"><i class="far fa-bell"><span class="badge bd-not badge-secondary">4</span></i></a>
 		      	</li>
 		    	<li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

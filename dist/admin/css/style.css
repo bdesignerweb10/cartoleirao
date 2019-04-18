@@ -7062,9 +7062,17 @@ body {
   background-color: #c82333;
   color: #fff; }
 
+.modal-warning {
+  background-color: #ffc107;
+  color: #fff; }
+
 /* MENU */
 .header .navbar {
   padding-left: 80px; }
+
+.bd-not {
+  color: #fff;
+  background-color: #eb8300; }
 
 /* USUÁRIOS */
 .tbl-users {
@@ -7085,6 +7093,9 @@ body {
 
 .icon-delete {
   color: red; }
+
+.icon-warning {
+  color: #ffc107; }
 
 /* CAMPEONATOS */
 .legend {

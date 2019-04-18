@@ -53,10 +53,20 @@ body{
     color: #fff;
 }
 
+.modal-warning{
+	background-color: #ffc107;
+	color: #fff;
+}
+
 /* MENU */
 
 .header .navbar{
 	padding-left: 80px;
+}
+
+.bd-not{
+	color: #fff;
+	background-color: #eb8300;
 }
 
 /* USUÁRIOS */
@@ -80,6 +90,10 @@ body{
 }
 .icon-delete {
 	color: red;
+}
+
+.icon-warning{
+	color: #ffc107;
 }
 
 /* CAMPEONATOS */
