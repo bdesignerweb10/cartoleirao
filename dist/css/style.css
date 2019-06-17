@@ -7042,6 +7042,54 @@ body {
   font-family: 'Open Sans', sans-serif;
   background-color: #efefef; }
 
+/* LOGIN */
+.mainform {
+  display: none; }
+
+.login-box {
+  border: 1px solid #cecece;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  margin-top: 2%;
+  padding: 0px !important;
+  background-color: white; }
+  .login-box .login-header {
+    background-color: #00165b;
+    border-bottom: 1px solid #cecece;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px; }
+    .login-box .login-header .head-login {
+      color: white;
+      padding: 0px !important;
+      font-size: 1.4rem;
+      margin-left: 5px;
+      vertical-align: middle; }
+  .login-box form {
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+    margin-bottom: 30px !important; }
+
+.form-box {
+  border: 1px solid #cecece;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  margin-top: 2%;
+  padding: 0px !important;
+  background-color: white;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  padding-bottom: 30px !important; }
+
 /* HEADER */
 .nav-header {
   background-color: #fff;
@@ -7174,6 +7222,10 @@ body {
   .current-round h6 > strong {
     color: #eb8300; }
 
+/* Tabela da Liga */
+.shield-club {
+  width: 25px !important; }
+
 /* MOBILE */
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
@@ -7182,6 +7234,22 @@ body {
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 0.25rem; }
+
+/* Comparar desempenho times */
+.busca-time {
+  padding: 1.5rem 0.75rem;
+  margin-bottom: 5px; }
+
+.table-estatisticas {
+  display: none; }
+
+.positivo {
+  font-weight: bold;
+  color: #34a544; }
+
+.negativo {
+  font-weight: bold;
+  color: #f3091d; }
 
 @media screen and (min-width: 320px) and (max-device-width: 480px) {
   .header {
@@ -7253,6 +7321,10 @@ body {
 .modal-pts {
   color: #00165b; }
 
+.modal-danger .modal-header .modal-title {
+  color: #fff;
+  text-align: center; }
+
 .pts {
   color: #000;
   font-size: 14px;
@@ -7304,10 +7376,10 @@ body {
   margin-top: 8px; }
 
 /* TABELA DA LIGA */
-.table-cartoleira {
+.table-cartoleirao {
   text-align: center; }
 
-.table-cartoleira thead {
+.table-cartoleirao thead {
   background-color: #eb8300;
   color: #fff; }
 
@@ -7385,6 +7457,9 @@ body {
   font-weight: bold;
   text-transform: uppercase; }
 
+.table-br .table {
+  background-color: #fff; }
+
 .table-br .legend {
   flex-direction: row;
   justify-content: space-between;
@@ -7416,6 +7491,13 @@ body {
 
 .highlights .card {
   margin-bottom: 20px; }
+
+.highlights .card table {
+  text-align: center;
+  font-size: 12px; }
+
+.highlights .card .shield-club {
+  width: 20px !important; }
 
 /* História Clubes */
 .select-club {

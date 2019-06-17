@@ -1,5 +1,5 @@
 <?php 
-/*require_once("acts/connect.php");
+require_once("acts/connect.php");
 
 if($_SESSION["temporada"] == 2 && (basename($_SERVER['PHP_SELF']) != "inscricao.php" && basename($_SERVER['PHP_SELF']) != "regulamento.php"))
 	header('Location: inscricao');
@@ -12,7 +12,7 @@ else {
 		!isset($_SESSION['usu_nivel']) || empty($_SESSION["usu_nivel"]) || 
 		$_SESSION["usu_id"] == "0")) 
 		header('Location: login?href=' . str_replace("_", "", str_replace(".php", "", basename($_SERVER['PHP_SELF']))));
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,17 +55,24 @@ else {
 		<nav class="navbar">
 			<ul class="nav justify-content-end">
 		      <li class="nav-item">
-		        <a class="nav-link header-marketplace" href="#"><i class="fas fa-lock"></i> <!-- <i class="fas fa-lock-open"></i> -->Mercado Fechado <span class="sr-only">(current)</span></a>
+		        <a class="nav-link header-marketplace" href="#">
+					<?php if ($_SESSION["mercado"] == 1) : ?>
+		        		<i class="fas fa-lock-open"></i> Mercado Aberto
+		        	<?php else: ?>
+		        		<i class="fas fa-lock"></i> Mercado Fechado 
+		        	<?php endif; ?>
+		        		<span class="sr-only">(current)</span></a>
 		      </li>      
 		      <li class="nav-item dropdown">
 		        <a class="nav-link header-account dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Hasdrubal FC
+		          <?php echo $_SESSION["usu_nome"] ?>
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <a class="dropdown-item" href="meus-dados.php">Meus Dados</a>
+		          <a class="dropdown-item" href="">Meus Torneios</a>
 		          <a class="dropdown-item" href="#"><i class="fas fa-info"></i> Informações do Clube</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+		          <a class="dropdown-item" id="logout" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
 		        </div>
 		      </li>      
 		    </ul>
@@ -145,7 +152,7 @@ else {
 				</nav>
 			</div>			
 			<div class="col-sm-4 current-round">
-				<h6>Rodada Atual: <strong>1º Rodada<strong></h6>
+				<h6>Rodada Atual: <strong><?php echo $_SESSION["rod_atual"]; ?>º Rodada<strong></h6>
 			</div>		
 		</div>
 		

@@ -1,11 +1,14 @@
 <?php
 	require_once('header.php');
 ?>
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<script src="js/modernizr.custom.js"></script>
 <main>
 	<div class="container dashboard">
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card" id="desempenho-geral">
 				  <div class="card-header">
 				    Tabela Cartoleirão Trabalho Seguro - TS
 				  </div>
@@ -13,22 +16,13 @@
 				    <table class="table table-borderless table-cts">
 					  <thead>
 					    <tr>
-					      <th scope="col">#</th>
+					      <th scope="col">#</th>					      
 					      <th scope="col">Time</th>
-					      <th scope="col">Pontos</th>					      
+					      <th scope="col">Pontos</th>
+					      <th scope="col">Variação</th>					      
 					    </tr>
 					  </thead>
-					  <tbody>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>Hasdrubal</td>
-					      <td>1265.63</td>					      
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>Boleanos</td>
-					      <td>1263.69</td>					      
-					    </tr>					    
+					  <tbody>					    					    
 					  </tbody>
 					</table>
 				    <a href="tabela-cts.php" class="btn btn-default btn-sm">Visualizar tabela completa</a>
@@ -90,14 +84,14 @@
 				  </div>
 				</div>
 			</div>
-			<div class="col-sm-8 ">
-				<div class="card">
+			<div class="col-sm-8 to-compare">
+				<div class="card" id="eventos">
 				  <div class="card-header">
 				    Proximos jogos
 				  </div>
 				  <div class="card-body">
-				  	<div id='calendar'></div>
-					<div id='popover-content' style="display: none;"></div>
+				  	<div id="calendar"></div>
+					<div id="popover-content" style="display: none;"></div>
 				  </div>
 				</div>
 			</div>
@@ -172,7 +166,7 @@
       </div>
     </div>
   </div>
-</div>	
+</div>
 	 
 <?php
 	require_once('footer.php');

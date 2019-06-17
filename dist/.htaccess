@@ -11,3 +11,5 @@ RewriteRule ^regulamentos/?$ regulamentos.php
 RewriteRule ^patrocinadores/?$ patrocinadores.php
 RewriteRule ^copas/?$ list-copas.php
 RewriteRule ^comparar-clubes/?$ comparar.php
+RewriteRule ^login/?$ login.php
+RewriteRule ^logout/?$ logout.php

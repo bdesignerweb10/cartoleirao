@@ -1,5 +1,20 @@
 <?php
 	require_once('header.php');
+	$usu_qry = $conn->query("SELECT t.nome_presidente AS nome, t.email AS email, t.telefone AS telefone, u.usuario AS usuario, u.senha AS senha
+						   FROM tbl_usuarios u
+					  LEFT JOIN tbl_times t ON t.id = u.times_id
+					      WHERE u.id = '" . $_SESSION["usu_id"] . "'") or trigger_error($conn->error);
+
+	if ($usu_qry && $usu_qry->num_rows > 0) {
+	    while($usuario = $usu_qry->fetch_object()) {
+	        $usu_id = $usuario->id * $_SESSION["fake_id"];
+			$usu_nome = $usuario->nome;
+			$usu_email = $usuario->email;
+			$usu_telefone = $usuario->telefone;
+			$usu_usuario = $usuario->usuario;
+			$usu_senha = $usuario->senha;
+		}	
+	}
 ?>
 <main>
 	<div class="container">
@@ -7,18 +22,18 @@
 			<div class="col-sm-8">
 				<div class="card">
   					<div class="card-body">
-						<form class="needs-validation" novalidate>
+						<form class="needs-validation" id="form-meus-dados" data-toggle="validator" action="acts/acts.meus_dados.php" method="POST" novalidate>
 						  <div class="form-row">
 						    <div class="col-md-6 mb-3">
 						      <label for="nome">Nome do Cartoleiro</label>
-						      <input type="text" class="form-control form-control-lg" name="nome" id="nome" placeholder="Informe seu nome" required>
+						      <input type="text" class="form-control form-control-lg" name="nome" id="nome" placeholder="Informe seu nome" maxlength="120" value="<?php echo $usu_nome; ?>" required>
 						      <div class="valid-feedback">
 						        Muito Bom!
 						      </div>
 						    </div>
 						    <div class="col-md-6 mb-3">
 						      <label for="telefone">Telefone</label>
-						      <input type="text" class="form-control form-control-lg" name="telefone" id="telefone" placeholder="Informe o telefone" required>
+						      <input type="text" class="form-control form-control-lg" name="telefone" id="telefone" placeholder="Informe o telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" data-mask-clearifnotmatch="true" maxlength="15" value="<?php echo $usu_telefone; ?>" required>
 						      <div class="valid-feedback">
 						        Muito Bom!
 						      </div>
@@ -28,21 +43,21 @@
 						  <div class="form-row">
 						    <div class="col-md-12 mb-3">
 						      <label for="email">E-mail</label>
-						      <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Informe seu e-mail" required>
+						      <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Informe seu e-mail" maxlength="120" value="<?php echo $usu_email; ?>" required>
 						      <div class="valid-feedback">
 						        Muito Bom!
 						      </div>
 						    </div>
 						    <div class="col-md-6 mb-3">
 						      <label for="senha">Senha</label>
-						      <input type="password" class="form-control form-control-lg" name="senha" id="senha" placeholder="Informe sua senha" required>
+						      <input type="password" class="form-control form-control-lg" name="senha" id="senha" placeholder="Informe sua senha" maxlength="120" value="<?php echo $usu_senha; ?>" required>
 						      <div class="valid-feedback">
 						        Muito Bom!
 						      </div>
 						    </div>
 						    <div class="col-md-6 mb-3">
-						      <label for="confirma-senha">Confirmação da Senha</label>
-						      <input type="password" class="form-control form-control-lg" name="confirma-senha" id="confirma-senha" placeholder="Informe sua senhanovamente" required>
+						      <label for="senha2">Confirmação da Senha</label>
+						      <input type="password" class="form-control form-control-lg" id="senha2" name="senha2" placeholder="Informe sua senha novamente" maxlength="120" value="<?php echo $usu_senha; ?>" required>
 						      <div class="valid-feedback">
 						        Muito Bom!
 						      </div>
@@ -50,7 +65,7 @@
 						  </div>						  
 						  <div class="form-row">
 							  <div class="col-md-12 mb-3 btn-subscription">
-							  	<button class="btn btn-lg btn-cartola" type="submit">Atualizar Dados</button>
+							  	<button class="btn btn-lg btn-cartola" id="btn-salvar-time" type="submit">Atualizar Dados</button>
 							  </div>
 						  </div>
 						</form>

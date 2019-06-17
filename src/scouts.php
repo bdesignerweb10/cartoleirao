@@ -6,10 +6,13 @@
 		<div class="row scouts">			
 			<div class="col-sm-4">
 				<div class="col-sm-12">
-					<div class="btn-scouts">
-						<button type="button" class="btn btn-danger">Não</button> Salvar time para consultar scouts
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="salva_scout1" name="salva_scout1" data-toggle="toggle" data-on="Ativo" data-off="Inativo" data-onstyle="success" data-offstyle="danger">
+								Salvar time para consultar scouts
+						</label>
 					</div>					
-      				<input type="email" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Informe o nome do Time">
+      				<input type="text" class="form-control form-control-lgbusca-time" id="scout1" aria-describedby="scout1" placeholder="Informe o nome do Time">
     			</div><!-- col-sm-12-->
 				<div class="col-sm-12 scout-club">
 					<div class="card">

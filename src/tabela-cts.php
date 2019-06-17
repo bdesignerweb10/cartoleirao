@@ -5,93 +5,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="card card-table-cts">
+				<div class="card card-table-cts" id="desempenho-liga">
 				  <div class="card-header headline">
 				    Tabela Liga Cartoleirão Trabalho Seguro - TS
 				  </div>
 				  <div class="card-body">
-				    <table class="table table-hover table-cartoleira">
+				    <table class="table table-hover table-cartoleirao">
 					  <thead>
 					    <tr>
 					      <th scope="col">#</th>
+					      <th scope="col">Escudo</th>
 					      <th scope="col">Clube <i class="fas fa-sort"></i></th>
-					      <th scope="col">Pontos na última rodada <i class="fas fa-sort"></i></th>
 					      <th scope="col">Pontos no Campeonato <i class="fas fa-sort"></i></th>
+					      <th scope="col">Pontos na última rodada <i class="fas fa-sort"></i></th>	
 					      <th scope="col">Variação <i class="fas fa-sort"></i></th>
 					    </tr>
 					  </thead>
-					  <tbody>
-					    <tr>
-					      <th scope="row" class="text-success">1</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>+5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-success">2</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>+2</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-success">3 </th>
-					      <td><i class="fas fa-award text-primary"></i> Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-success">4</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-success">5</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr class="badge-dark">
-					      <th scope="row" class="text-success">6</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-secondary">7</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					    	<tr>
-					      <th scope="row" class="text-secondary">8</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-danger">9</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
-					    <tr>
-					      <th scope="row" class="text-danger">10</th>
-					      <td>Hasdrubal FC</td>
-					      <td>86.93</td>
-					      <td>1569.63</td>
-					      <td>-5</td>
-					    </tr>
+					  <tbody>					    
 					  </tbody>
 					</table>					
 				  </div><!-- card-body -->
