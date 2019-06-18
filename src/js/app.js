@@ -739,7 +739,7 @@ $(function() {
 			});
 
 			// EVENTOS CALENDARIO 
-			$('#eventos').append('<div id="loading"><p style="text-align: center;"><img src="img/loading2.svg" height="150px" border="0"><br />Aguarde! Carregando conteúdo...</p></div>');
+			/*$('#eventos').append('<div id="loading"><p style="text-align: center;"><img src="img/loading2.svg" height="150px" border="0"><br />Aguarde! Carregando conteúdo...</p></div>');
 			$.ajax({
 				type: "POST",
 				url: "acts/acts.index.php?act=eventos",
@@ -792,6 +792,64 @@ $(function() {
 						$('#alert').modal('show');
 
 						$('#eventos .card-body').hide();
+						$('#eventos footer').hide();
+						$('#loading').remove();
+				    };
+				}
+			});*/
+			$('#eventos').append('<div id="loading"><p style="text-align: center;"><img src="img/loading2.svg" height="150px" border="0"><br />Aguarde! Carregando conteúdo...</p></div>');
+			$.ajax({
+				type: "POST",
+				url: "acts/acts.index.php?act=eventos",
+				success: function(data)
+				{
+				    try {
+						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+						$('#eventos .card-body tbody').html('');
+
+						if(retorno.succeed) {
+						   	$('#calendar').fullCalendar({
+	    						themeSystem: 'bootstrap4',
+								defaultView: 'month',
+								defaultDate: formatTodayEUDate(),
+								eventRender: function(eventObj, $el) {
+									$el.popover({
+										content: function () {
+							                return eventObj.description
+							            },
+	            						html: true,
+										trigger: 'hover',
+										placement: 'top',
+										container: 'body'
+									});
+								},
+								events: retorno.eventos,
+	 							timeFormat: 'H:mm'
+							});
+
+							$('#eventos .card-body').fadeIn("slow", function() {
+								$('#loading').fadeOut();
+								$('#loading').remove();
+							});
+							$('#eventos footer').fadeIn("slow");
+						}
+						else {
+							$('#alert-title').html(retorno.title);
+							$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+							$('#alert').modal('show');
+
+							$('#eventos .card-body').hide();
+							$('#eventos footer').hide();
+							$('#loading').remove();
+						}
+				    }
+				    catch (e) {
+						$('#alert-title').html("Erro ao fazer parse do JSON!");
+						$('#alert-content').html(String(e.stack));
+						$('#alert').modal('show');
+
+						$('#eventos .card-block').hide();
 						$('#eventos footer').hide();
 						$('#loading').remove();
 				    };
@@ -1007,7 +1065,7 @@ $(function() {
 							$.each(retorno.list, function(i, item) {
 								var myTeamClass = "";
 								if(item.isMyTeam)
-									myTeamClass = "myteam";
+									myTeamClass = "bg-warning";
 
 								if(rodada != item.rodada) {
 									$('#destaques').append('<div class="col-sm-4"><div class="card"><div class="card-header headline">Destaques da ' + item.rodada + 'º rodada</div><div class="card-body"><table class="table table-hover table-cartoleirao"><thead><tr><th scope="col">#</th><th scope="col">Escudo</th><th scope="col">Clube</th><th scope="col">Pontos</th></tr></thead><tbody id="body_' + item.rodada + '">');
@@ -1015,7 +1073,7 @@ $(function() {
 									c_times = 0;
 								}
 								if(c_times < 4){
-									$('#body_' + item.rodada).append('<tr class="bg-success '+myTeamClass+'"><th scope="row">' + (c_times+1) + 'º</th><td><img src="img/escudos/' + item.escudo + '" class="shield-club"></td><td>' + item.time + '</td><td>' + parseFloat(Math.round(item.pontuacao * 100) / 100).toFixed(2) + '</td></tr>');
+									$('#body_' + item.rodada).append('<tr class="'+myTeamClass+'"><th class="text-success" scope="row">' + (c_times+1) + 'º</th><td><img src="img/escudos/' + item.escudo + '" class="shield-club"></td><td>' + item.time + '</td><td>' + parseFloat(Math.round(item.pontuacao * 100) / 100).toFixed(2) + '</td></tr>');
 								}
 								c_times++;
 							});
@@ -1078,12 +1136,12 @@ $(function() {
 
 								var myTeamClass = "";
 								if(item.isMyTeam)
-									myTeamClass = "text-dark";
+									myTeamClass = "bg-warning";
 
 								var maxPontImg = "";
 								if(item.hasMaxPont)
 									maxPontImg = "<i class='fas fa-award text-primary'></i>";
-								$('#desempenho-liga .card-body tbody').append('<tr><th scope="row" class="' + bg + myTeamClass+'">' + item.posicao + 'º</th><td><img class="shield-club" src="img/escudos/' + item.escudo + '"></td><td>' + maxPontImg + item.time + '</td><td>' + item.pontuacao.toFixed(2) + '</td><td>' + item.pont_ult_rodada.toFixed(2) + '</td><td>' + item.variacao + '</td></tr>');
+								$('#desempenho-liga .card-body tbody').append('<tr class="' + myTeamClass+'"><th scope="row" class="' + bg + '">' + item.posicao + 'º</th><td><img class="shield-club" src="img/escudos/' + item.escudo + '"></td><td>' + maxPontImg + item.time + '</td><td>' + item.pontuacao.toFixed(2) + '</td><td>' + item.pont_ult_rodada.toFixed(2) + '</td><td>' + item.variacao + '</td></tr>');
 							});
 
 							$('.table-cartoleirao').tablesorter({

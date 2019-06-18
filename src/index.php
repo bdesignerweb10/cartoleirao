@@ -40,7 +40,7 @@
 				    <h6>Copa Beer II <span class="badge badge-warning">Aguardando Inicio</span></h6>
 				    <h6>Copa Kempes Vii <span class="badge badge-warning">Aguardando Inicio</span></h6>
 				    <h6>Copa Segunda Pele IV <span class="badge badge-danger">Encerrado</span></h6>		   
-				    <a href="list-copas.php" class="btn btn-default btn-sm">Acompanhar tods as copas</a>
+				    <a href="list-copas.php" class="btn btn-default btn-sm">Acompanhar todas as copas</a>
 				  </div>
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<div class="col-sm-8 to-compare">
-				<div class="card" id="eventos">
+				<div id="eventos" class="card">
 				  <div class="card-header">
 				    Proximos jogos
 				  </div>
@@ -95,6 +95,15 @@
 				  </div>
 				</div>
 			</div>
+			<div class="col-sm-12">
+				<div id="desempenho-rodada" class="card">
+					<div class="card-header">
+						Desempenho por rodada					
+					</div><!-- card-header -->
+					<div class="card-body">
+					</div><!-- card-body-->							
+				</div><!-- card -->
+			</div><!-- col-sm-12-->			
 		</div><!-- row -->
 	</div>
 </main>

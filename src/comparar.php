@@ -23,10 +23,11 @@
       			<input type="text" class="form-control form-control-lg busca-time" id="comparacao2" aria-describedby="comparacao2" placeholder="Informe o nome do Time">
 			</div><!-- col-sm-6 -->			
 			<div class="col-sm-12">
-				<table class="table table-cartoleira to-compare table-medias table-estatisticas">
+				<table class="table table-cartoleirao to-compare table-medias table-estatisticas">
 				  <thead>
 				    <tr>
-				      <th scope="col" class="dados_time1 shield-club"></th>				      
+				      <th scope="col" class="dados_time1 shield-club"></th>
+				      <th><span>X</span></th>				      
 				      <!--<th scope="col"><img src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_100/escudo/f3/44/10/00012b1938-2bb5-4c2c-88aa-cc023e770bf320180323114410" width="30"><span>X</span><img src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_100/escudo/61/37/30/0066ff5ea7-d108-46b4-a302-61221738186120180322123730" width="30"></th>-->
 				      <th scope="col" class="dados_time2 shield-club"></th>				      
 				    </tr>

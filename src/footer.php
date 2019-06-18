@@ -66,13 +66,13 @@
 		</footer>
 		<div class="footer-end">
     	<div class="container">	    	    	
-    		<p class="text-white">Todos os direitos reservados &copy; 2019</p>
+    		<p class="text-white">Todos os direitos reservados &copy; <?php echo date(Y); ?></p>
     	</div><!-- container -->
     </div><!-- footer end -->
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>		
 		<script src='js/moment.min.js' type="text/javascript" charset="utf-8"></script>
-		<script src='js/fullcalendar.min.js' type="text/javascript" charset="utf-8"></script>
+		<script src='js/fullcalendar.min.js' type="text/javascript" charset="utf-8"></script>		
 		<script src='js/pt-br.js' type="text/javascript" charset="utf-8"></script>	
 		<script src="js/textext.core.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/textext.plugin.autocomplete.js" type="text/javascript" charset="utf-8"></script>

@@ -329,7 +329,7 @@ body{
 	font-weight: bold;
 }
 
-.btn-default{
+/*.btn-default{
 	background-color: #00165b;
 	border-color: #00165b;
 	color: #fff;
@@ -341,8 +341,7 @@ body{
 	border-color: #00165b;
 	opacity: 0.9;
 	color: #fff;
-
-}
+}*/
 
 /* Modal */
 
@@ -447,6 +446,20 @@ body{
 	margin-top: 8px;
 }
 
+.to-compare .btn-default{
+	background-color: #00165b;
+	border-color: #00165b;
+	color: #fff;
+	width: 100%;
+}
+
+.to-compare .btn-default:hover{
+	background-color: #00165b;
+	border-color: #00165b;
+	opacity: 0.9;
+	color: #fff;
+}
+
 
 /* TABELA DA LIGA */
 
@@ -483,6 +496,19 @@ body{
 	text-align: justify;
 }
 
+.regulation .btn-default{
+	background-color: #00165b;
+	border-color: #00165b;
+	color: #fff;
+	width: 100%;
+}
+
+.regulation .btn-default:hover{
+	background-color: #00165b;
+	border-color: #00165b;
+	opacity: 0.9;
+	color: #fff;
+}
 
 /* FOOTER */
 

@@ -7285,18 +7285,19 @@ body {
   font-size: 18px;
   font-weight: bold; }
 
-.btn-default {
-  background-color: #00165b;
-  border-color: #00165b;
-  color: #fff;
-  width: 100%; }
+/*.btn-default{
+	background-color: #00165b;
+	border-color: #00165b;
+	color: #fff;
+	width: 100%;
+}
 
-.btn-default:hover {
-  background-color: #00165b;
-  border-color: #00165b;
-  opacity: 0.9;
-  color: #fff; }
-
+.btn-default:hover{
+	background-color: #00165b;
+	border-color: #00165b;
+	opacity: 0.9;
+	color: #fff;
+}*/
 /* Modal */
 .modal-overview {
   background-color: #eb8300;
@@ -7375,6 +7376,18 @@ body {
 .to-compare .btn {
   margin-top: 8px; }
 
+.to-compare .btn-default {
+  background-color: #00165b;
+  border-color: #00165b;
+  color: #fff;
+  width: 100%; }
+
+.to-compare .btn-default:hover {
+  background-color: #00165b;
+  border-color: #00165b;
+  opacity: 0.9;
+  color: #fff; }
+
 /* TABELA DA LIGA */
 .table-cartoleirao {
   text-align: center; }
@@ -7400,6 +7413,18 @@ body {
 /* REGULAMENTO */
 .regulation-cst .modal-body p {
   text-align: justify; }
+
+.regulation .btn-default {
+  background-color: #00165b;
+  border-color: #00165b;
+  color: #fff;
+  width: 100%; }
+
+.regulation .btn-default:hover {
+  background-color: #00165b;
+  border-color: #00165b;
+  opacity: 0.9;
+  color: #fff; }
 
 /* FOOTER */
 .footer {

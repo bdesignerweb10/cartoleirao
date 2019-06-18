@@ -102,13 +102,21 @@ gulp.task("concat-js", function() {
 	return gulp.src([
 					'./src/components/jquery/dist/jquery.js',
 					'./src/components/tether/dist/js/tether.js',
-					'./src/components/bootstrap/dist/js/bootstrap.js',
-					'./src/components/bootstrap/bootstrap-toggle.min.js',
+					'./src/components/bootstrap/dist/js/bootstrap.js',										
+					'./src/components/jquery-masks/jquery.mask.min.js',
+					'./src/components/bootstrap/bootstrap-toggle.min.js',					
+					'./src/components/chartjs/Chart.bundle.min.js'
 				])
 				.pipe(concat("main.js"))
 				.pipe(gulp.dest("./dist/js"))
 
 });
+
+/* Task para mover arquivos js para pasta dist/js */
+ gulp.task("move-js-calendar", function() { 
+ 	return gulp.src('./src/js/*.js') 	 
+ 	.pipe(gulp.dest('./dist/js'))
+ });
 
 
 /* TASKS DO PAINEL ADMIN */
@@ -189,7 +197,8 @@ gulp.task("server", function() {
 	gulp.watch("./src/admin/scss/*.scss", ['sass-adm']);	
 	gulp.watch("./src/admin/css/*.css", ['admin-css']);	
 	gulp.watch("./src/js/**/*.js", ['move-js']);
+	gulp.watch("./src/js/**/*.js", ['move-js-calendar']);
 });
 
 /* Inicia todas as tasks do gulp */
-gulp.task("default", ["move-htaccess", "sass", "css", "js", "minify-html" ,"minify-php", "move-js", "move-fonts", "move-libs", "acts", "move-img", "concat-js", "admin-css" ,"move-fonts-adm" ,"minify-html-adm", "sass-adm" ,"minify-php-adm" ,"admin-js" ,"server"]);
+gulp.task("default", ["move-htaccess", "sass", "css", "js", "minify-html" ,"minify-php", "move-js", "move-fonts", "move-libs", "acts", "move-img", "concat-js", "admin-css" ,"move-fonts-adm" ,"minify-html-adm", "sass-adm" ,"minify-php-adm" ,"admin-js", "move-js-calendar" ,"server"]);

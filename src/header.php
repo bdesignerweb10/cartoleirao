@@ -62,7 +62,10 @@ else {
 		        		<i class="fas fa-lock"></i> Mercado Fechado 
 		        	<?php endif; ?>
 		        		<span class="sr-only">(current)</span></a>
-		      </li>      
+		      </li>
+		      <?php 
+				if($_SESSION["temporada"] == "0" || $_SESSION["temporada"] == "1" || $_SESSION["temporada"] == "1") :
+					if(isset($_SESSION["usu_id"]) && !empty($_SESSION["usu_id"]) && $_SESSION["usu_id"] > 0) : ?>      
 		      <li class="nav-item dropdown">
 		        <a class="nav-link header-account dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          <?php echo $_SESSION["usu_nome"] ?>
@@ -74,7 +77,13 @@ else {
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" id="logout" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
 		        </div>
-		      </li>      
+		      </li>
+		      <?php else: ?> 
+		      	<a class="nav-link header-account" href="login.php"  role="button">
+		          Entrar
+		        </a> 
+		        <?php endif;
+				endif; ?>   
 		    </ul>
 		</nav>
 	</div><!-- nav-header-->	
