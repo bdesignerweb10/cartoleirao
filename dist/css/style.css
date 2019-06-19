@@ -7043,6 +7043,10 @@ body {
   background-color: #efefef; }
 
 /* LOGIN */
+.login {
+  background: url(../img/background-login.jpg);
+  background-size: 1400px; }
+
 .mainform {
   display: none; }
 
@@ -7054,7 +7058,7 @@ body {
   -webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
-  margin-top: 2%;
+  margin-top: 10%;
   padding: 0px !important;
   background-color: white; }
   .login-box .login-header {

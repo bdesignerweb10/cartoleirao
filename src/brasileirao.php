@@ -6,28 +6,30 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<h5 class="headline">Tabela</h5>
-				<table class="table table-hover">
-				  <thead>
-				    <tr>
-				      <th>#</th>	
-				      <th>Clube</th>
-				      <th>P</th>
-				      <th>J</th>
-				      <th>V</th>
-				      <th>E</th>
-				      <th>D</th>
-				      <th>GP</th>
-				      <th>GC</th>
-					  <th>SG</th>
-					  <th>%</th>
-				    </tr>
-				  </thead>
-				  <tbody class="tbl-pos-brasileiro">
-				    <tr>
-				      <th scope="row" class="media-parcial">1</th>				      
-				    </tr>				    
-				  </tbody>
-				</table>
+				<div class="table-responsive">
+					<table class="table table-hover">
+					  <thead>
+					    <tr>
+					      <th>#</th>	
+					      <th>Clube</th>
+					      <th>P</th>
+					      <th>J</th>
+					      <th>V</th>
+					      <th>E</th>
+					      <th>D</th>
+					      <th>GP</th>
+					      <th>GC</th>
+						  <th>SG</th>
+						  <th>%</th>
+					    </tr>
+					  </thead>
+					  <tbody class="tbl-pos-brasileiro">
+					    <tr>
+					      <th scope="row" class="media-parcial">1</th>				      
+					    </tr>				    
+					  </tbody>
+					</table>
+				</div><!-- table-responsive-->	
 				<ul class="nav legend">
 			  		<li class="nav-item">
 			  			<span class="badge badge-primary"><i class="fas fa-square text-primary"></i></span> Libertadores

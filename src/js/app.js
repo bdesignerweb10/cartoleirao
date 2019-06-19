@@ -435,11 +435,11 @@ $(function() {
 	   window.location.pathname.indexOf('logout') === -1 &&
 	   window.location.pathname.indexOf('brasileirao') === -1 &&
 	   window.location.pathname.indexOf('scouts') === -1 &&
-	   window.location.pathname.indexOf('clube') === -1 &&
+	   window.location.pathname.indexOf('clubes-liga') === -1 &&
 	   window.location.pathname.indexOf('dados_clube') === -1 &&
 	   window.location.pathname.indexOf('meus_dados') === -1 &&
 	   window.location.pathname.indexOf('provisoria') === -1 &&
-	   window.location.pathname.indexOf('temporeal') === -1 &&
+	   window.location.pathname.indexOf('tempo-real') === -1 &&
 	   window.location.pathname.indexOf('comparar') === -1) {
 	   	
 		/* Modal de Informações  */
@@ -1854,7 +1854,7 @@ $(function() {
 
 	// BEGIN CLUBE (clube)
 
-	if(window.location.pathname.indexOf('clube') !== -1) {
+	if(window.location.pathname.indexOf('clubes-liga') !== -1) {
 
 		// HISTORIA DO CLUBE
 		$('#escudos-container').append('<div id="loading"><p style="text-align: center;"><img src="img/loading2.svg" height="150px" border="0"><br />Aguarde! Carregando conteúdo...</p></div>');
@@ -1871,7 +1871,7 @@ $(function() {
 					if(retorno.succeed) {
 						if(retorno.list.length > 0) {
 							$.each(retorno.list, function(i, item) {
-								$('.escudos').append('<li><a href="#" data-id="' + item.id + '" class="btn-historia-clube"><img src="img/escudos/' + item.escudo + '" class="img-fluid" alt="' + item.time + '" title="Visualizar história de ' + item.time + '"></a></li>');
+								$('.escudos').append('<option value="' + item.id + '">' + item.time + '</option>');
 							});
 
 							$('.escudos').fadeIn("slow", function() {
@@ -1965,7 +1965,7 @@ $(function() {
 									if(temp.tipo == "liga") {
 										var status_liga = "";
 										if(temp.posicao == 1) {
-											status_liga = '<img src="img/taca.png" class="img-fluid center-block">';
+											status_liga = '<i class="fas fa-medal"></i>';
 										} else {
 											status_liga = '<h2 class="posicao">' + temp.posicao + 'º</h2>';
 										}
@@ -1976,9 +1976,9 @@ $(function() {
 										var status_mm = "";
 										if(temp.campeao) {
 											if(temp.mata_mata.toLowerCase().indexOf("kempes") >= 0) {
-												status_mm = '<img src="img/mata-mata-kempes.png" class="img-fluid center-block">';
+												status_mm = '<i class="fas fa-trophy"></i>';
 											} else {
-												status_mm = '<img src="img/mata-mata.png" class="img-fluid center-block">';
+												status_mm = '<i class="fas fa-trophy"></i>';
 											}
 										} else {
 											status_mm = '<h2 class="posicao">X</h2>';
@@ -2735,7 +2735,7 @@ $(function() {
 
 	// BEGIN TEMPO REAL (temporeal)
 
-	if(window.location.pathname.indexOf('temporeal') !== -1) {
+	if(window.location.pathname.indexOf('tempo-real') !== -1) {
 				
 		// DESEMPENHO GERAL
 		$('#tempo-real').append('<div id="loading"><p style="text-align: center;"><img src="img/loading2.svg" height="150px" border="0"><br />Aguarde! Carregando conteúdo...</p></div>');
@@ -2748,7 +2748,7 @@ $(function() {
 			    try {
 					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
 
-					$('#tempo-real .card-block tbody').html('');
+					$('#tempo-real .card-body tbody').html('');
 
 					if(retorno.succeed) {
 						var rebaixamento = retorno.list.length - 4;
@@ -2760,9 +2760,9 @@ $(function() {
 							$.each(retorno.list, function(i, item) {
 								var bg = "bg-table";
 								if(i < 6) 
-									bg = "bg-success";
+									bg = "text-success";
 								if(i > 6 && i >= rebaixamento) 
-									bg = "bg-danger";
+									bg = "text-danger";
 
 								var posatual = i + 1;
 
@@ -2782,9 +2782,9 @@ $(function() {
 
 								var myTeamClass = "";
 								if(item.isMyTeam)
-									myTeamClass = "myteam";
+									myTeamClass = "bg-warning";
 								
-								$('#tempo-real .card-block tbody').append('<tr class="' + bg + ' '+myTeamClass+'"><th scope="row" class="table-title">' + posatual + 'º</th><td><img src="img/escudos/' + item.escudo + '" class="img-fluid"></td><td><a href="#" class="scout-time" data-id="' + item.id + '">' + item.time + '</a></td><td>' + item.pontuacao.toFixed(2) + '</td><td>' + item.parcial.toFixed(2) + '</td><td>' + item.parcial_total.toFixed(2) + '</td><td>' + variacao + '</td></tr>');
+								$('#tempo-real .card-body tbody').append('<tr class="'+myTeamClass+'"><th scope="row" class="table-title ' + bg + '">' + posatual + 'º</th><td><img class="shield-club" src="img/escudos/' + item.escudo + '" class="img-fluid"></td><td><a href="#" class="scout-time" data-id="' + item.id + '">' + item.time + '</a></td><td>' + item.parcial.toFixed(2) + '</td><td>' + item.parcial_total.toFixed(2) + '</td><td>' + variacao + '</td></tr>');
 							});
 
 							$('.table-cartoleirao').tablesorter({
@@ -2801,11 +2801,11 @@ $(function() {
 							});
 						}
 						else {
-							$('#tempo-real .card-block tbody').append('<tr class="bg-table"><td colspan="6" class="center infor"><i class="fa fa-thumbs-down fa-2x"></i><br /><br />Não há dados a serem exibidos aqui.</td></tr>');
+							$('#tempo-real .card-body tbody').append('<tr class="bg-table"><td colspan="6" class="center infor"><i class="fa fa-thumbs-down fa-2x"></i><br /><br />Não há dados a serem exibidos aqui.</td></tr>');
 						}
 
 						$('#loading').fadeOut("fast", function() {
-							$('#tempo-real .card-block').fadeIn("slow");
+							$('#tempo-real .card-body').fadeIn("slow");
 							$('#tempo-real footer').fadeIn("slow");
 						});
 					}
@@ -2814,7 +2814,7 @@ $(function() {
 						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
 						$('#alert').modal('show');
 
-						$('#tempo-real .card-block').hide();
+						$('#tempo-real .card-body').hide();
 						$('#tempo-real footer').hide();
 					}
 			    }
@@ -2823,7 +2823,7 @@ $(function() {
 					$('#alert-content').html(String(e.stack));
 					$('#alert').modal('show');
 
-					$('#tempo-real .card-block').hide();
+					$('#tempo-real .card-body').hide();
 					$('#tempo-real footer').hide();
 					$('#loading').remove();
 			    };

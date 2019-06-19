@@ -93,7 +93,7 @@ else {
 				<img class="img-fluid" src="img/Logo-Cartoleirao.png">
 			</div>
 		</div>
-
+				
 		<div class="header-menu" id="header">
 			<nav class="navbar navbar-expand-lg navbar-light ">
 			<a class="navbar-brand" href="#"></a>
@@ -102,6 +102,7 @@ else {
 			  </button>			  
 			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			    <ul class="navbar-nav">
+			      <?php if($_SESSION["temporada"] == "1" || $_SESSION["temporada"] == "0") : ?>	
 			      <li class="nav-item">
 			        <a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
 			      </li>
@@ -124,9 +125,12 @@ else {
 			          <a class="dropdown-item" href="desempenho-grafico.php">Gráfico de desempenho</a>
 			        </div>
 			      </li>	
-			      <!--<li class="nav-item">
+			      <?php endif; ?>
+			      <?php if($_SESSION["temporada"] == "2") : ?>
+			      <li class="nav-item">
 			        <a class="nav-link nav-subscription" href="#">Inscrição</a>
-			      </li>-->		      
+			      </li>		 
+			      <?php endif; ?>     
 			      <li class="nav-item">
 			        <a class="nav-link" href="regulamentos.php">Regulamentos</a>
 			      </li>

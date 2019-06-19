@@ -1,5 +1,5 @@
 <?php
-require_once("../conn.php");
+require_once("connect.php");
 
 // if (!isset($_SESSION["usu_id"]) || empty($_SESSION["usu_id"]) || 
 // 	!isset($_SESSION['usu_nivel']) || empty($_SESSION["usu_nivel"]) || 

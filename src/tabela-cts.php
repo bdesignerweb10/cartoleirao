@@ -10,20 +10,22 @@
 				    Tabela Liga Cartoleirão Trabalho Seguro - TS
 				  </div>
 				  <div class="card-body">
-				    <table class="table table-hover table-cartoleirao">
-					  <thead>
-					    <tr>
-					      <th scope="col">#</th>
-					      <th scope="col">Escudo</th>
-					      <th scope="col">Clube <i class="fas fa-sort"></i></th>
-					      <th scope="col">Pontos no Campeonato <i class="fas fa-sort"></i></th>
-					      <th scope="col">Pontos na última rodada <i class="fas fa-sort"></i></th>	
-					      <th scope="col">Variação <i class="fas fa-sort"></i></th>
-					    </tr>
-					  </thead>
-					  <tbody>					    
-					  </tbody>
-					</table>					
+				  	<div class="table-responsive">
+					    <table class="table table-hover table-cartoleirao">
+						  <thead>
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Escudo</th>
+						      <th scope="col">Clube <i class="fas fa-sort"></i></th>
+						      <th scope="col">Pontos no Campeonato <i class="fas fa-sort"></i></th>
+						      <th scope="col">Pontos na última rodada <i class="fas fa-sort"></i></th>	
+						      <th scope="col">Variação <i class="fas fa-sort"></i></th>
+						    </tr>
+						  </thead>
+						  <tbody>					    
+						  </tbody>
+						</table>
+					</div><!--table-responsive-->						
 				  </div><!-- card-body -->
 				  <div class="card-footer">
 				  	<ul class="nav legend">
@@ -34,7 +36,7 @@
 				  			<span class="badge badge-danger"><i class="fas fa-poop"></i></span> Zona de Rebaixamento
 				  		</li>
 				  		<li class="nav-item">
-				  			<span class="badge badge-dark"><i class="far fa-bookmark"></i></span> Meu Clube
+				  			<span class="badge badge-warning"><i class="far fa-bookmark"></i></span> Meu Clube
 				  		</li>
 				  		<li class="nav-item">
 				  			<span class="badge badge-primary"><i class="fas fa-award"></i></span> Maior pontuador em uma única rodada
