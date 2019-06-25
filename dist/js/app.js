@@ -427,7 +427,7 @@ $(function() {
 	if(window.location.pathname.indexOf('destaques-rodada') === -1 && 
 	   window.location.pathname.indexOf('tabela-cts') === -1 &&
 	   window.location.pathname.indexOf('mata_mata') === -1 &&
-	   window.location.pathname.indexOf('rodada') === -1 &&
+	   window.location.pathname.indexOf('desempenho-grafico') === -1 &&
 	   window.location.pathname.indexOf('eventos') === -1 &&
 	   window.location.pathname.indexOf('inscricao') === -1 &&
 	   window.location.pathname.indexOf('regulamento') === -1 &&
@@ -1353,7 +1353,7 @@ $(function() {
 
 	// BEGIN RODADA (rodada)
 
-	if(window.location.pathname.indexOf('rodada') !== -1) {
+	if(window.location.pathname.indexOf('desempenho-grafico') !== -1) {
 
 		// DESEMPENHO GERAL
 		$('#pontrodada').append('<div id="loading"><p style="text-align: center;"><img src="img/loading2.svg" height="150px" border="0"><br />Aguarde! Carregando conteúdo...</p></div>');
@@ -2659,7 +2659,7 @@ $(function() {
 						if(retorno.succeed) {
 							el.find('.info-clube .nome').html(retorno.time);
 							el.find('.img-scouts').prop("src", "img/escudos/" + retorno.escudo);
-							el.find('.dados-pont').html(retorno.pont_total);
+							el.find('.dados-pont').html(retorno.pont_total + "pts");
 							el.find('.dados-patri').html("C$ " + retorno.patrimonio);
 							
 							if(retorno.atletas.length > 0) {

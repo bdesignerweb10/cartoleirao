@@ -8,7 +8,7 @@
 	<div class="container dashboard">
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="card" id="desempenho-geral">
+				<div class="card default" id="desempenho-geral">
 				  <div class="card-header">
 				    Tabela Cartoleirão Trabalho Seguro - TS
 				  </div>
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card default">
 				  <div class="card-header">
 				    Copas <span>(Mata Mata)</span>
 				  </div>
@@ -83,6 +83,26 @@
 				    <a href="comparar.php" class="btn btn-default btn-sm">Comparar Times</a>
 				  </div>
 				</div>
+				<div class="card to-compare">
+					<div class="card-header">
+						Minhas Competições					
+					</div><!-- card-header -->
+					<div class="card-body">
+						<span class="my-competition">Liga Cartoleirão - Trabalho Seguro TS</span>
+						<div class="progress">
+						  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<span class="my-competition">Copa Kempes</span>
+						<div class="progress">
+						  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<span class="my-competition">Copa Segunda Pele</span>
+						<div class="progress">
+						  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<a href="" class="btn btn-default btn-sm">Ver todos os torneios</a>
+					</div><!-- card-body-->							
+				</div><!-- card -->
 			</div>
 			<div class="col-sm-8 to-compare">
 				<div id="eventos" class="card">
@@ -95,15 +115,6 @@
 				  </div>
 				</div>
 			</div>
-			<div class="col-sm-12">
-				<div id="desempenho-rodada" class="card">
-					<div class="card-header">
-						Desempenho por rodada					
-					</div><!-- card-header -->
-					<div class="card-body">
-					</div><!-- card-body-->							
-				</div><!-- card -->
-			</div><!-- col-sm-12-->			
 		</div><!-- row -->
 	</div>
 </main>

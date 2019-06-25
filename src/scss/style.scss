@@ -445,6 +445,20 @@ body{
 	font-size: 12px;
 }
 
+.default .btn-default{
+	background-color: #00165b;
+	border-color: #00165b;
+	color: #fff;
+	width: 100%;
+}
+
+.default .btn-default:hover{
+	background-color: #00165b;
+	border-color: #00165b;
+	opacity: 0.9;
+	color: #fff;
+}
+
 /* Comparar times */
 
 .to-compare .btn{
@@ -493,6 +507,12 @@ body{
 	&:hover{
 		color: #fff;
 	}
+}
+
+/* GRAFICO DE DESEMPENHO */
+
+.to-graphic{
+	margin-bottom: 20px;
 }
 
 /* REGULAMENTO */
@@ -831,8 +851,14 @@ body{
 	color: #fff;
 }
 
-.to-compare span{
+.table-cartoleirao .to-compare span{
 	padding: 0 80px;
+}
+
+/* Minhas Competições */
+
+.progress{
+	margin: 6px 0;
 }
 
 /* Inscrição */

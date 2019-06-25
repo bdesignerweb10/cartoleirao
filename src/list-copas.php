@@ -34,7 +34,7 @@
 			</div><!-- col-sm-4-->
 
 			<div class="col-sm-4 copas">
-				<div class="card">
+				<div class="card default">
 				  <div class="card-body">
 				    <h5 class="card-title">Copa Beer II</h5>				    
 				    <p class="card-text">Previsão de inicio: <span>15º rodada</span></p>

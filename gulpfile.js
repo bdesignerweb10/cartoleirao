@@ -100,9 +100,9 @@ gulp.task("js", ['cache:js'], function() {
  /* Concatena jquery.js, thther.js e bootstrap.js tudo no main.js e envia para dist/js */
 gulp.task("concat-js", function() {
 	return gulp.src([
-					'./src/components/jquery/dist/jquery.js',
+					'./src/components/jquery/dist/jquery.js',					
 					'./src/components/tether/dist/js/tether.js',
-					'./src/components/bootstrap/dist/js/bootstrap.js',										
+					'./src/components/bootstrap/dist/js/bootstrap.js',																				
 					'./src/components/jquery-masks/jquery.mask.min.js',
 					'./src/components/bootstrap/bootstrap-toggle.min.js',					
 					'./src/components/chartjs/Chart.bundle.min.js'
@@ -201,4 +201,23 @@ gulp.task("server", function() {
 });
 
 /* Inicia todas as tasks do gulp */
-gulp.task("default", ["move-htaccess", "sass", "css", "js", "minify-html" ,"minify-php", "move-js", "move-fonts", "move-libs", "acts", "move-img", "concat-js", "admin-css" ,"move-fonts-adm" ,"minify-html-adm", "sass-adm" ,"minify-php-adm" ,"admin-js", "move-js-calendar" ,"server"]);
+gulp.task("default", ["sass",
+					  "css",
+					  "move-htaccess",
+					  "minify-php",
+					  "js",
+					  "minify-html",					  
+					  "move-js",
+					  "move-fonts",
+					  "move-libs",
+					  "acts",
+					  "move-img",
+					  "admin-js",
+					  "move-js-calendar",
+					  "concat-js",
+					  "admin-css",
+					  "move-fonts-adm",
+					  "minify-html-adm",
+					  "sass-adm",
+					  "minify-php-adm",					  
+					  "server"]);

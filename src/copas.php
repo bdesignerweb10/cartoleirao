@@ -10,7 +10,7 @@
 			</h5>
 		</div><!-- col-sm-8-->
 		<div class="col-sm-4">
-			<h5 class="headline">
+			<h5 class="headline default">
 				<a href="list-copas.php" class="btn btn-default">Voltar para Copas</a>
 			</h5>
 		</div><!-- col-sm-4-->		
