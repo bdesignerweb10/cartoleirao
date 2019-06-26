@@ -1871,7 +1871,7 @@ $(function() {
 					if(retorno.succeed) {
 						if(retorno.list.length > 0) {
 							$.each(retorno.list, function(i, item) {
-								$('.escudos').append('<option value="' + item.id + '">' + item.time + '</option>');
+								$('.escudos').append('<option value="' + item.id +'">' + item.time + '</option>');
 							});
 
 							$('.escudos').fadeIn("slow", function() {
@@ -2633,7 +2633,7 @@ $(function() {
 
 	    function listaAtletas(el) {
 			var formData = new FormData();
-			formData.append('nome_time', el.find('.busca-time').val());
+			formData.append('scouts', el.find('.busca-time').val());
 
 			el.find('.card').hide();
 			$('#loading').remove();

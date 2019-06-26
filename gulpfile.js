@@ -139,6 +139,12 @@ gulp.task("minify-html-adm", function() {
 				.pipe(browserSync.stream());
  });
 
+  /* Move todos os arquivos js para pasta dist/js */
+ gulp.task("move-js-admin", function() { 
+ 	return gulp.src('./src/admin/js/*.js') 	 
+ 	.pipe(gulp.dest('./dist/admin/js'))
+ });
+
 /* Minifica o PHP e envia para dist/admin/acts*/
 gulp.task("minify-php-adm", () => gulp.src('src/admin/acts/*.php', {read: false})
   .pipe(phpMinify())
@@ -153,6 +159,13 @@ gulp.task("minify-php-adm", () => gulp.src('src/admin/acts/*.php', {read: false}
 				.pipe(gulp.dest("./dist/admin/js"))
 				.pipe(browserSync.stream());
 });
+
+ /* move a pasta img para pasta dist/img */
+ gulp.task("move-img-adm", function() { 
+ 	return gulp.src('./src/admin/img/**') 
+ 	.pipe(gulp.dest('./dist/admin/img'))
+ });
+
 
 gulp.task("cache:css-adm", function() {
 	del("./dist/admin/css/style.css")
@@ -198,6 +211,9 @@ gulp.task("server", function() {
 	gulp.watch("./src/admin/css/*.css", ['admin-css']);	
 	gulp.watch("./src/js/**/*.js", ['move-js']);
 	gulp.watch("./src/js/**/*.js", ['move-js-calendar']);
+	gulp.watch("./src/admin/js/*.js", ['move-js-admin']);	
+
+		
 });
 
 /* Inicia todas as tasks do gulp */
@@ -219,5 +235,7 @@ gulp.task("default", ["sass",
 					  "move-fonts-adm",
 					  "minify-html-adm",
 					  "sass-adm",
-					  "minify-php-adm",					  
+					  "minify-php-adm",
+					  "move-img-adm",
+					  "move-js-admin",					  
 					  "server"]);

@@ -1,5 +1,6 @@
 <?php 
-	require_once('header.php'); 
+	require_once('header.php');
+	$anos = $conn->query("SELECT id, descricao FROM tbl_anos ORDER BY descricao DESC") or trigger_error($conn->error); 
 ?>
 <main class="maintable">
 	<div class="container">
@@ -11,10 +12,10 @@
 				<div class="col-sm-4">
 				</div><!-- col-sm-4 -->						
 				<div class="col-sm-4">
-					<button type="button" class="btn btns btn-lg btn-danger"><i class="far fa-calendar-times"></i> Encerrar Temporada</button>
+					<button type="button" class="btn btns btn-lg btn-danger" id="btn-fechar-temporada"><i class="far fa-calendar-times"></i> Encerrar Temporada</button>
 				</div><!-- col-sm-4 -->				
 				<div class="col-sm-4">
-					<button type="button" class="btn btns btn-lg btn-success"><i class="fas fa-plus"></i> Nova Temporada</button>
+					<button type="button" class="btn btns btn-lg btn-success" id="btn-add-temporadas"><i class="fas fa-plus"></i> Nova Temporada</button>
 				</div><!-- col-sm-4 -->	
 			</div><!-- row -->	  
 			<div class="card-body">
@@ -28,33 +29,55 @@
 					    </tr>
 					</thead>
 					<tbody>
-						<tr>
-					      <th scope="row">1</th>
-					      <td>2019</td>				      
-					      <td><i class="fas fa-check icon-ok"></i></td>				      
-					      <td>
-					      	<a href="#" title="Editar informações da temporada"><i class="fas fa-edit icon-edit"></i></a>				      	
-					      	<a href="" title="Deletar temporada" data-toggle="modal" data-target="#remove"><i class="fas fa-trash-alt icon-delete"></i></a>
-					      </td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>2018</td>				      
-					      <td><i class="fas fa-times icon-disabled"></i></td>				      
-					      <td>
-					      	<a href="#" title="Editar informações da temporada"><i class="fas fa-edit icon-edit"></i></a>				      	
-					      	<a href="" title="Deletar temporada"><i class="fas fa-trash-alt icon-delete"></i></a>
-					      </td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>2017</td>				      
-					      <td><i class="fas fa-times icon-disabled"></i></td>				      
-					      <td>
-					      	<a href="#" title="Editar informações da temporada"><i class="fas fa-edit icon-edit"></i></a>				      	
-					      	<a href="" title="Deletar temporada"><i class="fas fa-trash-alt icon-delete"></i></a>
-					      </td>
-					    </tr>
+						<?php 
+			        	if($anos && $anos->num_rows > 0) {
+				        	while($dados = $anos->fetch_object()) {
+
+								$rodadas = $conn->query("SELECT COUNT(id_anos) AS count FROM tbl_temporadas WHERE id_anos = " . $dados->id) 
+													or trigger_error($conn->error);
+
+								$qtd_rodadas = 0;
+
+								if ($rodadas && $rodadas->num_rows > 0) {
+						        	while($rod = $rodadas->fetch_object()) {
+										$qtd_rodadas = $rod->count;
+						        	}
+						        }
+				        		echo "<tr>
+      									<th scope='row'>$dados->id</th>
+						                <td>$dados->descricao</td>
+						                <td class='center'>" . ($dados->id == $_SESSION["temporada_atual"] ? "<i class='fas fa-check icon-ok' alt='Temporada Atual' title='Temporada é a atual'></i>" : "&nbsp;") . "</td>
+						                
+						                <td>";
+
+						                $fake_id = $dados->id * $_SESSION["fake_id"];
+
+				                if($dados->descricao < $_SESSION["temp_atual"] || ($dados->id == $_SESSION["temporada_atual"] && $_SESSION["temporada"] == 1)) {
+				                	echo "<i class='fas fa-edit icon-edit disabled' alt='Edição da temporada $dados->id desabilitada' title='Edição da temporada $dados->id desabilitada'></i><i class='fas fa-trash-alt icon-delete' alt='Remoção da temporada $dados->id desabilitada' title='Remoção da temporada $dados->id desabilitada'></i>";
+				                }
+				                else {
+				                	echo "<a href='#' class='btn-edit-temporadas' data-temporada='$fake_id' alt='Editar temporada $dados->id' title='Editar temporada $dados->id'>
+				                			<i class='fas fa-edit icon-edit'></i>
+			                			  </a>";
+
+			                		if($dados->descricao > $_SESSION["temp_atual"]) {
+			                			echo "<a href='#' class='btn-del-temporadas' data-temporada='$fake_id' alt='Remover temporada $dados->id' title='Remover temporada $dados->id'>
+			                					<i class='fas fa-trash-alt icon-delete'></i>
+		                					  </a>";
+			                		}
+			                		else {
+			                			echo "<i class='fas fa-trash-alt icon-delete' alt='Remoção da temporada $dados->id desabilitada' title='Remoção da temporada $dados->id desabilitada'></i>";
+			                		}
+				                }
+						        echo "</td></tr>";
+							}
+			        	}
+			        	else {
+			        		echo "<tr>
+					                <td colspan='5' class='center'>Não há dados a serem exibidos para a listagem.</td>
+				                </tr>";
+			        	}
+						?>					    
 					</tbody>
 				</table>
 			</div>			
@@ -91,7 +114,7 @@
 			<div class="row btn-action">		
 				<div class="col-sm-8"></div>
 				<div class="col-sm-4">
-					<button type="button" class="btn btns btn-lg btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</button>
+					<button type="button" class="btn btns btn-lg btn-secondary" id="btn-voltar-temporadas"><i class="fas fa-arrow-left"></i> Voltar</button>
 				</div><!-- col-sm-4 -->	
 			</div><!-- row -->	  
 			<div class="card-body">

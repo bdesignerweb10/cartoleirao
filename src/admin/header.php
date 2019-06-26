@@ -1,18 +1,8 @@
-<?php 
-/*require_once("../acts/connect.php");
-
-if($_SESSION["temporada"] == 2 && (basename($_SERVER['PHP_SELF']) != "inscricao.php" && basename($_SERVER['PHP_SELF']) != "regulamento.php"))
-	header('Location: inscricao');
-else {
-	if ($_SESSION["user_ativado"] &&
-		basename($_SERVER['PHP_SELF']) == "meus_dados.php" && 
-		basename($_SERVER['PHP_SELF']) == "dados_clube.php" &&
-		basename($_SERVER['PHP_SELF']) == "eventos.php" &&
-		(!isset($_SESSION["usu_id"]) || empty($_SESSION["usu_id"]) || 
-		!isset($_SESSION['usu_nivel']) || empty($_SESSION["usu_nivel"]) || 
-		$_SESSION["usu_id"] == "0")) 
-		header('Location: login?href=' . str_replace("_", "", str_replace(".php", "", basename($_SERVER['PHP_SELF']))));
-}*/
+<?php
+	require_once("../acts/connect.php");
+if (!isset($_SESSION["usu_id"]) || empty($_SESSION["usu_id"]) || 
+	!isset($_SESSION['usu_nivel']) || empty($_SESSION["usu_nivel"]) ||
+	$_SESSION['usu_nivel'] == "3" || $_SESSION["usu_id"] == "0") header('Location: ./');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,11 +99,11 @@ else {
 		      	</li>
 		    	<li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Administrador
+		          <?php echo $_SESSION["usu_nome"] ?>
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <a class="dropdown-item" href="#">Meus dados</a>
-		          <a class="dropdown-item" href="#">Sair</a>
+		          <a class="dropdown-item" id="logout" href="#">Sair</a>
 		        </div>
 		      </li>
 		    </ul>

@@ -27,6 +27,77 @@ body{
 	background-color: #efefef;
 }
 
+/* Fixar Footer no rodapé */
+html,
+body{
+	height:100%;
+}
+
+main {
+	min-height:100%;
+    position:relative;
+}
+
+/* LOGIN */
+
+.login{
+	background: url(../img/background-login.jpg);
+	background-size: 1400px;
+}
+
+.mainform{
+	display: none;
+}
+
+.login-box {
+	border: 1px solid #cecece;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.15);
+	box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.15);
+	margin-top: 10%;
+	padding: 0px !important;
+	background-color: white;
+	.login-header {
+		background-color: #00165b;
+		border-bottom: 1px solid #cecece;
+		text-align: center;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+		.head-login {
+			color: white;
+			padding: 0px !important;
+			font-size: 1.4rem;
+			margin-left: 5px;
+			vertical-align: middle;
+		}
+	}
+	form {
+		margin-left:30px !important;
+		margin-right:30px !important;
+		margin-bottom: 30px !important;
+	}
+}
+
+.form-box {
+	border: 1px solid #cecece;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.15);
+	box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.15);
+	margin-top: 2%;
+	padding: 0px !important;
+	background-color: white;
+	padding-left:30px !important;
+	padding-right:30px !important;
+	padding-bottom: 30px !important;
+}
+
 /* DEFAULT */
 
 .spacing{
@@ -56,6 +127,10 @@ body{
 .modal-warning{
 	background-color: #ffc107;
 	color: #fff;
+}
+
+.mainadd{
+	display: none;
 }
 
 /* MENU */
@@ -140,6 +215,12 @@ body{
  .btn-action-2 .btn{
  	width: 100%
  }
+
+/* Clubes */
+
+.shield-club{
+	width: 25px !important;
+}
 
 /* CONFIGURAÇÕES */
 

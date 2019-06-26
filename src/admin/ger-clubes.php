@@ -1,7 +1,13 @@
 <?php 
-	require_once('header.php'); 
+	require_once('header.php');
+	$timeslist = $conn->query("SELECT t.id AS id, t.nome_time AS time, t.nome_presidente AS presidente, t.escudo_time AS escudo,  
+							      t.ativo AS status, COUNT(i.id_anos) AS temporadas
+   					         FROM tbl_times t
+   				       INNER JOIN tbl_inscricao AS i ON i.id_times = t.id
+   				         GROUP BY t.id, t.nome_time, t.nome_presidente, t.escudo_time, t.email, t.ativo
+   				         ORDER BY t.id DESC") or trigger_error($conn->error); 
 ?>
-<main>
+<main class="maintable">
 	<div class="container">
 		<div class="card spacing">
 			  <div class="card-header">
@@ -27,42 +33,44 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <th scope="row">1</th>
-				      <td><img src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_100/escudo/f3/44/10/00012b1938-2bb5-4c2c-88aa-cc023e770bf320180323114410" width="30"></td>
-				      <td>Hasdrubal FC</td>
-				      <td>Bruno Gomes da Silva</td>				      
-				      <td><i class="fas fa-check icon-ok"></i></td>
-				      <td>5</td>
-				      <td>
-				      	<a href="#" title="Alterar informações do clube"><i class="fas fa-edit icon-edit"></i></a>
-				      	<a href="" title="Desabilitar clube" data-toggle="modal" data-target="#disabled"><i class="fas fa-minus-circle icon-delete"></i></a>			      	
-				      </td>
-				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td><img src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_100/escudo/f3/44/10/00012b1938-2bb5-4c2c-88aa-cc023e770bf320180323114410" width="30"></td>
-				      <td>Hasdrubal FC</td>
-				      <td>Bruno Gomes da Silva</td>				      
-				      <td><i class="fas fa-check icon-ok"></i></td>
-				      <td>5</td>
-				      <td>
-				      	<a href="#" title="Alterar informações do clube"><i class="fas fa-edit icon-edit"></i></a>
-				      	<a href="" title="Desabilitar clube"><i class="fas fa-minus-circle icon-delete"></i></a>
-				      </td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td><img src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_100/escudo/f3/44/10/00012b1938-2bb5-4c2c-88aa-cc023e770bf320180323114410" width="30"></td>
-				      <td>Hasdrubal FC</td>
-				      <td>Bruno Gomes da Silva</td>				      
-				      <td><i class="fas fa-check icon-ok"></i></td>
-				      <td>5</td>
-				      <td>
-				      	<a href="#" title="Alterar informações do clube"><i class="fas fa-edit icon-edit"></i></a>
-				      	<a href="" title="Desabilitar clube"><i class="fas fa-minus-circle icon-delete"></i></a>	
-				      </td>
-				    </tr>
+				    <?php 
+			        	if($timeslist && $timeslist->num_rows > 0) {
+				        	while($time = $timeslist->fetch_object()) {
+				                $fake_id = $time->id * $_SESSION["fake_id"];
+
+				                $escudo = "../img/escudos/no-escudo.png";
+				                if(file_exists("../img/escudos/$time->escudo"))
+				                	$escudo = "../img/escudos/$time->escudo";
+
+				        		echo "<tr>
+      									<th scope='row'>$time->id</th>
+								        <td><img src='$escudo' class='shield-club'></td>
+						                <td>$time->time</td>
+						                <td>$time->presidente</td>						                
+						                <td>" . ($time->status == 1 ? "<i class='fas fa-check icon-ok' alt='Time ativo' title='Time está ativo'></i>" : "<i class='fas fa-times icon-disabled' alt='Time inativo' title='Time ainda não está ativo'></i>") . "
+						                </td>
+						                <td>$time->temporadas</td>
+						                <td>
+						                	<a href='#' class='btn-edit-time' data-id='$fake_id' alt='Editar $time->time' title='Editar dados de $time->time'>
+				                				<i class='fas fa-edit icon-edit'></i>
+			                			  	</a>";
+
+                			  	if($time->status == 1) {
+		                			echo "<a href='#' class='btn-desativar-time' data-id='$fake_id' alt='Desativar $time->time' title='Desativar $time->time no sistema'><i class='fas fa-minus-circle icon-delete'></i>";
+		                		}
+		                		else {
+		                			echo "<i class='fas fa-minus-circle icon-delete' alt='Desativar $time->time está desabilitada' title='Função de desativação do $time->time está desabilitada'></i>";
+		                		}
+
+								echo "</td></tr>";
+							}
+			        	}
+			        	else {
+			        		echo "<tr>
+					                <td colspan='7' class='center'>Não há dados a serem exibidos para a listagem.</td>
+				                </tr>";
+			        	}
+						?>
 				  </tbody>
 				</table>
 			</div>
@@ -91,7 +99,7 @@
 </main>
 
 
-<main>
+<main class="mainform">
 	<div class="container">
 		<div class="card spacing">
 			<div class="card-header">
@@ -100,7 +108,7 @@
 			<div class="row btn-action">		
 				<div class="col-sm-8"></div>
 				<div class="col-sm-4">
-					<button type="button" class="btn btns btn-lg btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</button>
+					<button type="button" class="btn btns btn-lg btn-secondary" id="btn-voltar-times"><i class="fas fa-arrow-left"></i> Voltar</button>
 				</div><!-- col-sm-4 -->	
 			</div><!-- row -->	  
 			<div class="card-body">

@@ -120,6 +120,7 @@
 </main>
 
 <!-- modal resumo da rodada -->
+<?php if ($_SESSION["mercado"] == "1") : ?>
 <div class="modal" id="modal-info" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -187,7 +188,7 @@
     </div>
   </div>
 </div>
-	 
+<?php endif; ?>		 
 <?php
 	require_once('footer.php');
 ?>

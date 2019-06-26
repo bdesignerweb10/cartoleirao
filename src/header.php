@@ -103,6 +103,7 @@ else {
 			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			    <ul class="navbar-nav">
 			      <?php if($_SESSION["temporada"] == "1" || $_SESSION["temporada"] == "0") : ?>	
+			      	<?php if ($_SESSION["mercado"] == "1") : ?>
 			      <li class="nav-item">
 			        <a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
 			      </li>
@@ -125,6 +126,7 @@ else {
 			          <a class="dropdown-item" href="desempenho-grafico.php">Gráfico de desempenho</a>
 			        </div>
 			      </li>	
+			      	<?php endif; ?>
 			      <?php endif; ?>
 			      <?php if($_SESSION["temporada"] == "2") : ?>
 			      <li class="nav-item">
@@ -139,7 +141,8 @@ else {
 			      </li>
 
 			      <!-- as opções abaixo, só deverá aparecer no menu, quando o mercado estiver FECHADO -->
-			      <!--<li class="nav-item">
+			      <?php if($_SESSION["mercado"] == "0") : ?>
+			      <li class="nav-item">
 			        <a class="nav-link" href="tempo-real.php">Tempo Real</a>
 			      </li>
 			      <li class="nav-item">
@@ -147,8 +150,17 @@ else {
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">Copa em Tempo Real</a>
-			      </li>-->
-
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="brasileirao.php">Tabela Brasileirão</a>
+			      </li>	
+			      <li class="nav-item">
+			        <a class="nav-link" href="regulamentos.php">Regulamentos</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="patrocinadores.php">Patrocinadores</a>
+			      </li>
+				  <?php endif; ?>
 			      <!-- Aqui deve exibir também a tabela do BR + o Regulamento -->
 			    </ul>
 			  </div>
@@ -170,6 +182,10 @@ else {
 		</div>
 		
 		<!-- Exibir somente quando algum jogo não for valer para o Cartola FC -->	
+		<?php 
+			$ativo = 0;
+			if ($ativo == 1) :
+		?>
 		<div class="row">
 			<div class="col-sm-10">
 				<div class="alert alert-danger" role="alert">
@@ -177,6 +193,7 @@ else {
 				  <p>O Jogo Corinthians x Santos não será válido para o Cartola FC</p>
 				</div>
 			</div>
-		</div>		
+		</div>
+		<?php endif; ?>		
 	</header>
 

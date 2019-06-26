@@ -1,7 +1,7 @@
 <?php 
 	require_once('header.php'); 
 ?>
-<main>
+<main class="maintable">
 	<div class="container">
 		<div class="card spacing">
 			  <div class="card-header">
@@ -10,7 +10,7 @@
 			  <div class="row btn-action">		
 				  <div class="col-sm-8"></div>
 				  <div class="col-sm-4">
-				  	<button type="button" class="btn btns btn-lg btn-success"><i class="fas fa-plus"></i> Novo Recado</button>
+				  	<button type="button" class="btn btns btn-lg btn-success" id="btn-add-recados"><i class="fas fa-plus"></i> Novo Recado</button>
 				  </div><!-- col-sm-4 -->	
 			  </div><!-- row -->	  
 			  <div class="card-body">
@@ -73,7 +73,7 @@
 </main>
 
 
-<main>
+<main class="mainform">
 	<div class="container">
 		<div class="card spacing">
 			<div class="card-header">
@@ -82,7 +82,7 @@
 			<div class="row btn-action">		
 				<div class="col-sm-8"></div>
 				<div class="col-sm-4">
-					<button type="button" class="btn btns btn-lg btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</button>
+					<button type="button" class="btn btns btn-lg btn-secondary" id="btn-voltar-recados"><i class="fas fa-arrow-left"></i> Voltar</button>
 				</div><!-- col-sm-4 -->	
 			</div><!-- row -->	  
 			<div class="card-body">

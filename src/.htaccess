@@ -13,3 +13,7 @@ RewriteRule ^copas/?$ list-copas.php
 RewriteRule ^comparar-clubes/?$ comparar.php
 RewriteRule ^login/?$ login.php
 RewriteRule ^logout/?$ logout.php
+
+
+RewriteRule ^admin/home/?$ admin/home.php
+RewriteRule ^admin/?$ admin/index.php

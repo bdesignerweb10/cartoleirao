@@ -1,17 +1,27 @@
 <?php 
 	require_once('header.php'); 
+	if (!isset($_SESSION["usu_id"]) || empty($_SESSION["usu_id"]) || 
+	!isset($_SESSION['usu_nivel']) || empty($_SESSION["usu_nivel"]) ||
+	$_SESSION['usu_nivel'] != "1" || $_SESSION["usu_id"] == "0") header('Location: ./');
+	$usuarioslist = $conn->query("SELECT u.id AS id, u.usuario AS usuario, t.nome_presidente AS presidente, u.nivel as nivel, u.senha_provisoria AS ativado, 
+									 u.tentativas AS tentativas
+        		 			    FROM tbl_usuarios u
+  					       LEFT JOIN tbl_times t ON t.id = u.times_id
+       					    ORDER BY u.id ASC") or trigger_error($conn->error);
 ?>
-<main>
+<main class="maintable">
 	<div class="container">
 		<div class="card spacing">
 			  <div class="card-header">
 			    Gerenciamento de usuários			    
 			  </div>
-			  <div class="row btn-action">		
+			  <div class="row btn-action">	
+			  	<?php if($_SESSION["usu_nivel"] == 1) : ?>	
 				  <div class="col-sm-8"></div>
 				  <div class="col-sm-4">
-				  	<button type="button" class="btn btns btn-lg btn-success"><i class="fas fa-plus"></i> Novo Usuário</button>
-				  </div><!-- col-sm-4 -->	
+				  	<button type="button" class="btn btns btn-lg btn-success" id="btn-add-usuarios"><i class="fas fa-plus"></i> Novo Usuário</button>
+				  </div><!-- col-sm-4 -->
+				<?php endif; ?>	
 			  </div><!-- row -->	  
 			  <div class="card-body">
 			    <table class="table tbl-users table-hover">
@@ -27,45 +37,46 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <th scope="row">1</th>
-				      <td>brunonew17@gmail.com</td>
-				      <td>Bruno Gomes da Silva</td>
-				      <td>Administrador</td>
-				      <td><i class="fas fa-check icon-ok"></i></td>
-				      <td>1</td>
-				      <td>
-				      	<a href="#" title="Editar informações do usuário"><i class="fas fa-edit icon-edit"></i></a>
-				      	<a href="" title="Resetar senha do úsuário" data-toggle="modal" data-target="#reset"><i class="fas fa-eraser icon-reset"></i></a>
-				      	<a href="" title="Deletar o usuário" data-toggle="modal" data-target="#remove"><i class="fas fa-trash-alt icon-delete"></i></a>
-				      </td>
-				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td>phmpilz@gmail.com</td>
-				      <td>Pedro Henrique Massa Pilz</td>
-				      <td>Operador</td>
-				      <td><i class="fas fa-times icon-disabled"></i></td>
-				      <td>1</td>
-				      <td>
-				      	<a href="#" title="Editar informações do usuário"><i class="fas fa-edit icon-edit"></i></a>
-				      	<a href="" title="Resetar senha do úsuário"><i class="fas fa-eraser icon-reset"></i></a>
-				      	<a href="" title="Deletar o usuário"><i class="fas fa-trash-alt icon-delete"></i></a>
-				      </td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td>jpizzirani@gmail.com</td>
-				      <td>João Augusto Pizzirani</td>
-				      <td>Comum</td>
-				      <td><i class="fas fa-times icon-disabled"></i></td>
-				      <td>1</td>
-				      <td>
-				      	<a href="#" title="Editar informações do usuário"><i class="fas fa-edit icon-edit"></i></a>
-				      	<a href="" title="Resetar senha do úsuário"><i class="fas fa-eraser icon-reset"></i></a>
-				      	<a href="" title="Deletar o usuário"><i class="fas fa-trash-alt icon-delete"></i></a>
-				      </td>
-				    </tr>
+				  	<?php 
+			        	if($usuarioslist && $usuarioslist->num_rows > 0) {
+				        	while($usuarios = $usuarioslist->fetch_object()) {
+				                $fake_id = $usuarios->id * $_SESSION["fake_id"];
+
+				                $nivel = "";
+				                if($usuarios->nivel == 1) {
+				                	$nivel = "Administrador";
+				                }
+				                else if($usuarios->nivel == 2) {
+				                	$nivel = "Operador";
+				                }
+				                else {
+				                	$nivel = "Comum";
+				                }
+							    echo "<tr>
+							      <th scope='row'>$usuarios->id</th>
+							      <td>$usuarios->usuario</td>
+							      <td>$usuarios->presidente</td>
+							      <td>$nivel</td>
+							      <td>" . ($usuarios->ativado == 0 ? "<i class='fas fa-check icon-ok' alt='Usuário ativado' title='Usuário foi ativado'></i>" : "<i class='fas fa-times icon-disabled' alt='Usuário inativado' title='Usuário ainda não foi ativado'></i>") . "</td>
+							      <td>$usuarios->tentativas</td>
+							      <td>
+							      	<a href='#' class='btn-edit-usuarios' data-id='$fake_id' title='Editar informações de $usuarios->presidente'><i class='fas fa-edit icon-edit'></i></a>
+							      	<a href='' class='btn-resetar-senha' data-id='$fake_id' title='Resetar senha do $usuarios->presidente' data-toggle='modal' data-target='#reset'><i class='fas fa-eraser icon-reset'></i></a>";
+							    if($usuarios->usuario != 'admin' && $usuarios->nivel != 3) {
+							      	echo "<a href='#' class='btn-del-usuarios' data-id='$fake_id' title='Deletar o $usuarios->presidente' data-toggle='modal' data-target='#remove'><i class='fas fa-trash-alt icon-delete'></i></a>";
+							    }
+							    else {
+									echo "<i class='fas fa-trash-alt icon-delete'></i>";
+								}
+								echo "</td></tr>";
+								}
+			        	}
+			        	else {
+			        		echo "<tr>
+					                <td colspan='7' class='center'>Não há dados a serem exibidos para a listagem.</td>
+				                </tr>";
+			        	}
+						?>				    
 				  </tbody>
 				</table>
 			</div>
@@ -113,7 +124,7 @@
 	</div>
 </main>
 
-<main>
+<main class="mainadd">
 	<div class="container">
 		<div class="card spacing">
 			<div class="card-header">
@@ -122,11 +133,11 @@
 			<div class="row btn-action">		
 				<div class="col-sm-8"></div>
 				<div class="col-sm-4">
-					<button type="button" class="btn btns btn-lg btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</button>
+					<button type="button" class="btn btns btn-lg btn-secondary btn-voltar-usuarios"><i class="fas fa-arrow-left"></i> Voltar</button>
 				</div><!-- col-sm-4 -->	
 			</div><!-- row -->	  
 			<div class="card-body">
-				<form>
+				<form id="form-usuarios-add" data-toggle="validator" action="acts/acts.usuarios.php" method="POST">
 					<div class="form-row">
 					    <div class="form-group col-md-1">
 					      <label for="user-id">ID</label>
