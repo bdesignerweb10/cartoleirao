@@ -1938,19 +1938,20 @@ $(function() {
 							$('.nome_presidente').html(retorno.nome_presidente);
 							$('.text-hitoria').html(retorno.historia);
 									
-							$('.dropdown-temporada').html('');
+							$('.nav-temporada').html('');
 							if(retorno.list_temp.length > 0) {
 								$.each(retorno.list_temp, function(t, temp) {
 									if(temp.is_actual) {
-										$('.dropdown-temporada').append('<div class="dropdown-divider"></div><a class="dropdown-item disabled" href="#">' + temp.temporada + '</a>');
+										$('.nav-temporada').append('<a class="nav-link btn btn-performance disabled" id="pills' + temp.id + '" data-toggle="pill" href="#a' + temp.id + '" role="tab" aria-controls="pills-home" aria-selected="true">' + temp.temporada + '</a>');
 									}
 									else {
-										var role = "";
+										var role = "";										
 										if(t == 0) {
-											role = 'role="tab"';
+											role = 'role="tab"';											
 										}
-										$('.dropdown-temporada').append('<a class="dropdown-item" data-toggle="tab" href="#a' + temp.id + '" data-time-id="' + idclube + '" ' + role + '>' + temp.temporada + '</a>');
-										$('.tab-content').append('<div class="tab-pane" id="a' + temp.id + '" role="tabpanel"></div>');
+										$('.nav-temporada').append('<a class="nav-link btn btn-performance" id="pills' + temp.id + '" data-toggle="pill" href="#a' + temp.id + '" aria-controls="pills-home" aria-selected="true" data-time-id="' + idclube + '" ' + role + '>' + temp.temporada + '</a>');
+										$('.tab-content').append('<div class="tab-pane fade show" id="a' + temp.id + '" role="tabpanel" aria-labelledby="pills' + temp.id + '"></div>');
+										//<div class="card-seasons"><h5 class="headline">Temporada ' + temp.temporada + ' </h5><p><i class="fas fa-table text-info"></i> <span>'+ temp +'º colocado</span></p><p><i class="far fa-arrow-alt-circle-up text-success"></i></p><p><i class="far fa-arrow-alt-circle-down text-danger"></i></p><p><i class="fas fa-chart-line text-primary"></i></p></div>
 									}
 								});
 							}
@@ -1996,7 +1997,7 @@ $(function() {
 							$('.ano_fundacao').html('');
 							$('.nome_presidente').html('');
 							$('.text-hitoria').html('');
-							$('.dropdown-temporada').html('');
+							$('.nav-temporada').html('');
 							$('.geral-campeonatos').html('');
 
 							$('#alert-title').html(retorno.title);
@@ -2010,7 +2011,7 @@ $(function() {
 						$('.ano_fundacao').html('');
 						$('.nome_presidente').html('');
 						$('.text-hitoria').html('');
-						$('.dropdown-temporada').html('');
+						$('.nav-temporada').html('');
 						$('.geral-campeonatos').html('');
 
 						$('#loading-modal').modal('hide');
@@ -2041,19 +2042,20 @@ $(function() {
 						if(retorno.succeed) {
 							$(container).html('');
 
-							$(container).append('<div class="row painel-' + idano + '"><h1 class="headline-rodada">Temporada selecionada: <strong>' + retorno.temporada + '</strong></h1></div>');
-							$(container).append('<div class="col-12 historia painel-' + idano + '"><div id="container-' + idano + '" class="row"></div><div class="btn btn-lg btn-primary btn-temporada"><a href="#" class="link-temporada" data-id-ano="' + idano + '">Confira sua pontuação detalhada da temporada ' + retorno.temporada + '</a></div></div>');
+							//<div class="card-seasons"><h5 class="headline">Temporada ' + temp.temporada + ' </h5><p><i class="fas fa-table text-info"></i> <span>'+ temp +'º colocado</span></p><p><i class="far fa-arrow-alt-circle-up text-success"></i></p><p><i class="far fa-arrow-alt-circle-down text-danger"></i></p><p><i class="fas fa-chart-line text-primary"></i></p></div>
+							$(container).append('<div class="row painel-' + idano + '"><h5 class="headline">Temporada ' + temp.temporada + ' </h5></div>');
+							//$(container).append('<div class="col-12 historia painel-' + idano + '"><div id="container-' + idano + '" class="row"></div><div class="btn btn-lg btn-primary btn-temporada"><a href="#" class="link-temporada" data-id-ano="' + idano + '">Confira sua pontuação detalhada da temporada ' + retorno.temporada + '</a></div></div>');
 
 							if(retorno.list_camps.length > 0) {
 								$.each(retorno.list_camps, function(t, temp) {
 									if(temp.tipo == "liga") {
 										var status_liga = "";
 										if(temp.posicao == 1) {
-											status_liga = '<img src="img/taca.png" class="img-fluid center-block">';
+											status_liga = '<i class="fas fa-trophy"></i>';
 										} else {
-											status_liga = '<h2 class="posicao">' + temp.posicao + 'º</h2>';
+											status_liga = '<p><i class="fas fa-table text-info"></i> <span>'+ temp.posicao +'º colocado</span></p>';
 										}
-										$('#container-' + idano).append('<div class="col-sm-4 col-md-4 col-lg-3 col-xl-3">' + status_liga + '<h3 class="nome-torneio">Cartolas sem cartola</h3><p class="ano">' + temp.temporada + '</p></div>');
+										$('#container-' + idano).append('<div class="col-sm-4 col-md-4 col-lg-3 col-xl-3">' + status_liga + '<h3 class="nome-torneio">Cartoleirão Trabalho Seguro TS</h3><p class="ano">' + temp.temporada + '</p></div>');
 									}
 
 									if(temp.tipo == "mata_mata") {
@@ -2065,7 +2067,7 @@ $(function() {
 												status_mm = '<img src="img/mata-mata.png" class="img-fluid center-block">';
 											}
 										} else {
-											status_mm = '<h2 class="posicao">X</h2>';
+											status_mm = '<h2 class="posicao">Eliminado</h2>';
 										}
 										$('#container-' + idano).append('<div class="col-sm-4 col-md-4 col-lg-3 col-xl-3">' + status_mm + '<h3 class="nome-torneio">' + temp.mata_mata + '</h3><p class="ano">' + temp.temporada + '</p></div>');
 									}
@@ -3105,14 +3107,14 @@ $(function() {
 
 			$.ajax({
 				type: "POST",
-				url: "acts/acts.comparacao.php?act=dados_time",
+				url: "acts/acts.comparacao.php?act=dados_time",				
 				data : formData,
 				processData: false,
 				contentType: false,
     			timeout: 0,
-				success: function(data)
+				success: function(data)				
 				{
-				    try {
+				    try {console.log(data);
 						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
 
 						if(retorno.succeed) {
@@ -3187,6 +3189,11 @@ $(function() {
 							else {
 								$('.posicao_time' + idx).addClass('negativo');
 								$('.posicao_time' + idx2).addClass('positivo');
+							
+
+
+
+
 							}
 
 							if(parseFloat($('.pontos_time' + idx).html()) > parseFloat($('.pontos_time' + idx2).html())) {

@@ -276,6 +276,11 @@ body{
 	margin-bottom: 5px;
 }
 
+.compare .checkbox label .toggle, .checkbox-inline .toggle {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+}
+
 .table-estatisticas{
 	display: none;
 }
@@ -717,6 +722,7 @@ body{
 .btn-performance{
 	background-color: #00165b;
 	border-color: #00165b;
+	margin: 0 2px;
 	color: #fff;	
 }
 

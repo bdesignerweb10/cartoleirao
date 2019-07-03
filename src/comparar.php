@@ -4,7 +4,7 @@
 <main>
 	<div class="container">
 		<div class="row" style="margin-bottom: 20px;">
-			<div class="col-sm-6">
+			<div class="col-sm-6 compare">
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" id="salva_comparacao1" name="salva_comparacao1" data-toggle="toggle" data-on="Ativo" data-off="Inativo" data-onstyle="success" data-offstyle="danger">

@@ -36,7 +36,7 @@
 				  <div class="card-body" id="historia">
 				    <blockquote class="blockquote mb-0">
 				      <p class="text-hitoria"></p>
-				      <footer class="blockquote-footer">Presidente do Clube: <cite title="Source Title" class="nome nome_presidente">Bruno Gomes</cite></footer>
+				      <footer class="blockquote-footer">Presidente do Clube: <cite title="Source Title" class="nome nome_presidente"></cite></footer>
 				    </blockquote>
 				  </div>
 				</div>
@@ -56,20 +56,16 @@
 				    Desempenho de <span class="nome nome_time"></span> em outras temporadas
 				  </div>
 				  <div class="card-body">
-				    <blockquote class="blockquote mb-0">
-				    	<button type="button" class="btn btn-performance">2015</button>		
-				    	<button type="button" class="btn btn-performance">2016</button>	
-				    	<button type="button" class="btn btn-performance">2017</button>	
-				    	<button type="button" class="btn btn-performance">2018</button>				    	    
-				    </blockquote>				    
+				  	<ul class="nav nav-pills nav-temporada mb-3" id="pills-tab" role="tablist">
+					  <li class="nav-item">					    
+					  </li>					  
+					</ul>
+					<div class="tab-content" id="pills-tabContent">
+					  <!--<div class="tab-pane fade show active" id="a1" role="tabpanel" aria-labelledby="pills1">2015</div>
+					  <div class="tab-pane fade" id="a2" role="tabpanel" aria-labelledby="pills2">2016</div>
+					  <div class="tab-pane fade" id="a3" role="tabpanel" aria-labelledby="pills3">2017</div>-->
+					</div>					    								    
 				  </div>
-				  <div class="card-seasons">
-				    	<h5 class="headline">Temporada 2015</h5>
-				    	<p><i class="fas fa-times disqualified"></i> Liga Cartoleirão Trabalho seguro - TS / <span>13º colocado</span></p>
-				    	<p><i class="fas fa-times disqualified"></i> Copa Kempes</p>
-				    	<p><i class="fas fa-times disqualified"></i> Copa Beer</p>
-				    	<p><i class="fas fa-trophy champion"></i> Copa Segunda Pele</p>
-				   </div>
 				</div>
 			</div><!-- col-sm-8-->
 		</div><!-- row -- >
