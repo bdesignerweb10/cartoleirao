@@ -50,13 +50,13 @@ if(isset($_GET['act']) && !empty($_GET['act'])) {
 
 							$m_escudo = str_replace("40x40", "60x60", $clube_m->{"brasao"});
 							$m_time = $clube_m->{"sigla"};
-							$m_placar = "0";
+							$m_placar = "-";
 							if(isset($partida->{"placar1"}) && $partida->{"placar1"} !== null)
 								$m_placar = $partida->{"placar1"};
 
 							$v_escudo = str_replace("40x40", "60x60", $clube_v->{"brasao"});
 							$v_time = $clube_v->{"sigla"};
-							$v_placar = "0";
+							$v_placar = "-";
 							if(isset($partida->{"placar2"}) && $partida->{"placar2"} !== null)
 								$v_placar = $partida->{"placar2"};
 

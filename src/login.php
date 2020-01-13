@@ -30,6 +30,9 @@ require_once('header_login.php');
 			    		</div>
 					</div>
 					<div class="form-group">
+						<?php if($_SESSION["temporada"] == "2") : ?>
+			      	 		<a href="inscricao.php" class="btn btn-link">Cadastrar meu time na liga</a>
+			      		<?php endif; ?>
 						<button type="button" class="btn btn-link" id="btn-esqueceu-senha">Esqueceu sua senha? Clique aqui!</button>
 					</div>
   					<button id="btn-login" type="submit" class="btn btn-success btn-lg form-control" name="submit">

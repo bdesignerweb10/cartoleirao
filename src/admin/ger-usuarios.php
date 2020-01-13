@@ -179,7 +179,6 @@
 					      <label for="camp-nome"><span class="badge badge-success">Sim</span><!--<span class="badge badge-danger">Não</span>--></label>
 					    </div>					    
 			       	</div><!-- form-row -->
-
 				</form>
 				<div class="row btn-action-2">
 					<div class="col-sm-8"></div>

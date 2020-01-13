@@ -4,7 +4,7 @@
 <main>
 	<div class="container">
 		<div class="row">	
-			<div class="col-sm-4 copas">
+			<div class="col-sm-4 copas" id="mata-mata">
 				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">Copa Kempes VI</h5>
@@ -27,7 +27,7 @@
 				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">Copa Beer II</h5>
-				    <p class="card-text">Previsão de inicio: <span>15º rodada</span></p>
+				    <p class="card-text">Copa Aguardando Inicio</p>
 				    <a href="#" class="btn btn-info disabled">Aguarde o ínicio</a>
 				  </div>
 				</div>
@@ -37,7 +37,7 @@
 				<div class="card default">
 				  <div class="card-body">
 				    <h5 class="card-title">Copa Beer II</h5>				    
-				    <p class="card-text">Previsão de inicio: <span>15º rodada</span></p>
+				    <p class="card-text">Copa Aguardando Inicio</p>
 				    <a href="#" class="btn btn-default" data-toggle="modal" data-target="#participarcopa">Desejo Participar</a>	
 				    <p><span class="badge badge-warning">15 Times pagos</span>
 				    <span class="badge badge-info">Premiação</span></p>			    

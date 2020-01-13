@@ -394,7 +394,7 @@ $(function() {
 								$('#email').val('');
 								$('#telefone').val('');
 								$('#nome_time').val('');
-								$('input[name="forma-pagto"]').prop('checked', false);
+								//$('input[name="forma-pagto"]').prop('checked', false);
 								$('.competicao').prop('checked', false);
 								$('#regulamento').prop('checked', false);
 
@@ -1211,7 +1211,8 @@ $(function() {
 							var fase = "";
 							$.each(retorno.list, function(i, item) {
 								if(fase != item.fase) {
-									$('#mata-mata').append('<div class="' + item.cor_fase + ' text-white"><i class="fa fa-trophy"></i> Mata Mata - ' + item.fase + '</div><div class="row" id="body_' + item.cor_fase + '">');
+									//$('#mata-mata').append('<div class="' + item.cor_fase + ' text-white"><i class="fa fa-trophy"></i> Mata Mata - ' + item.fase + '</div><div class="row" id="body_' + item.cor_fase + '">');
+									$('#mata-mata').append('<p class="card-text">' + item.fase + '</p>');
 									fase = item.fase;
 								}
 
@@ -1871,7 +1872,7 @@ $(function() {
 					if(retorno.succeed) {
 						if(retorno.list.length > 0) {
 							$.each(retorno.list, function(i, item) {
-								$('.escudos').append('<option value="' + item.id +'">' + item.time + '</option>');
+								$('.escudos').append('<option class="btn-historia-clube" value="' + item.id +'">' + item.time + '</option>');
 							});
 
 							$('.escudos').fadeIn("slow", function() {
@@ -1945,9 +1946,9 @@ $(function() {
 										$('.nav-temporada').append('<a class="nav-link btn btn-performance disabled" id="pills' + temp.id + '" data-toggle="pill" href="#a' + temp.id + '" role="tab" aria-controls="pills-home" aria-selected="true">' + temp.temporada + '</a>');
 									}
 									else {
-										var role = "";										
+										var role = "";																				
 										if(t == 0) {
-											role = 'role="tab"';											
+											role = 'role="tab"';																						
 										}
 										$('.nav-temporada').append('<a class="nav-link btn btn-performance" id="pills' + temp.id + '" data-toggle="pill" href="#a' + temp.id + '" aria-controls="pills-home" aria-selected="true" data-time-id="' + idclube + '" ' + role + '>' + temp.temporada + '</a>');
 										$('.tab-content').append('<div class="tab-pane fade show" id="a' + temp.id + '" role="tabpanel" aria-labelledby="pills' + temp.id + '"></div>');

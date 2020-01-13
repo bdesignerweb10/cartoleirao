@@ -54,7 +54,7 @@ function sendRequest($path, $options = array()){
           $page = "&page=". $options["page"];
         }
       }
-      $url = "https://api.cartolafc.globo.com/auth/liga/". $options["liga_slug"] . $orderBy . $page;
+      $url = "https://api.cartolafc.globo.com/auth/liga/". $options["liga_slug"] . $orderBy . $page;      
     }
     else if (isset($options["api"]) && $options["api"] === "atleta-pontuacao") {
       $url = "https://api.cartolafc.globo.com/auth/mercado/atleta/". $options["atleta_id"] ."/pontuacao";

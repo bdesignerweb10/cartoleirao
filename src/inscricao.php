@@ -46,7 +46,7 @@
 						    <div class="form-check">
 						      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>						      
 						      <label class="form-check-label" for="invalidCheck">
-						        Eu declaro que li e aceito o regulamento da Liga Cartoleirão - Trabalho Seguro TS e das ligas Mata Mata
+						        Eu declaro que li e aceito o <a href="regulamentos.php"> <span>regulamento</span></a> da Liga Cartoleirão - Trabalho Seguro TS e das ligas Mata Mata
 						      </label>
 						      <div class="invalid-feedback">
 						        Aceite os termos antes de se inscrever!
@@ -71,7 +71,8 @@
 				    <p class="card-text">Formas de Pagamento:</p>
 				    <p class="card-text">
 				    - Em mãos, com o tesoureiro <br />
-					- Transferência Bancária </p>
+					- Transferência Bancária <br />
+					- PicPay </p>
 				    <p class="card-text">Já leu o nosso regulamento?</p>
 				    <p class="card-text"><a href="regulamentos.php"> Acesse o Regulamento e leia todas as regras para não ficar com dúvidas!</a></p>
 				    <p class="card-text">Críticas ou sugestões, entre em contato:</p>

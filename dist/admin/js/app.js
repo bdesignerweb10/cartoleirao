@@ -1,4 +1,2062 @@
-function getTodayDate(){var a=new Date,e=a.getDate(),t=a.getMonth()+1;return e<10&&(e="0"+e),t<10&&(t="0"+t),e+"/"+t+"/"+a.getFullYear()+" "+(a.getHours()<10?"0"+a.getHours():a.getHours())+":"+(a.getMinutes()<10?"0"+a.getMinutes():a.getMinutes())}$(function(){$("html, body").on("click",function(a){a.target==document.documentElement&&$("html").removeClass("open-sidebar")}),$(".js-open-sidebar").on("click",function(){$("html").addClass("open-sidebar")}),$("#logout").on("click",function(a){a.preventDefault(),$("#loading-modal").modal({keyboard:!1}),$.ajax({type:"POST",url:"../acts/acts.logout.php",success:function(a){try{$("#loading-modal").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?(document.cookie.split(";").forEach(function(a){document.cookie=a.replace(/^ +/,"").replace(/=.*/,"=;expires="+(new Date).toUTCString()+";path=/")}),window.location.href="./"):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"),"12010"==e.errno&&$("#alert").on("hidden.bs.modal",function(a){window.location.href="provisoria"}))}catch(a){$("#loading-modal").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#form-login").submit(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.login.php?act=login",data:$("#form-login").serialize(),success:function(a){try{var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));$("#loading").modal("hide"),e.succeed?window.location.href="home":($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"),"21010"==e.errno&&$("#alert").on("hidden.bs.modal",function(a){window.location.href="../provisoria"}))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-login").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.login.php?act=login",data:$("#form-login").serialize(),success:function(a){try{var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));$("#loading").modal("hide"),e.succeed?window.location.href="home":($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"),"21010"==e.errno&&$("#alert").on("hidden.bs.modal",function(a){window.location.href="../provisoria"}))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-esqueceu-senha").click(function(a){a.preventDefault(),$(".mainlogin").hide(),$(".mainform").show()}),$("#btn-recuperar-senha").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.login.php?act=reset",data:$("#form-recuperar").serialize(),success:function(a){try{var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));$("#loading").modal("hide"),e.succeed?($("#alert-title").html("Solicitação enviada com sucesso!"),$("#alert-content").html("Sua requisição para resetar sua senha foi realizada com sucesso. Aguarde o e-mail com as informações! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-voltar-temporadas").click(function(a){a.preventDefault(),$("#headline-temporada").html(""),$("#id").val(""),$("#descricao").prop("readonly",null),$("#descricao").val(""),$("#passo-ano").prop("disabled",null),$("#box-rodada").hide(),$("#sel-content").html(""),$("#passo-rodada").prop("disabled",null),$("#voltar-ano").prop("disabled",null),$("#box-confirmacao").hide(),$("#resumo-temporada").html(""),$("#resumo-rodadas").html(""),$(".mainform").hide(),$(".maintable").show()}),$("#btn-add-temporadas").click(function(a){a.preventDefault(),$(".maintable").hide(),$(".mainform").show(),$("#headline-temporada").html("Cadastro de nova temporada"),$("#id").val(""),$("#passo-confirmacao").data("act","add"),$("#passo-confirmacao").data("temporada",null)}),$(".btn-edit-temporadas").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$(".maintable").hide(),$(".mainform").show();var t=$(this).data("temporada");$.ajax({type:"POST",url:"acts/acts.temporadas.php?act=showupd&idano="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#passo-confirmacao").data("act","edit"),$("#passo-confirmacao").data("temporada",t),$("#headline-temporada").html("Editando a temporada "+e.descricao),$("#id").val(e.id),$("#descricao").val(e.descricao),$("#descricao").prop("readonly","readonly"),$("#passo-ano").prop("disabled","disabled"),$("#voltar-ano").prop("disabled","disabled"),$("#passo-rodada").prop("disabled",null),$("#box-rodada").show(),$("#sel-content").append('<div class="col-12"><div class="form-check" style="margin-bottom:20px;"><label class="form-check-label"><input type="checkbox" class="form-check-input sel-todos" />&nbsp;&nbsp;&nbsp;Selecionar todos</label></div></div>'),$.each(e.list,function(a,e){$("#sel-content").append('<div class="col-6"><label class="form-check-label"><input type="checkbox" id="rodada['+e.id+']" name="rodada['+e.id+']" class="form-check-input sel-rodadas" value="'+e.id+'" '+(e.has_temporada?"checked":"")+" />&nbsp;&nbsp;&nbsp;Rodada #"+e.descricao+"</label></div>")})):($("#headline-temporada").html(""),$("#id").val(""),$("#descricao").prop("readonly",null),$("#descricao").val(""),$("#passo-ano").prop("disabled",null),$("#box-rodada").hide(),$("#sel-content").html(""),$("#passo-rodada").prop("disabled",null),$("#voltar-ano").prop("disabled",null),$("#box-confirmacao").hide(),$("#resumo-temporada").html(""),$("#resumo-rodadas").html(""),$("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-del-temporadas").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("temporada");$.ajax({type:"POST",url:"acts/acts.temporadas.php?act=del&idano="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Registro removido com sucesso!"),$("#alert-content").html("A remoção do registro foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#passo-ano").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.temporadas.php?act=selrod",success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#sel-content").append('<div class="col-12"><div class="form-check" style="margin-bottom:20px;"><label class="form-check-label"><input type="checkbox" class="form-check-input sel-todos" />&nbsp;&nbsp;&nbsp;Selecionar todos</label></div></div>'),$.each(e.list,function(a,e){$("#sel-content").append('<div class="col-6"><label class="form-check-label"><input type="checkbox" id="rodada['+e.id+']" name="rodada['+e.id+']" class="form-check-input sel-rodadas" value="'+e.id+'" '+(e.has_temporada?"checked":"")+" />&nbsp;&nbsp;&nbsp;Rodada #"+e.descricao+"</label></div>")})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}}),$("#descricao").prop("readonly","readonly"),$(this).prop("disabled","disabled"),$("#box-rodada").show()}),$("body").on("click",".sel-todos",function(){$(".sel-rodadas").prop("checked",$(".sel-todos").is(":checked"))}),$("#voltar-ano").click(function(a){a.preventDefault(),$("#sel-content").html(""),$("#descricao").prop("readonly",null),$("#passo-ano").prop("disabled",null),$("#box-rodada").hide()}),$("#passo-rodada").click(function(a){a.preventDefault(),$("#resumo-temporada").html("Temporada: "+$("#descricao").val()),$("#resumo-rodadas").html("Total rodadas: "+$(".sel-rodadas:checked").length),$(".sel-todos").prop("disabled","disabled");var e=$("#sel-content").clone();$(".sel-rodadas").prop("disabled","disabled"),e.appendTo("#box-rodada").addClass("check-duplicated"),$("#voltar-ano").prop("disabled","disabled"),$(this).prop("disabled","disabled"),$("#box-confirmacao").show()}),$("#voltar-rodada").click(function(a){a.preventDefault(),$(".sel-todos").prop("disabled",null),$(".sel-rodadas").prop("disabled",null),$(".check-duplicated").remove(),$("#voltar-ano").prop("disabled",null),$("#passo-rodada").prop("disabled",null),$("#box-confirmacao").hide()}),$("#passo-confirmacao").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var t=$("#passo-confirmacao").data("act"),e=$("#passo-confirmacao").data("temporada");$.ajax({type:"POST",url:"acts/acts.temporadas.php?act="+t+"&idano="+e,data:$("#form-temporadas").serialize(),success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Registro "+("add"==t?"adicionado":"editado")+" com sucesso!"),$("#alert-content").html("A "+("add"==t?"adição":"edição")+" do registro foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-voltar-competicoes").click(function(a){a.preventDefault(),$("#btn-salvar-competicao").data("id",null),$("#btn-salvar-competicao").data("act",null),$("#headline-competicao").html(""),$(".headline-form").html(""),$("#id").val(""),$("#descricao").val(""),$("#valor").val(""),$("#capa").val(""),$("#outro_valor").val(""),$("#informacoes").val(""),$("#is_default").bootstrapToggle("off"),$("#ch_outro_valor").bootstrapToggle("off"),$("#box-capa").hide(),$("#img-capa").attr("src",""),$("#img-capa").attr("alt",""),$("#img-capa").attr("title",""),$(".mainform").hide(),$(".maintable").show()}),$("#btn-add-competicoes").click(function(a){a.preventDefault(),$(".maintable").hide(),$(".mainform").show(),$("#btn-salvar-competicao").data("id",null),$("#btn-salvar-competicao").data("act","add"),$("#headline-competicao").html("Cadastrar nova competição"),$(".headline-form").html("Insira as informações da nova competição"),$("#id").val(""),$("#descricao").val(""),$("#valor").val(""),$("#capa").val(""),$("#outro_valor").val(""),$("#informacoes").val(""),$("#is_default").bootstrapToggle("off"),$("#ch_outro_valor").bootstrapToggle("off"),$("#box-capa").hide(),$("#img-capa").attr("src",""),$("#img-capa").attr("alt",""),$("#img-capa").attr("title","")}),$(".btn-edit-competicoes").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var t=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.competicoes.php?act=showupd&idcompeticao="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));if(e.succeed){if($(".maintable").hide(),$(".mainform").show(),$("#btn-salvar-competicao").data("id",t),$("#btn-salvar-competicao").data("act","edit"),$("#headline-ger-times").html("Editar a competição "+e.descricao),$(".headline-form").html("Edite as informações da competição!"),$("#id").val(e.id),$("#descricao").val(e.descricao),$("#informacoes").val(e.informacoes),$("#is_default").bootstrapToggle(1==e.is_default?"on":"off"),0==e.valor?($("#ch_outro_valor").bootstrapToggle("on"),$("#outro_valor").val(e.outro_valor)):($("#valor").val(e.valor),$("#ch_outro_valor").bootstrapToggle("off")),0<e.capa.length)"200"==jQuery.ajax({url:"../img/competicao/"+e.capa,type:"HEAD",async:!1}).status&&($("#box-capa").show(),$("#img-capa").attr("src","../img/competicao/"+e.capa),$("#img-capa").attr("alt",e.descricao),$("#img-capa").attr("title",e.descricao));else $("#box-capa").hide();$("#ano_fundacao").val(e.ano_fundacao)}else $("#btn-salvar-competicao").data("id",null),$("#btn-salvar-competicao").data("act",null),$("#headline-competicao").html(""),$(".headline-form").html(""),$("#id").val(""),$("#descricao").val(""),$("#valor").val(""),$("#capa").val(""),$("#outro_valor").val(""),$("#informacoes").val(""),$("#is_default").bootstrapToggle("off"),$("#ch_outro_valor").bootstrapToggle("off"),$("#box-capa").hide(),$("#img-capa").attr("src",""),$("#img-capa").attr("alt",""),$("#img-capa").attr("title",""),$(".mainform").hide(),$(".maintable").show(),$("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show")}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-del-competicoes").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.competicoes.php?act=del&idcompeticao="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Você desativou a competição!"),$("#alert-content").html("A competição selecionada foi removida com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#ch_outro_valor").on("change",function(){$(this).is(":checked")?($("#outro_valor").show(),$("#valor-monetario").hide()):($("#outro_valor").hide(),$("#valor-monetario").show())}),$("#btn-salvar-competicao").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=new FormData;e.append("descricao",$("#descricao").val()),e.append("valor",$("#valor").val()),$("#is_default").is(":checked")&&e.append("is_default",$("#is_default").val()),$("#ch_outro_valor").is(":checked")&&(e.append("ch_outro_valor",$("#ch_outro_valor").val()),e.append("outro_valor",$("#outro_valor").val())),e.append("capa",$("#capa")[0].files[0]),e.append("informacoes",$("#informacoes").val());var t=$(this).data("id"),o=$(this).data("act");if("edit"==o)var r="acts/acts.competicoes.php?act="+o+"&idcompeticao="+t;else r="acts/acts.competicoes.php?act="+o;$.ajax({type:"POST",url:r,data:e,processData:!1,contentType:!1,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html($("#descricao").val()+("add"==o?" adicionado ":" editado ")+"com sucesso!"),$("#alert-content").html("A "+("add"==o?" adição ":" edição ")+" de "+$("#descricao").val()+" foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-times-temporada").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var r=$(this).data("temporada");$.ajax({type:"POST",url:"acts/acts.times_temporadas.php?act=getanotemp&idano="+r,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($(".maintable").hide(),$(".maintemporada").show(),$("#headline-time-temporada").html("Gerenciando times inscritos na temporada "+e.descricao),0<e.list.length?$.each(e.list,function(a,e){var t=1==e.pode_ativar?"<a href='#' class='btn-ativar-inscricao' data-time='"+e.id_time+"' data-temporada='"+r+"' alt='Inscrever "+e.time+" na temporada' title='Inscrever "+e.time+" na temporada'><i class='fa fa-rocket fa-2x edit'></i></a>":"<i class='fa fa-rocket fa-2x edit-disabled' alt='Não é possível inscrever "+e.time+" na temporada' title='Não é possível inscrever "+e.time+" na temporada'></i>",o=1==e.pode_desativar?"<a href='#' class='btn-desativar-inscricao' data-time='"+e.id_time+"' data-temporada='"+r+"' alt='Remover "+e.time+" da temporada' title='Remover "+e.time+" da temporada'><i class='fa fa-trash fa-2x del'></i></a>":"<i class='fa fa-trash fa-2x del-disabled' alt='Não é possível remover "+e.time+" da temporada' title='Não é possível remover "+e.time+" da temporada'></i>";$("#lista-times-temporada").append("<tr><th scope='row' class='center'>"+e.id+"</th><td>"+e.time+"</td><td>"+e.presidente+"</td><td class='center'>"+e.posicao_liga+" º</td><td class='center'>"+parseFloat(e.pontuacao).toFixed(2)+" pts.</td><td class='center'>"+(1==e.ativo?"<i class='fa fa-check fa-2x add' alt='Time ativo' title='Time está ativo'></i>":"<i class='fa fa-times fa-2x del' alt='Time inativo' title='Time ainda não está ativo'></i>")+"</td><td class='center'>"+(1==e.ativo?o:t)+"</td></tr>")}):$("#lista-times-temporada").append("<tr><td colspan='7' class='center'>Não há dados a serem exibidos para a listagem.</td></tr>")):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"),$("#headline-time-temporada").html(""))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("body").on("click",".btn-ativar-inscricao",function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("time"),t=$(this).data("temporada");$.ajax({type:"POST",url:"acts/acts.times_temporadas.php?act=ativar&idtime="+e+"&idano="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Você finalizou a inscrição do time!"),$("#alert-content").html("O time foi inscrito com sucesso na temporada! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("body").on("click",".btn-desativar-inscricao",function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("time"),t=$(this).data("temporada");$.ajax({type:"POST",url:"acts/acts.times_temporadas.php?act=desativar&idtime="+e+"&idano="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Você removeu o time da temporada!"),$("#alert-content").html("O time selecionado foi removido da temporada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-voltar-lista-temporadas").click(function(a){a.preventDefault(),$(".maintable").show(),$(".maintemporada").hide(),$("#headline-time-temporada").html(""),$("#lista-times-temporada").html("")}),$("#btn-voltar-times").click(function(a){a.preventDefault(),$(".mainform").hide(),$(".maintable").show(),$("#btn-salvar-time").data("id",null),$("#headline-ger-times").html(""),$(".headline-form").html("")}),$(".btn-edit-time").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var t=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.gerenciar_times.php?act=showupd&idtime="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($(".maintable").hide(),$(".mainform").show(),$("#btn-salvar-time").data("id",t),$("#headline-ger-times").html("Editar o time "+e.dados.nome_time),$(".headline-form").html("Edite as informações do time!"),$("#id").val(e.dados.id),$("#nome_time").val(e.dados.nome_time),$("#nome_presidente").val(e.dados.nome_presidente),$("#email").val(e.dados.email),$("#telefone").val(e.dados.telefone),$("#historia").val(e.dados.historia),$("#ano_fundacao").val(e.dados.ano_fundacao)):($(".maintable").show(),$(".mainform").hide(),$("#btn-salvar-time").data("id",null),$("#headline-ger-times").html(""),$(".headline-form").html(""),$("#id").val(""),$("#nome_time").val(""),$("#nome_presidente").val(""),$("#email").val(""),$("#telefone").val(""),$("#historia").val(""),$("#ano_fundacao").val(""),$("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-desativar-time").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.gerenciar_times.php?act=desativar&idtime="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Você desativou o time!"),$("#alert-content").html("O time selecionado foi desativado com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-salvar-time").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.gerenciar_times.php?act=edit&idtime="+e,data:$("#form-temporadas").serialize(),success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html($("#nome_time").val()+" alterado com sucesso!"),$("#alert-content").html("A alteração de "+$("#nome_time").val()+" foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-salvar-pontuacoes").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.pontuacoes.php?act=updpont",data:$("#form-pontuacoes").serialize(),timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Pontuações lançadas com sucesso!"),$("#alert-content").html("As pontuações dos times na rodada foram atualizadas com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-abrir-temporada").click(function(a){a.preventDefault(),$("#confirm-title").html("ATENÇÃO!!"),$("#confirm-content").html("Você irá ABRIR a temporada e o sistema estará pronto para ser usado!<br /><br />Esse processo é IRREVERSÍVEL!"),$("#confirm").modal("show"),$("#btn-confirm-modal").click(function(a){$("#confirm").modal("hide"),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.configuracoes.php?act=abrirtemporada",timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Temporada aberta com sucesso!"),$("#alert-content").html("A temporada foi aberta com sucesso! Que começem os jogos!<br /><br />Ao fechar esta mensagem a página será recarregada."),$("#alert-content").append("<br /><br />"+e.msg),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})})}),$("#btn-fechar-temporada").click(function(a){a.preventDefault(),$("#confirm-title").html("ATENÇÃO!!"),$("#confirm-content").html("Você irá ENCERRAR a temporada e a temporada será alterada para do próximo ano!<br /><br />Esse processo é IRREVERSÍVEL!"),$("#confirm").modal("show"),$("#btn-confirm-modal").click(function(a){$("#confirm").modal("hide"),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.configuracoes.php?act=fechartemporada",timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Temporada encerrada com sucesso!"),$("#alert-content").html("A temporada foi encerrada com sucesso! Seja bem vindo a temporada "+e.rodada+" e até ano que vem!<br /><br />Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})})}),$("#btn-abrir-mercado").click(function(a){a.preventDefault(),$("#confirm-title").html("ATENÇÃO!!"),$("#confirm-content").html("Você irá ABRIR o mercado e a rodada atual será alterada!<br /><br />Esse processo é IRREVERSÍVEL!"),$("#confirm").modal("show"),$("#btn-confirm-modal").click(function(a){$("#confirm").modal("hide"),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.configuracoes.php?act=abrirmercado",timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Mercado aberto com sucesso!"),$("#alert-content").html("O mercado foi aberto com sucesso! Você está na rodada "+e.rodada+"!<br /><br />Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})})}),$("#btn-fechar-mercado").click(function(a){a.preventDefault(),$("#confirm-title").html("ATENÇÃO!!"),$("#confirm-content").html("Você irá FECHAR o mercado! Aproveite para lançar e conferir as pontuações!<br /><br />Esse processo é IRREVERSÍVEL!"),$("#confirm").modal("show"),$("#btn-confirm-modal").click(function(a){$("#confirm").modal("hide"),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.configuracoes.php?act=fecharmercado",timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Mercado fechado com sucesso!"),$("#alert-content").html("O mercado foi fechado com sucesso! Não se esqueça de lançar e conferir a pontuação de todos os times!<br /><br />Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})})}),$("#btn-abrir-inscricao").click(function(a){a.preventDefault(),$("#confirm-title").html("ATENÇÃO!!"),$("#confirm-content").html("Você irá ABRIR AS INSCRIÇÕES e a temporada será alterada para do próximo ano!<br /><br />Esse processo é IRREVERSÍVEL!"),$("#confirm").modal("show"),$("#btn-confirm-modal").click(function(a){$("#confirm").modal("hide"),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.configuracoes.php?act=abririnscricoes",timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Inscrições abertas com sucesso!"),$("#alert-content").html("As inscrições para a nova temporada foram abertas com sucesso! <br /><br />Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})})}),$("#btn-dados-config").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.configuracoes.php?act=upddados",data:$("#form-config").serialize(),timeout:0,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Dados alterados com sucesso!"),$("#alert-content").html("As configurações foram alteradas com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$.datetimepicker.setLocale("pt-BR"),$("#data_evento").datetimepicker({startDate:"+"+getTodayDate(),minDate:"-"+getTodayDate(),mask:!0,step:30,format:"d/m/Y H:i"}),$("#btn-voltar-eventos").click(function(a){a.preventDefault(),$(".mainform").hide(),$(".maintable").show(),$("#btn-salvar-evento").data("id",null),$("#btn-salvar-evento").data("act",null),$("#headline-ger-eventos").html(""),$(".headline-form").html(""),$("#id").val(""),$("#titulo").val(""),$("#data_evento").val(""),$("#local").val(""),$("#descricao").val(""),$("#ativo").bootstrapToggle("off"),$("#lista-participantes-evento").html("")}),$("#btn-add-eventos").click(function(a){a.preventDefault(),$(".maintable").hide(),$(".mainform").show(),$("#btn-salvar-evento").data("id",null),$("#btn-salvar-evento").data("act","add"),$("#headline-ger-times").html("Cadastrar novo evento"),$(".headline-form").html("Insira as informações do novo evento!"),$("#id").val(""),$("#titulo").val(""),$("#data_evento").val(""),$("#local").val(""),$("#descricao").val(""),$("#ativo").bootstrapToggle("off"),$("#lista-participantes-evento").html("")}),$(".btn-edit-eventos").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var o=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.eventos.php?act=showupd&idevento="+o,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));if(e.succeed){$(".maintable").hide(),$(".mainform").show(),$("#btn-salvar-evento").data("act","edit"),$("#btn-salvar-evento").data("id",o),$("#headline-temporada").html("Editando o evento "+e.dados.titulo),$(".headline-form").html("Edite as informações do evento!");var t=new Date(1e3*e.dados.data);$("#id").val(e.dados.id),$("#titulo").val(e.dados.titulo),$("#data_evento").val(t.toDatePickerFormat()),$("#local").val(e.dados.local),$("#descricao").val(e.dados.descricao),$("#ativo").bootstrapToggle(1==e.dados.ativo?"on":"off"),0<e.list.length?$.each(e.list,function(a,e){$("#lista-participantes-evento").append("<tr><td>"+e.time+"</td><td>"+e.presidente+"</td><td class='center'><a href='#' class='btn-del-presenca-evento' data-id='"+e.id_time+"' data-evento='"+o+"' alt='Remover "+e.time+" do evento' title='Remover "+e.time+" do evento'><i class='fa fa-trash fa-2x del'></i></a></td></tr>")}):$("#lista-participantes-evento").append("<tr><td colspan='3' class='center'>Não há dados a serem exibidos para a listagem.</td></tr>")}else $(".mainform").hide(),$(".maintable").show(),$("#btn-salvar-evento").data("id",null),$("#btn-salvar-evento").data("act",null),$("#headline-ger-eventos").html(""),$(".headline-form").html(""),$("#id").val(""),$("#titulo").val(""),$("#data_evento").val(""),$("#local").val(""),$("#descricao").val(""),$("#ativo").bootstrapToggle("off"),$("#lista-participantes-evento").html(""),$("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show")}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-del-eventos").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.eventos.php?act=del&idevento="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Evento removido com sucesso!"),$("#alert-content").html("A remoção do evento foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-salvar-evento").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id"),t=$(this).data("act");if("edit"==t)var o="acts/acts.eventos.php?act="+t+"&idevento="+e;else o="acts/acts.eventos.php?act="+t;$.ajax({type:"POST",url:o,data:$("#form-eventos").serialize(),success:function(a){console.log("data",a);try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html($("#titulo").val()+("add"==t?" adicionado ":" editado ")+"com sucesso!"),$("#alert-content").html("A "+("add"==t?" adição ":" edição ")+" de "+$("#titulo").val()+" foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("body").on("click",".btn-del-presenca-evento",function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id"),t=$(this).data("evento");$.ajax({type:"POST",url:"acts/acts.eventos.php?act=delp&idtime="+e+"&idevento="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Você removeu o time do evento!"),$("#alert-content").html("O time selecionado foi removido do evento com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-voltar-usuarios").click(function(a){a.preventDefault(),$(".mainform").hide(),$(".mainadd").hide(),$(".maintable").show(),$("#headline-add-usuarios").html(""),$(".headline-form").html(""),$("#headline-edit-usuarios").html(""),$(".headline-form-edit").html(""),$("#id").val(""),$("#time-usuario").html(""),$("#user").val(""),$("#password").val(""),$("#nivel").val(""),$("#usuario").val(""),$("#senha").val("")}),$("#btn-add-usuarios").click(function(a){a.preventDefault(),$(".mainform").hide(),$(".maintable").hide(),$(".mainadd").show(),$("#headline-add-usuarios").html("Cadastrar novo usuário administrador"),$(".headline-form-add").html("Insira as informações do novo admin!"),$("#headline-edit-usuarios").html(""),$(".headline-form-edit").html(""),$("#usuario").val(""),$("#senha").val("")}),$("#btn-incluir-usuario").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.usuarios.php?act=add",data:$("#form-usuarios-add").serialize(),success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html($("#usuario").val()+" adicionado com sucesso!"),$("#alert-content").html("A inclusão de <b>"+$("#usuario").val()+"</b> foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-edit-usuarios").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var t=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.usuarios.php?act=showupd&idusuario="+t,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($(".maintable").hide(),$(".mainadd").hide(),$(".mainform").show(),$("#btn-editar-usuario").data("id",t),$("#btn-desativar-usuario").data("id",t),$("#headline-edit-usuarios").html("Editando o usuário "+e.dados.usuario),$(".headline-form-edit").html("Edite as informações do usuário!"),$("#id").val(e.dados.id),$("#time-usuario").html(e.dados.time),$("#user").val(e.dados.usuario),$("#password").val(e.dados.senha),$("#nivel").val(e.dados.nivel)):($(".mainadd").hide(),$(".mainform").hide(),$(".maintable").show(),$("#btn-editar-usuario").data("id",null),$("#btn-desativar-usuario").data("id",null),$("#headline-edit-usuarios").html(""),$(".headline-form-edit").html(""),$("#id").val(""),$("#time-usuario").html(""),$("#user").val(""),$("#password").val(""),$("#nivel").val(""),$("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-del-usuarios").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.usuarios.php?act=del&idusuario="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Usuário removido com sucesso!"),$("#alert-content").html("A remoção do usuário foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-editar-usuario").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.usuarios.php?act=edit&idusuario="+e,data:$("#form-usuarios-edit").serialize(),success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html($("#user").val()+" alterado com sucesso!"),$("#alert-content").html("A alteração de <b>"+$("#user").val()+"</b> foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-resetar-senha").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.usuarios.php?act=reset&idusuario="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Senha do usuário resetada com sucesso!"),$("#alert-content").html("A senha do usuário foi resetada com sucesso!")):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro)),$("#alert").modal("show")}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-desativar-usuario").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.usuarios.php?act=deactivate&idusuario="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Usuário desativado com sucesso!"),$("#alert-content").html("O usuário foi desativado com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#btn-voltar-mata-mata").click(function(a){a.preventDefault(),$("#headline-mata-mata").html(""),$("#id").val(""),$("#descricao").prop("readonly",!1),$("#descricao").val(""),$("#total_times").prop("readonly",!1),$("#total_times").val("4"),$("#rodada_inicio").prop("readonly",!1),$("#passo-mata-mata").prop("disabled",!1),$("#sel-time-content").html(""),$("#voltar-mata-mata").prop("disabled",!1),$("#passo-mata-mata").prop("disabled",!1),$("#box-times").hide(),$("#chaves-confronto").html(""),$("#box-confrontos").hide(),$(".mainform").hide(),$(".maintable").show()}),$("#btn-add-mata-mata").click(function(a){a.preventDefault(),$(".maintable").hide(),$(".mainform").show(),$("#headline-mata-mata").html("Cadastro de novo mata-mata"),$("#id").val(""),$("#passo-confrontos").data("act","add"),$("#passo-confrontos").data("id",null)}),$(".btn-edit-matamata").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$(".maintable").hide(),$(".mainform").show();var l=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.mata_mata.php?act=showupd&idmatamata="+l,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));if(e.succeed){$("#passo-confrontos").data("act","edit"),$("#passo-confrontos").data("id",l),$("#headline-temporada").html("Editando a temporada "+e.descricao),$("#id").val(e.id),$("#descricao").val(e.descricao),$("#descricao").prop("readonly",!0),$("#total_times").val(e.total_times),$("#total_times").prop("disabled",!0),$("#rodada_inicio").val(e.rodada_inicio),$("#rodada_inicio").prop("disabled",!0),$("#passo-mata-mata").prop("disabled",!0),$.each(e.times,function(a,e){$("#sel-time-content").append('<div class="col-6"><label class="form-check-label" for="time['+e.id+']"><input type="checkbox" id="time['+e.id+']" name="time['+e.id+']" class="form-check-input sel-times" value="'+e.id+'" '+(e.has_time?"checked":"")+" />&nbsp;&nbsp;&nbsp;"+e.descricao+"</label></div>")}),$(".sel-times").prop("disabled",!0),$("#voltar-mata-mata").prop("disabled",!0),$("#passo-times").prop("disabled",!0),$("#box-times").show();var t=e.total_times/2,o="<option value='' selected>Selecione...</option>";$("#sel-time-content input[type='checkbox']:checked").each(function(){o+="<option value='"+$(this).val()+"'>"+$("label[for='"+$(this).attr("id")+"']").text().split("   ")[1]+"</option>"});for(var r=1;r<=t;r++)$("#chaves-confronto").append("<div class='row'><div class='col-12'><div class='card'><div class='card-header'>Chave "+r+"</div><div class='card-block'><div class='form-group'><select class='form-control form-control-lg' id='chave["+r+"][1]' name='chave["+r+"][1]' aria-describedby='chave["+r+"][1]' required>"+o+"</select></div><div class='form-group'><label for='chave["+r+"][2]' class='label-versus'>x</label><select class='form-control form-control-lg' id='chave["+r+"][2]' name='chave["+r+"][2]' aria-describedby='chave["+r+"][2]' required>"+o+"</select></div></div></div></div></div>");$.each(e.chaves,function(a,e){$("#chave\\["+e.chave+"\\]\\[1\\]").val(e.confrontos[0].time1),$("#chave\\["+e.chave+"\\]\\[2\\]").val(e.confrontos[1].time2)}),$("#box-confrontos").show()}else $("#headline-mata-mata").html(""),$("#id").val(""),$("#descricao").prop("readonly",null),$("#descricao").val(""),$("#total_times").prop("readonly",null),$("#total_times").val("4"),$("#rodada_inicio").prop("readonly",null),$("#passo-mata-mata").prop("disabled",null),$("#sel-time-content").html(""),$("#voltar-mata-mata").prop("disabled",null),$("#passo-mata-mata").prop("disabled",null),$("#box-times").hide(),$("#chaves-confronto").html(""),$("#box-confrontos").hide(),$(".mainform").hide(),$(".maintable").show(),$("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show")}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$(".btn-del-matamata").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var e=$(this).data("id");$.ajax({type:"POST",url:"acts/acts.mata_mata.php?act=del&idmatamata="+e,success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Mata-mata removido com sucesso!"),$("#alert-content").html("A remoção do mata-mata foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})}),$("#passo-mata-mata").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1}),$.ajax({type:"POST",url:"acts/acts.mata_mata.php?act=seltimes",success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?$.each(e.list,function(a,e){$("#sel-time-content").append('<div class="col-6"><label class="form-check-label" for="time['+e.id+']"><input type="checkbox" id="time['+e.id+']" name="time['+e.id+']" class="form-check-input sel-times" value="'+e.id+'" '+(e.has_time?"checked":"")+" />&nbsp;&nbsp;&nbsp;"+e.descricao+"</label></div>")}):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}}),$("#descricao").prop("readonly",!0),$("#total_times").prop("disabled",!0),$("#rodada_inicio").prop("disabled",!0),$(this).prop("disabled",!0),$("#box-times").show()}),$("#voltar-mata-mata").click(function(a){a.preventDefault(),$("#descricao").prop("readonly",!1),$("#total_times").prop("disabled",!1),$("#rodada_inicio").prop("disabled",!1),$("#sel-time-content").html(""),$("#passo-mata-mata").prop("disabled",!1),$("#box-times").hide()}),$("body").on("click",".sel-times",function(a){$(".sel-times:checked").length>$("#total_times").val()&&(a.preventDefault(),$("#alert-title").html("Quantidade de times selecionados diverge do total de times do mata-mata"),$("#alert-content").html("O mata-mata está configurado para "+$("#total_times").val()+" times. O total de times já foi selecionado."),$("#alert").modal("show"))}),$("#passo-times").click(function(a){if(a.preventDefault(),$("#total_times").val()!=$(".sel-times:checked").length)$("#alert-title").html("Quantidade de times selecionados diverge do total de times do mata-mata"),$("#alert-content").html("O mata-mata está configurado para "+$("#total_times").val()+" times e foram selecionados "+$(".sel-times:checked").length+" times."),$("#alert").modal("show");else{var e=$("#total_times").val()/2,t="<option value='' selected>Selecione...</option>";$("#sel-time-content input[type='checkbox']:checked").each(function(){t+="<option value='"+$(this).val()+"'>"+$("label[for='"+$(this).attr("id")+"']").text().split("   ")[1]+"</option>"});for(var o=1;o<=e;o++)$("#chaves-confronto").append("<div class='row'><div class='col-12'><div class='card'><div class='card-header'>Chave "+o+"</div><div class='card-block'><div class='form-group'><select class='form-control form-control-lg' id='chave["+o+"][1]' name='chave["+o+"][1]' aria-describedby='chave["+o+"][1]' required>"+t+"</select></div><div class='form-group'><label for='chave["+o+"][2]' class='label-versus'>x</label><select class='form-control form-control-lg' id='chave["+o+"][2]' name='chave["+o+"][2]' aria-describedby='chave["+o+"][2]' required>"+t+"</select></div></div></div></div></div>");$(".sel-times").prop("disabled",!0),$("#voltar-mata-mata").prop("disabled",!0),$(this).prop("disabled",!0),$("#box-confrontos").show()}}),$("#voltar-times").click(function(a){a.preventDefault(),$(".sel-times").prop("disabled",null),$("#voltar-mata-mata").prop("disabled",null),$("#passo-times").prop("disabled",null),$("#chaves-confronto").html(""),$("#box-confrontos").hide()}),$("#passo-confrontos").click(function(a){a.preventDefault(),$("#loading").modal({keyboard:!1});var t=$(this).data("act"),e=$(this).data("id");$("#total_times").prop("disabled",!1),$("#rodada_inicio").prop("disabled",!1),$.ajax({type:"POST",url:"acts/acts.mata_mata.php?act="+t+"&idmatamata="+e,data:$("#form-mata-mata").serialize(),success:function(a){try{$("#loading").modal("hide");var e=JSON.parse(a.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));e.succeed?($("#alert-title").html("Registro "+("add"==t?"adicionado":"editado")+" com sucesso!"),$("#alert-content").html("A "+("add"==t?"adição":"edição")+" do registro foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada."),$("#alert").modal("show"),$("#total_times").prop("disabled",!0),$("#rodada_inicio").prop("disabled",!0),$("#alert").on("hidden.bs.modal",function(a){window.location.reload()})):($("#alert-title").html(e.title),$("#alert-content").html(e.errno+" - "+e.erro),$("#alert").modal("show"),$("#total_times").prop("disabled",!0),$("#rodada_inicio").prop("disabled",!0))}catch(a){$("#loading").modal("hide"),$("#alert-title").html("Erro ao fazer parse do JSON!"),$("#alert-content").html(String(a.stack)),$("#alert").modal("show")}}})})}),Date.prototype.toDatetimeLocal=function(){var a=this,e=function(a){return(a<10?"0":"")+a};return a.getFullYear()+"-"+e(a.getMonth()+1)+"-"+e(a.getDate())+"T"+e(a.getHours())+":"+e(a.getMinutes())+":"+e(a.getSeconds())},Date.prototype.toDatePickerFormat=function(){var a=this,e=function(a){return(a<10?"0":"")+a},t=a.getFullYear(),o=e(a.getMonth()+1);return e(a.getDate())+"/"+o+"/"+t+" "+e(a.getHours())+":"+e(a.getMinutes())},Date.prototype.fromDatetimeLocal=function(a){return new Date(a).toISOString().slice(0,16)===a?function(){return new Date(this.getTime()+6e4*this.getTimezoneOffset()).toISOString()}:Date.prototype.toISOString}("2006-06-06T06:06"),function(i){"use strict";function s(a){return a.is('[type="checkbox"]')?a.prop("checked"):a.is('[type="radio"]')?!!i('[name="'+a.attr("name")+'"]:checked').length:a.is("select[multiple]")?(a.val()||[]).length:a.val()}function e(o){return this.each(function(){var a=i(this),e=i.extend({},r.DEFAULTS,a.data(),"object"==typeof o&&o),t=a.data("bs.validator");(t||"destroy"!=o)&&(t||a.data("bs.validator",t=new r(this,e)),"string"==typeof o&&t[o]())})}var r=function(a,e){this.options=e,this.validators=i.extend({},r.VALIDATORS,e.custom),this.$element=i(a),this.$btn=i('button[type="submit"], input[type="submit"]').filter('[form="'+this.$element.attr("id")+'"]').add(this.$element.find('input[type="submit"], button[type="submit"]')),this.update(),this.$element.on("input.bs.validator change.bs.validator focusout.bs.validator",i.proxy(this.onInput,this)),this.$element.on("submit.bs.validator",i.proxy(this.onSubmit,this)),this.$element.on("reset.bs.validator",i.proxy(this.reset,this)),this.$element.find("[data-match]").each(function(){var a=i(this),e=a.attr("data-match");i(e).on("input.bs.validator",function(){s(a)&&a.trigger("input.bs.validator")})}),this.$inputs.filter(function(){return s(i(this))&&!i(this).closest(".has-error").length}).trigger("focusout"),this.$element.attr("novalidate",!0)};r.VERSION="0.11.9",r.INPUT_SELECTOR=':input:not([type="hidden"], [type="submit"], [type="reset"], button)',r.FOCUS_OFFSET=20,r.DEFAULTS={delay:500,html:!1,disable:!0,focus:!0,custom:{},errors:{match:"Does not match",minlength:"Not long enough"},feedback:{success:"glyphicon-ok",error:"glyphicon-remove"}},r.VALIDATORS={native:function(a){var e=a[0];return e.checkValidity?!e.checkValidity()&&!e.validity.valid&&(e.validationMessage||"error!"):void 0},match:function(a){var e=a.attr("data-match");return a.val()!==i(e).val()&&r.DEFAULTS.errors.match},minlength:function(a){var e=a.attr("data-minlength");return a.val().length<e&&r.DEFAULTS.errors.minlength}},r.prototype.update=function(){var a=this;return this.$inputs=this.$element.find(r.INPUT_SELECTOR).add(this.$element.find('[data-validate="true"]')).not(this.$element.find('[data-validate="false"]').each(function(){a.clearErrors(i(this))})),this.toggleSubmit(),this},r.prototype.onInput=function(a){var e=this,t=i(a.target),o="focusout"!==a.type;this.$inputs.is(t)&&this.validateInput(t,o).done(function(){e.toggleSubmit()})},r.prototype.validateInput=function(e,t){var o=(s(e),e.data("bs.validator.errors"));e.is('[type="radio"]')&&(e=this.$element.find('input[name="'+e.attr("name")+'"]'));var r=i.Event("validate.bs.validator",{relatedTarget:e[0]});if(this.$element.trigger(r),!r.isDefaultPrevented()){var l=this;return this.runValidators(e).done(function(a){e.data("bs.validator.errors",a),a.length?t?l.defer(e,l.showErrors):l.showErrors(e):l.clearErrors(e),o&&a.toString()===o.toString()||(r=a.length?i.Event("invalid.bs.validator",{relatedTarget:e[0],detail:a}):i.Event("valid.bs.validator",{relatedTarget:e[0],detail:o}),l.$element.trigger(r)),l.toggleSubmit(),l.$element.trigger(i.Event("validated.bs.validator",{relatedTarget:e[0]}))})}},r.prototype.runValidators=function(o){function r(a){return t=a,o.attr("data-"+t+"-error")||((e=o[0].validity).typeMismatch?o.attr("data-type-error"):e.patternMismatch?o.attr("data-pattern-error"):e.stepMismatch?o.attr("data-step-error"):e.rangeOverflow?o.attr("data-max-error"):e.rangeUnderflow?o.attr("data-min-error"):e.valueMissing?o.attr("data-required-error"):null)||o.attr("data-error");var e,t}var l=[],e=i.Deferred();return o.data("bs.validator.deferred")&&o.data("bs.validator.deferred").reject(),o.data("bs.validator.deferred",e),i.each(this.validators,i.proxy(function(a,e){var t=null;!s(o)&&!o.attr("required")||void 0===o.attr("data-"+a)&&"native"!=a||!(t=e.call(this,o))||(t=r(a)||t,!~l.indexOf(t)&&l.push(t))},this)),!l.length&&s(o)&&o.attr("data-remote")?this.defer(o,function(){var a={};a[o.attr("name")]=s(o),i.get(o.attr("data-remote"),a).fail(function(a,e,t){l.push(r("remote")||t)}).always(function(){e.resolve(l)})}):e.resolve(l),e.promise()},r.prototype.validate=function(){var a=this;return i.when(this.$inputs.map(function(){return a.validateInput(i(this),!1)})).then(function(){a.toggleSubmit(),a.focusError()}),this},r.prototype.focusError=function(){if(this.options.focus){var a=this.$element.find(".has-error :input:first");0!==a.length&&(i("html, body").animate({scrollTop:a.offset().top-r.FOCUS_OFFSET},250),a.focus())}},r.prototype.showErrors=function(a){var e=this.options.html?"html":"text",t=a.data("bs.validator.errors"),o=a.closest(".form-group"),r=o.find(".help-block.with-errors"),l=o.find(".form-control-feedback");t.length&&(t=i("<ul/>").addClass("list-unstyled").append(i.map(t,function(a){return i("<li/>")[e](a)})),void 0===r.data("bs.validator.originalContent")&&r.data("bs.validator.originalContent",r.html()),r.empty().append(t),o.addClass("has-error has-danger"),o.hasClass("has-feedback")&&l.removeClass(this.options.feedback.success)&&l.addClass(this.options.feedback.error)&&o.removeClass("has-success"))},r.prototype.clearErrors=function(a){var e=a.closest(".form-group"),t=e.find(".help-block.with-errors"),o=e.find(".form-control-feedback");t.html(t.data("bs.validator.originalContent")),e.removeClass("has-error has-danger has-success"),e.hasClass("has-feedback")&&o.removeClass(this.options.feedback.error)&&o.removeClass(this.options.feedback.success)&&s(a)&&o.addClass(this.options.feedback.success)&&e.addClass("has-success")},r.prototype.hasErrors=function(){return!!this.$inputs.filter(function(){return!!(i(this).data("bs.validator.errors")||[]).length}).length},r.prototype.isIncomplete=function(){return!!this.$inputs.filter("[required]").filter(function(){var a=s(i(this));return!("string"==typeof a?i.trim(a):a)}).length},r.prototype.onSubmit=function(a){this.validate(),(this.isIncomplete()||this.hasErrors())&&a.preventDefault()},r.prototype.toggleSubmit=function(){this.options.disable&&this.$btn.toggleClass("disabled",this.isIncomplete()||this.hasErrors())},r.prototype.defer=function(a,e){return e=i.proxy(e,this,a),this.options.delay?(window.clearTimeout(a.data("bs.validator.timeout")),void a.data("bs.validator.timeout",window.setTimeout(e,this.options.delay))):e()},r.prototype.reset=function(){return this.$element.find(".form-control-feedback").removeClass(this.options.feedback.error).removeClass(this.options.feedback.success),this.$inputs.removeData(["bs.validator.errors","bs.validator.deferred"]).each(function(){var a=i(this),e=a.data("bs.validator.timeout");window.clearTimeout(e)&&a.removeData("bs.validator.timeout")}),this.$element.find(".help-block.with-errors").each(function(){var a=i(this),e=a.data("bs.validator.originalContent");a.removeData("bs.validator.originalContent").html(e)}),this.$btn.removeClass("disabled"),this.$element.find(".has-error, .has-danger, .has-success").removeClass("has-error has-danger has-success"),this},r.prototype.destroy=function(){return this.reset(),this.$element.removeAttr("novalidate").removeData("bs.validator").off(".bs.validator"),this.$inputs.off(".bs.validator"),this.options=null,this.validators=null,this.$element=null,this.$btn=null,this.$inputs=null,this};var a=i.fn.validator;i.fn.validator=e,i.fn.validator.Constructor=r,i.fn.validator.noConflict=function(){return i.fn.validator=a,this},i(window).on("load",function(){i('form[data-toggle="validator"]').each(function(){var a=i(this);e.call(a,a.data())})})}(jQuery);al_times').prop("readonly", false);
+$(function() {
+
+	$('html, body').on('click', function(e) {
+		if (e.target == document.documentElement) {
+			$("html").removeClass("open-sidebar");
+		}
+	});
+
+	$(".js-open-sidebar").on("click", function(){
+		$("html").addClass("open-sidebar");
+	});
+
+	$("#logout").on("click", function(e) {
+		e.preventDefault();
+
+		$('#loading-modal').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "../acts/acts.logout.php",
+			success: function(data)
+			{
+			    try {
+					$('#loading-modal').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+						window.location.href = "./";
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+
+						if(retorno.errno == "12010") {
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.href = 'provisoria';
+							});
+						}
+					}
+			    }
+			    catch (e) {
+					$('#loading-modal').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+	});
+
+	// BEGIN LOGIN (login.php)
+
+	$("#form-login").submit(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.login.php?act=login",
+			data: $("#form-login").serialize(),
+			success: function(data)
+			{
+			    try {
+			        var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					$('#loading').modal('hide');
+
+					if(retorno.succeed) {
+						window.location.href = 'home';
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+
+						if(retorno.errno == "21010") {
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.href = '../provisoria';
+							});
+						}
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+	});
+
+	$('#btn-login').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.login.php?act=login",
+			data: $("#form-login").serialize(),
+			success: function(data)
+			{
+			    try {
+			        var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					$('#loading').modal('hide');
+
+					if(retorno.succeed) {
+						window.location.href = 'home';
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+
+						if(retorno.errno == "21010") {
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.href = '../provisoria';
+							});
+						}
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+	});
+
+	$('#btn-esqueceu-senha').click(function(e) {
+		e.preventDefault();
+
+		$('.mainlogin').hide();
+		$('.mainform').show();
+	});
+
+	$('#btn-recuperar-senha').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.login.php?act=reset",
+			data: $("#form-recuperar").serialize(),
+			success: function(data)
+			{
+			    try {
+			        var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+			        
+					$('#loading').modal('hide');
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Solicitação enviada com sucesso!");
+						$('#alert-content').html("Sua requisição para resetar sua senha foi realizada com sucesso. Aguarde o e-mail com as informações! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+	});
+
+	// END LOGIN (login.php)
+
+	// BEGIN TEMPORADAS (temporadas.php)
+
+    $('#btn-voltar-temporadas').click(function(e) {
+		e.preventDefault();
+
+    	$('#headline-temporada').html('');
+
+    	$('#id').val('');
+    	$('#descricao').prop("readonly", null);
+    	$('#descricao').val('');
+    	$('#passo-ano').prop("disabled", null);
+    	$('#box-rodada').hide();
+
+    	$('#sel-content').html('');
+    	$('#passo-rodada').prop("disabled", null);
+    	$("#voltar-ano").prop("disabled", null);
+    	$('#box-confirmacao').hide();
+
+    	$('#resumo-temporada').html('');
+    	$('#resumo-rodadas').html('');
+
+		$('.mainform').hide();
+		$('.maintable').show();
+    });	
+
+    $('#btn-add-temporadas').click(function(e) {
+		e.preventDefault();
+
+		$('.maintable').hide();
+		$('.mainform').show();
+
+    	$('#headline-temporada').html('Cadastro de nova temporada');
+
+    	$('#id').val('');
+
+    	$('#passo-confirmacao').data('act', 'add');
+    	$('#passo-confirmacao').data('temporada', null);
+    });	
+
+    $('.btn-edit-temporadas').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$('.maintable').hide();
+		$('.mainform').show();
+
+    	var temporada = $(this).data('temporada');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.temporadas.php?act=showupd&idano=" + temporada,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+				    	$('#passo-confirmacao').data('act', 'edit');
+				    	$('#passo-confirmacao').data('temporada', temporada);
+
+	    				$('#headline-temporada').html('Editando a temporada ' + retorno.descricao);
+				    	
+				    	$('#id').val(retorno.id);
+						$('#descricao').val(retorno.descricao);
+						$('#descricao').prop("readonly", "readonly");
+				    	$('#passo-ano').prop("disabled", "disabled");
+
+	    				$("#voltar-ano").prop("disabled", "disabled");
+				    	$('#passo-rodada').prop("disabled", null);
+						$('#box-rodada').show();
+
+						$('#sel-content').append('<div class="col-12"><div class="form-check" style="margin-bottom:20px;"><label class="form-check-label"><input type="checkbox" class="form-check-input sel-todos" />&nbsp;&nbsp;&nbsp;Selecionar todos</label></div></div>');
+
+						$.each(retorno.list, function(i, item) {
+							$('#sel-content').append('<div class="col-6"><label class="form-check-label"><input type="checkbox" id="rodada[' + item.id + ']" name="rodada[' + item.id + ']" class="form-check-input sel-rodadas" value="' + item.id + '" ' + (item.has_temporada ? 'checked' : '') + ' />&nbsp;&nbsp;&nbsp;Rodada #' + item.descricao + '</label></div>');
+						});
+					}
+					else {
+	    				$('#headline-temporada').html('');
+
+	    				$('#id').val('');
+				    	$('#descricao').prop("readonly", null);
+				    	$('#descricao').val('');
+				    	$('#passo-ano').prop("disabled", null);
+				    	$('#box-rodada').hide();
+
+				    	$('#sel-content').html('');
+				    	$('#passo-rodada').prop("disabled", null);
+				    	$("#voltar-ano").prop("disabled", null);
+				    	$('#box-confirmacao').hide();
+				    	
+				    	$('#resumo-temporada').html('');
+				    	$('#resumo-rodadas').html('');
+
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('.btn-del-temporadas').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var temporada = $(this).data('temporada');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.temporadas.php?act=del&idano=" + temporada,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Registro removido com sucesso!");
+						$('#alert-content').html("A remoção do registro foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('#passo-ano').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.temporadas.php?act=selrod",
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#sel-content').append('<div class="col-12"><div class="form-check" style="margin-bottom:20px;"><label class="form-check-label"><input type="checkbox" class="form-check-input sel-todos" />&nbsp;&nbsp;&nbsp;Selecionar todos</label></div></div>');
+
+						$.each(retorno.list, function(i, item) {
+							$('#sel-content').append('<div class="col-6"><label class="form-check-label"><input type="checkbox" id="rodada[' + item.id + ']" name="rodada[' + item.id + ']" class="form-check-input sel-rodadas" value="' + item.id + '" ' + (item.has_temporada ? 'checked' : '') + ' />&nbsp;&nbsp;&nbsp;Rodada #' + item.descricao + '</label></div>');
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+
+    	$('#descricao').prop("readonly", "readonly");
+    	$(this).prop("disabled", "disabled");
+    	$('#box-rodada').show();
+    });	
+
+	$('body').on('click', '.sel-todos', function() {
+		$(".sel-rodadas").prop('checked', $(".sel-todos").is(':checked'));
+	});
+
+    $('#voltar-ano').click(function(e) {
+    	e.preventDefault();
+
+    	$('#sel-content').html('');
+    	$('#descricao').prop("readonly", null);
+    	$('#passo-ano').prop("disabled", null);
+    	$('#box-rodada').hide();
+    });	
+
+    $('#passo-rodada').click(function(e) {
+    	e.preventDefault();
+
+    	$('#resumo-temporada').html("Temporada: " + $('#descricao').val());
+    	$('#resumo-rodadas').html("Total rodadas: " + $('.sel-rodadas:checked').length);
+
+    	$(".sel-todos").prop("disabled", "disabled");
+		var cloned_check = $("#sel-content").clone();
+    	$(".sel-rodadas").prop("disabled", "disabled");
+    	cloned_check.appendTo("#box-rodada").addClass('check-duplicated');
+
+    	$("#voltar-ano").prop("disabled", "disabled");
+    	$(this).prop("disabled", "disabled");
+    	$('#box-confirmacao').show();
+    });	
+
+    $('#voltar-rodada').click(function(e) {
+    	e.preventDefault();
+
+    	$(".sel-todos").prop("disabled", null);
+    	$(".sel-rodadas").prop("disabled", null);
+    	$(".check-duplicated").remove();
+    	$("#voltar-ano").prop("disabled", null);
+    	$("#passo-rodada").prop("disabled", null);
+    	$('#box-confirmacao').hide();
+    });	
+
+    $('#passo-confirmacao').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var act = $('#passo-confirmacao').data('act');
+    	var temporada = $('#passo-confirmacao').data('temporada');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.temporadas.php?act=" + act + "&idano=" + temporada,
+			data: $("#form-temporadas").serialize(),
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Registro " + (act == 'add' ? "adicionado" : "editado") + " com sucesso!");
+						$('#alert-content').html("A " + (act == 'add' ? "adição" : "edição") + " do registro foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+    // END TEMPORADAS (temporadas.php)
+
+	// BEGIN COMPETICOES (competicoes.php)
+
+    $('#btn-voltar-competicoes').click(function(e) {
+		e.preventDefault();
+
+    	$('#btn-salvar-competicao').data('id', null);
+    	$('#btn-salvar-competicao').data('act', null);
+    	$('#headline-competicao').html('');
+		$('.headline-form').html('');
+
+    	$('#id').val('');
+    	$('#descricao').val('');
+    	$('#valor').val('');
+    	$('#capa').val('');
+    	$('#outro_valor').val('');
+    	$('#informacoes').val('');
+    	$('#is_default').bootstrapToggle('off');
+		$('#ch_outro_valor').bootstrapToggle('off');
+    	$('#box-capa').hide();
+    	$('#img-capa').attr('src', '');
+    	$('#img-capa').attr('alt', '');
+    	$('#img-capa').attr('title', '');
+
+		$('.mainform').hide();
+		$('.maintable').show();
+    });	
+
+    $('#btn-add-competicoes').click(function(e) {
+		e.preventDefault();
+
+		$('.maintable').hide();
+		$('.mainform').show();
+
+    	$('#btn-salvar-competicao').data('id', null);
+    	$('#btn-salvar-competicao').data('act', 'add');
+    	$('#headline-competicao').html('Cadastrar nova competição');
+		$('.headline-form').html('Insira as informações da nova competição');
+
+    	$('#id').val('');
+    	$('#descricao').val('');
+    	$('#valor').val('');
+    	$('#capa').val('');
+    	$('#outro_valor').val('');
+    	$('#informacoes').val('');
+    	$('#is_default').bootstrapToggle('off');
+		$('#ch_outro_valor').bootstrapToggle('off');
+    	$('#box-capa').hide();
+    	$('#img-capa').attr('src', '');
+    	$('#img-capa').attr('alt', '');
+    	$('#img-capa').attr('title', '');
+    });	
+
+    $('.btn-edit-competicoes').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.competicoes.php?act=showupd&idcompeticao=" + id,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('.maintable').hide();
+						$('.mainform').show();
+
+	    				$('#btn-salvar-competicao').data('id', id);
+    					$('#btn-salvar-competicao').data('act', 'edit');
+				    	$('#headline-ger-times').html('Editar a competição ' + retorno.descricao);
+						$('.headline-form').html('Edite as informações da competição!');
+
+				    	$('#id').val(retorno.id);
+				    	$('#descricao').val(retorno.descricao);
+				    	$('#informacoes').val(retorno.informacoes);
+				    	$('#is_default').bootstrapToggle(retorno.is_default == 1 ? 'on' : 'off');
+				    	if(retorno.valor == 0) {
+				    		$('#ch_outro_valor').bootstrapToggle('on');
+				    		$('#outro_valor').val(retorno.outro_valor);
+				    	} else {
+				    		$('#valor').val(retorno.valor);
+				    		$('#ch_outro_valor').bootstrapToggle('off');
+				    	}
+
+				    	if(retorno.capa.length > 0) {
+							var response = jQuery.ajax({
+								url: "../img/competicao/" + retorno.capa,
+								type: 'HEAD',
+								async: false
+							}).status;
+
+	    					if(response == "200") {
+		    					$('#box-capa').show();
+						    	$('#img-capa').attr('src', "../img/competicao/" + retorno.capa);
+						    	$('#img-capa').attr('alt', retorno.descricao);
+						    	$('#img-capa').attr('title', retorno.descricao);
+	    					}
+				    	}
+				    	else {
+	    					$('#box-capa').hide();
+				    	}
+				    	
+				    	$('#ano_fundacao').val(retorno.ano_fundacao);
+					}
+					else {
+				    	$('#btn-salvar-competicao').data('id', null);
+				    	$('#btn-salvar-competicao').data('act', null);
+				    	$('#headline-competicao').html('');
+						$('.headline-form').html('');
+
+				    	$('#id').val('');
+				    	$('#descricao').val('');
+				    	$('#valor').val('');
+				    	$('#capa').val('');
+				    	$('#outro_valor').val('');
+				    	$('#informacoes').val('');
+				    	$('#is_default').bootstrapToggle('off');
+		    			$('#ch_outro_valor').bootstrapToggle('off');
+				    	$('#box-capa').hide();
+				    	$('#img-capa').attr('src', '');
+				    	$('#img-capa').attr('alt', '');
+				    	$('#img-capa').attr('title', '');
+
+						$('.mainform').hide();
+						$('.maintable').show();
+
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('.btn-del-competicoes').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.competicoes.php?act=del&idcompeticao=" + id,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Você desativou a competição!");
+						$('#alert-content').html("A competição selecionada foi removida com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('#ch_outro_valor').on('change', function () {
+    	if($(this).is(':checked')) {
+    		$('#outro_valor').show();
+    		$('#valor-monetario').hide();
+    	}
+    	else {
+    		$('#outro_valor').hide();
+    		$('#valor-monetario').show();
+    	}
+    });
+
+    $('#btn-salvar-competicao').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		var formData = new FormData();
+		formData.append('descricao', $('#descricao').val());
+		formData.append('valor', $('#valor').val());
+		if($('#is_default').is(':checked'))
+			formData.append('is_default', $('#is_default').val());
+		if($('#ch_outro_valor').is(':checked')) {
+			formData.append('ch_outro_valor', $('#ch_outro_valor').val());
+			formData.append('outro_valor', $('#outro_valor').val());
+		}
+		formData.append('capa', $('#capa')[0].files[0]);
+		formData.append('informacoes', $('#informacoes').val());
+
+    	var id = $(this).data('id');
+    	var act = $(this).data('act');
+
+    	if(act == "edit") {
+    		var url = "acts/acts.competicoes.php?act=" + act + "&idcompeticao=" + id;
+    	}
+    	else {
+    		var url = "acts/acts.competicoes.php?act=" + act;
+    	}
+
+		$.ajax({
+			type: "POST",
+			url: url,
+			data : formData,
+			processData: false,
+			contentType: false,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+					if(retorno.succeed) {
+						$('#alert-title').html($('#descricao').val() + (act == 'add' ? " adicionado " : " editado ") + "com sucesso!");
+						$('#alert-content').html("A " + (act == 'add' ? " adição " : " edição ") + " de " + $('#descricao').val() + " foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+    // END COMPETICOES (competicoes.php)
+
+	// BEGIN TIMES TEMPORADAS (times_temporadas.php)
+
+	$('.btn-times-temporada').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var temporada = $(this).data('temporada');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.times_temporadas.php?act=getanotemp&idano=" + temporada,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('.maintable').hide();
+						$('.maintemporada').show();
+
+						$('#headline-time-temporada').html('Gerenciando times inscritos na temporada ' + retorno.descricao);
+
+						if(retorno.list.length > 0) {
+							$.each(retorno.list, function(i, item) {
+
+								var botao_ativar = (item.pode_ativar == 1 ? "<a href='#' class='btn-ativar-inscricao' data-time='" + item.id_time +  "' data-temporada='" + temporada + "' alt='Inscrever " + item.time +  " na temporada' title='Inscrever " + item.time +  " na temporada'><i class='fa fa-rocket fa-2x edit'></i></a>" : "<i class='fa fa-rocket fa-2x edit-disabled' alt='Não é possível inscrever " + item.time +  " na temporada' title='Não é possível inscrever " + item.time +  " na temporada'></i>");
+								var botao_inativar = (item.pode_desativar == 1 ? "<a href='#' class='btn-desativar-inscricao' data-time='" + item.id_time +  "' data-temporada='" + temporada + "' alt='Remover " + item.time +  " da temporada' title='Remover " + item.time +  " da temporada'><i class='fa fa-trash fa-2x del'></i></a>" : "<i class='fa fa-trash fa-2x del-disabled' alt='Não é possível remover " + item.time +  " da temporada' title='Não é possível remover " + item.time +  " da temporada'></i>");
+
+								$('#lista-times-temporada').append("<tr>" +
+							                							"<th scope='row' class='center'>" + item.id +  "</th>" +
+							                							"<td>" + item.time + "</td>" +
+							                							"<td>" + item.presidente + "</td>" +
+							                							"<td class='center'>" + item.posicao_liga + " º</td>" +
+							                							"<td class='center'>" + parseFloat(item.pontuacao).toFixed(2) + " pts.</td>" +
+							                							"<td class='center'>" + (item.ativo == 1 ? "<i class='fa fa-check fa-2x add' alt='Time ativo' title='Time está ativo'></i>" : "<i class='fa fa-times fa-2x del' alt='Time inativo' title='Time ainda não está ativo'></i>") + "</td>" +
+							                							"<td class='center'>" + (item.ativo == 1 ? botao_inativar : botao_ativar) + "</td>" +
+						                							"</tr>");
+							});
+						}
+						else {
+							$('#lista-times-temporada').append("<tr><td colspan='7' class='center'>Não há dados a serem exibidos para a listagem.</td></tr>");
+						}
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+
+						$('#headline-time-temporada').html('');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+	});
+
+	$('body').on('click', '.btn-ativar-inscricao', function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var time = $(this).data('time');
+    	var temporada = $(this).data('temporada');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.times_temporadas.php?act=ativar&idtime=" + time + "&idano=" + temporada,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Você finalizou a inscrição do time!");
+						$('#alert-content').html("O time foi inscrito com sucesso na temporada! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+	$('body').on('click', '.btn-desativar-inscricao', function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var time = $(this).data('time');
+    	var temporada = $(this).data('temporada');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.times_temporadas.php?act=desativar&idtime=" + time + "&idano=" + temporada,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Você removeu o time da temporada!");
+						$('#alert-content').html("O time selecionado foi removido da temporada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('#btn-voltar-lista-temporadas').click(function(e) {
+		e.preventDefault();
+    	
+		$('.maintable').show();
+		$('.maintemporada').hide();
+
+		$('#headline-time-temporada').html('');
+		$('#lista-times-temporada').html('');
+    });	
+
+    // END TIMES TEMPORADAS (times_temporadas.php)
+
+	// BEGIN GERENCIAR TIMES (gerenciar_times.php)
+	
+    $('#btn-voltar-times').click(function(e) {
+		e.preventDefault();
+
+		$('.mainform').hide();
+		$('.maintable').show();
+
+    	$('#btn-salvar-time').data('id', null);
+    	$('#headline-ger-times').html('');
+		$('.headline-form').html('');
+    });	
+
+    $('.btn-edit-time').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.gerenciar_times.php?act=showupd&idtime=" + id,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('.maintable').hide();
+						$('.mainform').show();
+
+	    				$('#btn-salvar-time').data('id', id);
+				    	$('#headline-ger-times').html('Editar o time ' + retorno.dados.nome_time);
+						$('.headline-form').html('Edite as informações do time!');
+				    	
+				    	$('#id').val(retorno.dados.id);
+				    	$('#nome_time').val(retorno.dados.nome_time);
+				    	$('#nome_presidente').val(retorno.dados.nome_presidente);
+				    	$('#email').val(retorno.dados.email);
+				    	$('#telefone').val(retorno.dados.telefone);
+				    	$('#historia').val(retorno.dados.historia);
+				    	$('#ano_fundacao').val(retorno.dados.ano_fundacao);
+					}
+					else {
+						$('.maintable').show();
+						$('.mainform').hide();
+	    				
+	    				$('#btn-salvar-time').data('id', null);
+				    	$('#headline-ger-times').html('');
+						$('.headline-form').html('');
+				    	
+				    	$('#id').val('');
+				    	$('#nome_time').val('');
+				    	$('#nome_presidente').val('');
+				    	$('#email').val('');
+				    	$('#telefone').val('');
+				    	$('#historia').val('');
+				    	$('#ano_fundacao').val('');
+
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('.btn-desativar-time').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.gerenciar_times.php?act=desativar&idtime=" + id,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Você desativou o time!");
+						$('#alert-content').html("O time selecionado foi desativado com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('#btn-salvar-time').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.gerenciar_times.php?act=edit&idtime=" + id,
+			data: $("#form-temporadas").serialize(),
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html($('#nome_time').val() + " alterado com sucesso!");
+						$('#alert-content').html("A alteração de " + $('#nome_time').val() + " foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+    // END GERENCIAR TIMES (gerenciar_times.php)
+
+	// BEGIN PONTUACAO (pontuacoes.php)
+
+    $('.btn-salvar-pontuacoes').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.pontuacoes.php?act=updpont",
+			data: $("#form-pontuacoes").serialize(),
+    		timeout: 0,
+			success: function(data)
+			{
+			    try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Pontuações lançadas com sucesso!");
+						$('#alert-content').html("As pontuações dos times na rodada foram atualizadas com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    // END PONTUACAO (pontuacoes.php)
+
+	// BEGIN CONFIGURAÇÕES (configuracoes.php)
+
+    $('#btn-abrir-temporada').click(function(e) {
+    	e.preventDefault();
+
+		$('#confirm-title').html("ATENÇÃO!!");
+		$('#confirm-content').html("Você irá ABRIR a temporada e o sistema estará pronto para ser usado!<br /><br />Esse processo é IRREVERSÍVEL!");
+		$('#confirm').modal('show');
+
+    	$('#btn-confirm-modal').click(function(e) {
+			$('#confirm').modal('hide');
+			
+			$('#loading').modal({
+				keyboard: false
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "acts/acts.configuracoes.php?act=abrirtemporada",
+    			timeout: 0,
+				success: function(data)
+				{
+				    try {
+						$('#loading').modal('hide');
+
+						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+						if(retorno.succeed) {
+							$('#alert-title').html("Temporada aberta com sucesso!");
+							$('#alert-content').html("A temporada foi aberta com sucesso! Que começem os jogos!<br /><br />Ao fechar esta mensagem a página será recarregada.");
+							$('#alert-content').append("<br /><br />" + retorno.msg);
+							$('#alert').modal('show');
+
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.reload();
+							})
+						}
+						else {
+							$('#alert-title').html(retorno.title);
+							$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+							$('#alert').modal('show');
+						}
+				    }
+				    catch (e) {
+						$('#loading').modal('hide');
+						$('#alert-title').html("Erro ao fazer parse do JSON!");
+						$('#alert-content').html(String(e.stack));
+						$('#alert').modal('show');
+				    };
+				}
+	    	});
+	    });	
+    });	
+
+    $('#btn-fechar-temporada').click(function(e) {
+    	e.preventDefault();
+
+		$('#confirm-title').html("ATENÇÃO!!");
+		$('#confirm-content').html("Você irá ENCERRAR a temporada e a temporada será alterada para do próximo ano!<br /><br />Esse processo é IRREVERSÍVEL!");
+		$('#confirm').modal('show');
+
+    	$('#btn-confirm-modal').click(function(e) {
+			$('#confirm').modal('hide');
+
+			$('#loading').modal({
+				keyboard: false
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "acts/acts.configuracoes.php?act=fechartemporada",
+    			timeout: 0,
+				success: function(data)
+				{
+				    try {
+						$('#loading').modal('hide');
+
+						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+						if(retorno.succeed) {
+							$('#alert-title').html("Temporada encerrada com sucesso!");
+							$('#alert-content').html("A temporada foi encerrada com sucesso! Seja bem vindo a temporada " + retorno.rodada + " e até ano que vem!<br /><br />Ao fechar esta mensagem a página será recarregada.");
+							$('#alert').modal('show');
+
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.reload();
+							});
+						}
+						else {
+							$('#alert-title').html(retorno.title);
+							$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+							$('#alert').modal('show');
+						}
+				    }
+				    catch (e) {
+						$('#loading').modal('hide');
+						$('#alert-title').html("Erro ao fazer parse do JSON!");
+						$('#alert-content').html(String(e.stack));
+						$('#alert').modal('show');
+				    };
+				}
+			});
+    	});
+    });	
+
+    $('#btn-abrir-mercado').click(function(e) {
+    	e.preventDefault();
+
+		$('#confirm-title').html("ATENÇÃO!!");
+		$('#confirm-content').html("Você irá ABRIR o mercado e a rodada atual será alterada!<br /><br />Esse processo é IRREVERSÍVEL!");
+		$('#confirm').modal('show');
+
+    	$('#btn-confirm-modal').click(function(e) {
+			$('#confirm').modal('hide');
+
+			$('#loading').modal({
+				keyboard: false
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "acts/acts.configuracoes.php?act=abrirmercado",
+    			timeout: 0,
+				success: function(data)
+				{
+				    try {
+						$('#loading').modal('hide');
+
+						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+						if(retorno.succeed) {
+							$('#alert-title').html("Mercado aberto com sucesso!");
+							$('#alert-content').html("O mercado foi aberto com sucesso! Você está na rodada " + retorno.rodada + "!<br /><br />Ao fechar esta mensagem a página será recarregada.");
+							$('#alert').modal('show');
+
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.reload();
+							})
+						}
+						else {
+							$('#alert-title').html(retorno.title);
+							$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+							$('#alert').modal('show');
+						}
+				    }
+				    catch (e) {
+						$('#loading').modal('hide');
+						$('#alert-title').html("Erro ao fazer parse do JSON!");
+						$('#alert-content').html(String(e.stack));
+						$('#alert').modal('show');
+				    };
+				}
+			});
+    	});
+    });	
+
+    $('#btn-fechar-mercado').click(function(e) {
+    	e.preventDefault();
+
+		$('#confirm-title').html("ATENÇÃO!!");
+		$('#confirm-content').html("Você irá FECHAR o mercado! Aproveite para lançar e conferir as pontuações!<br /><br />Esse processo é IRREVERSÍVEL!");
+		$('#confirm').modal('show');
+
+    	$('#btn-confirm-modal').click(function(e) {
+			$('#confirm').modal('hide');
+
+			$('#loading').modal({
+				keyboard: false
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "acts/acts.configuracoes.php?act=fecharmercado",
+    			timeout: 0,
+				success: function(data)
+				{
+				    try {
+						$('#loading').modal('hide');
+
+						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+						if(retorno.succeed) {
+							$('#alert-title').html("Mercado fechado com sucesso!");
+							$('#alert-content').html("O mercado foi fechado com sucesso! Não se esqueça de lançar e conferir a pontuação de todos os times!<br /><br />Ao fechar esta mensagem a página será recarregada.");
+							$('#alert').modal('show');
+
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.reload();
+							})
+						}
+						else {
+							$('#alert-title').html(retorno.title);
+							$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+							$('#alert').modal('show');
+						}
+				    }
+				    catch (e) {
+						$('#loading').modal('hide');
+						$('#alert-title').html("Erro ao fazer parse do JSON!");
+						$('#alert-content').html(String(e.stack));
+						$('#alert').modal('show');
+				    };
+				}
+			});
+		});
+    });	
+
+    $('#btn-abrir-inscricao').click(function(e) {
+    	e.preventDefault();
+
+		$('#confirm-title').html("ATENÇÃO!!");
+		$('#confirm-content').html("Você irá ABRIR AS INSCRIÇÕES e a temporada será alterada para do próximo ano!<br /><br />Esse processo é IRREVERSÍVEL!");
+		$('#confirm').modal('show');
+
+    	$('#btn-confirm-modal').click(function(e) {
+			$('#confirm').modal('hide');
+
+			$('#loading').modal({
+				keyboard: false
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "acts/acts.configuracoes.php?act=abririnscricoes",
+    			timeout: 0,
+				success: function(data)
+				{
+				    try {
+						$('#loading').modal('hide');
+
+						var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+						if(retorno.succeed) {
+							$('#alert-title').html("Inscrições abertas com sucesso!");
+							$('#alert-content').html("As inscrições para a nova temporada foram abertas com sucesso! <br /><br />Ao fechar esta mensagem a página será recarregada.");
+							$('#alert').modal('show');
+
+							$('#alert').on('hidden.bs.modal', function (e) {
+								window.location.reload();
+							})
+						}
+						else {
+							$('#alert-title').html(retorno.title);
+							$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+							$('#alert').modal('show');
+						}
+				    }
+				    catch (e) {
+						$('#loading').modal('hide');
+						$('#alert-title').html("Erro ao fazer parse do JSON!");
+						$('#alert-content').html(String(e.stack));
+						$('#alert').modal('show');
+				    };
+				}
+			});
+		});
+    });	
+
+    $('#btn-dados-config').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.configuracoes.php?act=upddados",
+			data: $("#form-config").serialize(),
+    		timeout: 0,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Dados alterados com sucesso!");
+						$('#alert-content').html("As configurações foram alteradas com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    // END CONFIGURAÇÕES (configuracoes.php)
+
+	// BEGIN EVENTOS (eventos.php)
+
+	$.datetimepicker.setLocale('pt-BR');
+	$('#data_evento').datetimepicker({
+		startDate: '+'+getTodayDate(),
+ 		minDate: '-'+getTodayDate(),
+ 		mask: true,
+ 		step: 30,
+		format: 'd/m/Y H:i'
+	});
+
+    $('#btn-voltar-eventos').click(function(e) {
+		e.preventDefault();
+
+		$('.mainform').hide();
+		$('.maintable').show();
+
+    	$('#btn-salvar-evento').data('id', null);
+    	$('#btn-salvar-evento').data('act', null);
+    	$('#headline-ger-eventos').html('');
+		$('.headline-form').html('');
+
+    	$('#id').val('');
+    	$('#titulo').val('');
+    	$('#data_evento').val('');
+    	$('#local').val('');
+    	$('#descricao').val('');
+    	$('#ativo').bootstrapToggle('off');
+    	$('#lista-participantes-evento').html('');
+    });	
+
+    $('#btn-add-eventos').click(function(e) {
+		e.preventDefault();
+
+		$('.maintable').hide();
+		$('.mainform').show();
+
+		$('#btn-salvar-evento').data('id', null);
+    	$('#btn-salvar-evento').data('act', 'add');
+    	$('#headline-ger-times').html('Cadastrar novo evento');
+		$('.headline-form').html('Insira as informações do novo evento!');
+
+    	$('#id').val('');
+    	$('#titulo').val('');
+    	$('#data_evento').val('');
+    	$('#local').val('');
+    	$('#descricao').val('');
+    	$('#ativo').bootstrapToggle('off');
+		$('#lista-participantes-evento').html('');
+    });	
+
+    $('.btn-edit-eventos').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.eventos.php?act=showupd&idevento=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('.maintable').hide();
+						$('.mainform').show();
+
+				    	$('#btn-salvar-evento').data('act', 'edit');
+				    	$('#btn-salvar-evento').data('id', id);
+	    				$('#headline-temporada').html('Editando o evento ' + retorno.dados.titulo);
+						$('.headline-form').html('Edite as informações do evento!');
+
+						var d = new Date(retorno.dados.data * 1000);
+
+				    	$('#id').val(retorno.dados.id);
+				    	$('#titulo').val(retorno.dados.titulo);
+				    	$('#data_evento').val(d.toDatePickerFormat());
+				    	$('#local').val(retorno.dados.local);
+				    	$('#descricao').val(retorno.dados.descricao);
+				    	$('#ativo').bootstrapToggle(retorno.dados.ativo == 1 ? 'on' : 'off');
+
+				    	if(retorno.list.length > 0) {
+							$.each(retorno.list, function(i, item) {
+								$('#lista-participantes-evento').append("<tr>" +
+							                							"<td>" + item.time + "</td>" +
+							                							"<td>" + item.presidente + "</td>" +
+							                							"<td class='center'><a href='#' class='btn-del-presenca-evento' data-id='" + item.id_time + "' data-evento='" + id + "' alt='Remover " + item.time + " do evento' title='Remover " + item.time + " do evento'><i class='fa fa-trash fa-2x del'></i></a></td>" +
+						                							"</tr>");
+							});
+						}
+						else {
+							$('#lista-participantes-evento').append("<tr><td colspan='3' class='center'>Não há dados a serem exibidos para a listagem.</td></tr>");
+						}
+					}
+					else {
+						$('.mainform').hide();
+						$('.maintable').show();
+
+				    	$('#btn-salvar-evento').data('id', null);
+				    	$('#btn-salvar-evento').data('act', null);
+				    	$('#headline-ger-eventos').html('');
+						$('.headline-form').html('');
+
+				    	$('#id').val('');
+				    	$('#titulo').val('');
+				    	$('#data_evento').val('');
+				    	$('#local').val('');
+				    	$('#descricao').val('');
+				    	$('#ativo').bootstrapToggle('off');
+				    	$('#lista-participantes-evento').html('');
+
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('.btn-del-eventos').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.eventos.php?act=del&idevento=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Evento removido com sucesso!");
+						$('#alert-content').html("A remoção do evento foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('#btn-salvar-evento').click(function(e) {
+    	e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+    	var act = $(this).data('act');
+
+    	if(act == "edit") {
+    		var url = "acts/acts.eventos.php?act=" + act + "&idevento=" + id;
+    	}
+    	else {
+    		var url = "acts/acts.eventos.php?act=" + act;
+    	}
+
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: $("#form-eventos").serialize(),
+			success: function(data)
+			{
+				console.log('data', data);
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+					if(retorno.succeed) {
+						$('#alert-title').html($('#titulo').val() + (act == 'add' ? " adicionado " : " editado ") + "com sucesso!");
+						$('#alert-content').html("A " + (act == 'add' ? " adição " : " edição ") + " de " + $('#titulo').val() + " foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+	$('body').on('click', '.btn-del-presenca-evento', function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+    	var evento = $(this).data('evento');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.eventos.php?act=delp&idtime=" + id + "&idevento=" + evento,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Você removeu o time do evento!");
+						$('#alert-content').html("O time selecionado foi removido do evento com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    // END EVENTOS (eventos.php)
+
+	// BEGIN USUÁRIOS (usuarios.php)
+
+    $('.btn-voltar-usuarios').click(function(e) {
+		e.preventDefault();
+
+		$('.mainform').hide();
+		$('.mainadd').hide();
+		$('.maintable').show();
+
+    	$('#headline-add-usuarios').html('');
+		$('.headline-form').html('');
+    	$('#headline-edit-usuarios').html('');
+		$('.headline-form-edit').html('');
+
+    	$('#id').val('');
+    	$('#time-usuario').html('');
+    	$('#user').val('');
+    	$('#password').val('');
+    	$('#nivel').val('');
+
+    	$('#usuario').val('');
+    	$('#senha').val('');
+    });	
+
+    $('#btn-add-usuarios').click(function(e) {
+		e.preventDefault();
+
+		$('.mainform').hide();
+		$('.maintable').hide();
+		$('.mainadd').show();
+
+    	$('#headline-add-usuarios').html('Cadastrar novo usuário administrador');
+		$('.headline-form-add').html('Insira as informações do novo admin!');
+    	$('#headline-edit-usuarios').html('');
+		$('.headline-form-edit').html('');
+
+    	$('#usuario').val('');
+    	$('#senha').val('');
+    });	
+
+    $('#btn-incluir-usuario').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.usuarios.php?act=add",
+			data: $("#form-usuarios-add").serialize(),
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html($('#usuario').val() + " adicionado com sucesso!");
+						$('#alert-content').html("A inclusão de <b>" + $('#usuario').val() + "</b> foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+    $('.btn-edit-usuarios').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.usuarios.php?act=showupd&idusuario=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('.maintable').hide();
+						$('.mainadd').hide();
+						$('.mainform').show();
+
+				    	$('#btn-editar-usuario').data('id', id);
+				    	$('#btn-desativar-usuario').data('id', id);
+	    				$('#headline-edit-usuarios').html('Editando o usuário ' + retorno.dados.usuario);
+						$('.headline-form-edit').html('Edite as informações do usuário!');
+
+				    	$('#id').val(retorno.dados.id);
+				    	$('#time-usuario').html(retorno.dados.time);
+				    	$('#user').val(retorno.dados.usuario);
+				    	$('#password').val(retorno.dados.senha);
+				    	$('#nivel').val(retorno.dados.nivel);
+					}
+					else {
+						$('.mainadd').hide();
+						$('.mainform').hide();
+						$('.maintable').show();
+
+				    	$('#btn-editar-usuario').data('id', null);
+				    	$('#btn-desativar-usuario').data('id', null);
+	    				$('#headline-edit-usuarios').html('');
+						$('.headline-form-edit').html('');
+
+				    	$('#id').val('');
+				    	$('#time-usuario').html('');
+				    	$('#user').val('');
+				    	$('#password').val('');
+				    	$('#nivel').val('');
+
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('.btn-del-usuarios').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.usuarios.php?act=del&idusuario=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Usuário removido com sucesso!");
+						$('#alert-content').html("A remoção do usuário foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });	
+
+    $('#btn-editar-usuario').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+		
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.usuarios.php?act=edit&idusuario=" + id,
+			data: $("#form-usuarios-edit").serialize(),
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html($('#user').val() + " alterado com sucesso!");
+						$('#alert-content').html("A alteração de <b>" + $('#user').val() + "</b> foi efetuada com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						})
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+	$('.btn-resetar-senha').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+		
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.usuarios.php?act=reset&idusuario=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Senha do usuário resetada com sucesso!");
+						$('#alert-content').html("A senha do usuário foi resetada com sucesso!");
+						$('#alert').modal('show');
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+	$('#btn-desativar-usuario').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+		
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.usuarios.php?act=deactivate&idusuario=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Usuário desativado com sucesso!");
+						$('#alert-content').html("O usuário foi desativado com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
+    // END USUÁRIOS (usuarios.php)
+
+	// BEGIN MATA-MATA (mata_mata.php)
+
+	$('#btn-voltar-mata-mata').click(function(e) {
+		e.preventDefault();
+
+    	$('#headline-mata-mata').html('');
+
+    	$('#id').val('');
+    	$('#descricao').prop("readonly", false);
+    	$('#descricao').val('');
+    	$('#total_times').prop("readonly", false);
     	$('#total_times').val('4');
     	$('#rodada_inicio').prop("readonly", false);
     	$('#passo-mata-mata').prop("disabled", false);

@@ -4,6 +4,7 @@ RewriteRule ^/?$ index.php
 RewriteRule ^cartoleirao/?$ tabela-cts.php
 RewriteRule ^brasileirao/?$ brasileirao.php
 RewriteRule ^clubes/?$ clubes-liga.php
+RewriteRule ^inscricao/?$ inscricao.php
 RewriteRule ^destaques-rodada/?$ destaques-rodada.php
 RewriteRule ^mensal/?$ mensal.php
 RewriteRule ^desempenho-grafico/?$ desempenho-grafico.php

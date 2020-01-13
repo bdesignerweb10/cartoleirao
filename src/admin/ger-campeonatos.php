@@ -19,6 +19,7 @@
 				    <tr>
 				      <th scope="col">#</th>
 				      <th scope="col">Nome do Campeonato</th>
+				      <th scope="col">Inicio</th>
 				      <th scope="col">Valor da Inscrição</th>
 				      <th scope="col">Liga ou Copa?</th>
 				      <th scope="col">Inscrição</th>				      
@@ -29,6 +30,7 @@
 				    <tr>
 				      <th scope="row">1</th>
 				      <td>Liga Cartoleirão - Trabalho Seguro TS</td>
+				      <td>1º Rodada</td>
 				      <td>R$50,00</td>				      
 				      <td><i class="fas fa-futbol" title="Liga Clássica"></i></td>
 				      <td>Aberta</td>				      
@@ -40,6 +42,7 @@
 				    <tr>
 				      <th scope="row">2</th>
 				      <td>Copa Kempes VI</td>
+				      <td>4º Rodada</td>
 				      <td>R$10,00</td>				      
 				      <td><i class="fas fa-trophy" title="Torneio Mata Mata"></i></td>
 				      <td>Fechada</td>				      
@@ -51,6 +54,7 @@
 				    <tr>
 				      <th scope="row">3</th>
 				      <td>Copa Beer</td>
+				      <td>9º Rodada</td>
 				      <td>1 Pack de Heineken</td>				      
 				      <td><i class="fas fa-trophy" title="Torneio Mata Mata"></i></td>	
 				      <td>Encerrada</td>			      
@@ -213,6 +217,10 @@
 					    </div>
 						<div class="form-group col-md-2">
 					      <label for="camp-nome"><span class="badge badge-success">Sim</span><!--<span class="badge badge-danger">Não</span>--><!--<span class="badge badge-secondary">Encerradas</span>--></label>
+					    </div>
+					    <div class="form-group col-md-12">
+					      <label for="slug">Regulamento do Campeonato</label>
+					      <textarea class="form-control" id="regulamento" name="regulamento" cols="30" rows="10"></textarea>					      
 					    </div>
 				  	</div>				  	
 				</form>

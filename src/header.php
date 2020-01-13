@@ -1,8 +1,8 @@
 <?php 
 require_once("acts/connect.php");
 
-if($_SESSION["temporada"] == 2 && (basename($_SERVER['PHP_SELF']) != "inscricao.php" && basename($_SERVER['PHP_SELF']) != "regulamento.php"))
-	header('Location: inscricao');
+if($_SESSION["temporada"] == 2 && (basename($_SERVER['PHP_SELF']) != "inscricao.php" && basename($_SERVER['PHP_SELF']) != "regulamentos.php"))
+	header('Location: login');
 else {
 	if ($_SESSION["user_ativado"] &&
 		basename($_SERVER['PHP_SELF']) == "meus_dados.php" && 
@@ -90,7 +90,7 @@ else {
 	<header class="header">	
 		<div class="row">
 			<div class="header-logo">
-				<img class="img-fluid" src="img/Logo-Cartoleirao.png">
+				<a href="index.php"><img class="img-fluid" src="img/Logo-Cartoleirao.png"></a>
 			</div>
 		</div>
 				
@@ -126,20 +126,22 @@ else {
 			          <a class="dropdown-item" href="desempenho-grafico.php">Gráfico de desempenho</a>
 			        </div>
 			      </li>	
-			      	<?php endif; ?>
-			      <?php endif; ?>
-			      <?php if($_SESSION["temporada"] == "2") : ?>
-			      <li class="nav-item">
-			        <a class="nav-link nav-subscription" href="#">Inscrição</a>
-			      </li>		 
-			      <?php endif; ?>     
 			      <li class="nav-item">
 			        <a class="nav-link" href="regulamentos.php">Regulamentos</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="patrocinadores.php">Patrocinadores</a>
 			      </li>
-
+			      	<?php endif; ?>
+			      <?php endif; ?>
+			      <?php if($_SESSION["temporada"] == "2") : ?>
+			      <li class="nav-item">
+			        <a class="nav-link nav-subscription" href="inscricao.php">Inscrição</a>
+			      </li>		
+			      <li class="nav-item">
+			        <a class="nav-link" href="regulamentos.php">Regulamentos</a>
+			      </li> 
+			      <?php endif; ?>
 			      <!-- as opções abaixo, só deverá aparecer no menu, quando o mercado estiver FECHADO -->
 			      <?php if($_SESSION["mercado"] == "0") : ?>
 			      <li class="nav-item">
@@ -175,10 +177,16 @@ else {
 				    <li class="breadcrumb-item active" aria-current="page">Pontuação Mensal</li>
 				  </ol>
 				</nav>
-			</div>			
+			</div>	
+			<?php if($_SESSION["temporada"] == "2") { ?>
+			<div class="col-sm-4 current-round">
+				<h6>Bem vindo a temporada: <strong><?php echo $_SESSION["temp_atual"]; ?><strong></h6>
+			</div>		
+			<?php } else { ?>
 			<div class="col-sm-4 current-round">
 				<h6>Rodada Atual: <strong><?php echo $_SESSION["rod_atual"]; ?>º Rodada<strong></h6>
-			</div>		
+			</div>
+			<?php } ?>		
 		</div>
 		
 		<!-- Exibir somente quando algum jogo não for valer para o Cartola FC -->	

@@ -7094,6 +7094,10 @@ body {
   padding-right: 30px !important;
   padding-bottom: 30px !important; }
 
+.checkbox label .toggle, .checkbox-inline .toggle {
+  margin-left: 0px !important;
+  margin-right: 5px; }
+
 /* HEADER */
 .nav-header {
   background-color: #fff;
@@ -7297,15 +7301,14 @@ body {
 	background-color: #00165b;
 	border-color: #00165b;
 	color: #fff;
-	width: 100%;
-}
-
-.btn-default:hover{
-	background-color: #00165b;
-	border-color: #00165b;
-	opacity: 0.9;
-	color: #fff;
+	//width: 100%;
 }*/
+.btn-default:hover {
+  background-color: #00165b;
+  border-color: #00165b;
+  opacity: 0.9;
+  color: #fff; }
+
 /* Modal */
 .modal-overview {
   background-color: #eb8300;
@@ -7686,6 +7689,34 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 90%; }
+
+/* Tempo Real */
+#mainscout {
+  display: none; }
+
+.tbl-club .table th, .table td {
+  vertical-align: top; }
+
+.tbl-club {
+  text-align: center; }
+
+.tbl-club .shield-club {
+  width: 35px !important; }
+
+.shoes {
+  width: 28px; }
+
+.tbl-club .temp-pont {
+  font-size: 30px;
+  display: flex;
+  flex-direction: row-reverse; }
+
+.tbl-club span {
+  text-transform: uppercase;
+  font-weight: bold; }
+
+.parc-pont {
+  font-size: 33px; }
 
 /* Comparação */
 .to-compare {
